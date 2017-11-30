@@ -1,12 +1,12 @@
 package test.test;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void sendMessage(View view){
-
         Intent intent = new Intent(this, DisplayMessageActivity.class);
 
         EditText emailField = (EditText) findViewById(R.id.email);
