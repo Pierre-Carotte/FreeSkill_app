@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FreeSkill</string>
     <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="textview">TextView</string>
+    <string name="button_send">Se connecter</string>
+    <string name="edit_mail">Email</string>
+    <string name="edit_password">Mot de passe</string>
+    <string name="email_format_error" />
 </resources>

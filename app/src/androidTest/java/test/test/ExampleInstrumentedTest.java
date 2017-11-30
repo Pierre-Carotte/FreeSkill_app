@@ -1,4 +1,4 @@
-package com.freeskill.olivier.poc1_freeskill;
+package test.test;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.freeskill.olivier.poc1_freeskill", appContext.getPackageName());
+        assertEquals("test.test", appContext.getPackageName());
     }
 }

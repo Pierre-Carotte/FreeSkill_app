@@ -1,4 +1,4 @@
-package com.freeskill.olivier.poc1_freeskill;
+package test.test;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +10,20 @@ public class DisplayMessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_message);
+        setContentView(R.layout.activity_display_connexion);
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
+        String email = intent.getStringExtra(MainActivity.EXTRA_EMAIL);
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        TextView emailView = findViewById(R.id.email_display);
+        emailView.setText(email);
+
+        String password = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
+        // Capture the layout's TextView and set the string as its text
+        TextView passwordView = findViewById(R.id.password_display);
+        passwordView.setText(password);
+
     }
 }

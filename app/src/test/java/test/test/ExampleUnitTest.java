@@ -1,4 +1,4 @@
-package com.freeskill.olivier.poc1_freeskill;
+package test.test;
 
 import org.junit.Test;
 
