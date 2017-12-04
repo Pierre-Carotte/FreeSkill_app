@@ -15,12 +15,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
 
-        String email = intent.getStringExtra(MainActivity.EXTRA_EMAIL);
+        String email = intent.getStringExtra(Homepage.EXTRA_EMAIL);
         // Capture the layout's TextView and set the string as its text
         TextView emailView = findViewById(R.id.email_display);
         emailView.setText(email);
 
-        String password = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
+        String password = intent.getStringExtra(Homepage.EXTRA_PASSWORD);
         // Capture the layout's TextView and set the string as its text
         TextView passwordView = findViewById(R.id.password_display);
         passwordView.setText(password);

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import test.test.utils.Tools;
 
-public class MainActivity extends AppCompatActivity {
+public class Homepage extends AppCompatActivity {
 
     public static final String EXTRA_EMAIL = "com.example.test.EMAIL";
     public static final String EXTRA_PASSWORD = "com.example.test.PASSWORD";
@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.homepage);
 
-        ConstraintLayout rootView = (ConstraintLayout) findViewById(R.id.RootView);
+        ConstraintLayout rootView = findViewById(R.id.rootView);
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,29 +36,37 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view){
         Intent intent = new Intent(this, DisplayMessageActivity.class);
 
-        EditText emailField = (EditText) findViewById(R.id.email);
+        EditText emailField = findViewById(R.id.email);
         String email = emailField.getText().toString();
         intent.putExtra(EXTRA_EMAIL, email);
 
-        EditText passField = (EditText) findViewById(R.id.password);
+        EditText passField = findViewById(R.id.password);
         String password = passField.getText().toString();
         intent.putExtra(EXTRA_PASSWORD, password);
 
         final String loginTxt = emailField.getText().toString();
-        final String passTxt = passField.getText().toString();
+        final String pwdTxt = passField.getText().toString();
 
 
         //Verification of email & password fields
+        //Display a toast if one of the connect fields is empty
+        if(loginTxt.equals("") && pwdTxt.equals("")){
+            Toast.makeText(Homepage.this,"Aucun champ renseigné",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(loginTxt.equals("")){
+            Toast.makeText(Homepage.this,"Email vide",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(pwdTxt.equals("")){
+            Toast.makeText(Homepage.this,"Mot de passe vide",Toast.LENGTH_LONG).show();
+            return;
+        }
         //Check if email field have the good pattern
         Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
         Matcher m = p.matcher(loginTxt);
         if(!m.matches()){
-            Toast.makeText(MainActivity.this,"ERROR",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //Display a toast if one of the connect fields is empty
-        if(loginTxt.equals("") || passTxt.equals("")){
-            Toast.makeText(MainActivity.this,"ERROR: champs vide",Toast.LENGTH_LONG).show();
+            Toast.makeText(Homepage.this,"Format incorrect pour l'email",Toast.LENGTH_SHORT).show();
             return;
         }
 

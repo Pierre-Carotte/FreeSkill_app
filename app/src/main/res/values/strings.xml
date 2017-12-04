@@ -5,4 +5,7 @@
     <string name="edit_mail">Email</string>
     <string name="edit_password">Mot de passe</string>
     <string name="email_format_error" />
+    <string name="freeskill_logo">FreeSkill logo</string>
+    <string name="forgotten_password">Mot de passe oublié ?</string>
+    <string name="button_registration">Inscription</string>
 </resources>
