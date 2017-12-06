@@ -25,5 +25,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
         TextView passwordView = findViewById(R.id.password_display);
         passwordView.setText(password);
 
+        String token = intent.getStringExtra(Homepage.EXTRA_TOKEN);
+        // Capture the layout's TextView and set the string as its text
+        TextView tokenView = findViewById(R.id.token_display);
+        tokenView.setText(token);
+
     }
 }
