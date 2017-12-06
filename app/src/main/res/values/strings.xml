@@ -8,4 +8,15 @@
     <string name="freeskill_logo">FreeSkill logo</string>
     <string name="forgotten_password">Mot de passe oublié ?</string>
     <string name="button_registration">Inscription</string>
+    <string name="label_distance_max">Distance maximale</string>
+    <string name="distance_max">km</string>
+    <string name="label_notifications">Notifications</string>
+    <string name="label_new_match">Nouvelle affinité</string>
+    <string name="label_new_message">Nouveau message</string>
+    <string name="label_new_meeting">Nouvelle proposition de rendez-vous</string>
+    <string name="label_reminder">Rappel de rendez-vous</string>
+    <string name="label_notation">Notation après le rendez-vous</string>
+    <string name="button_modify_password">Modifier le mot de passe</string>
+    <string name="button_log_out">Déconnexion</string>
+    <string name="button_delete_account">Supprimer le compte</string>
 </resources>
