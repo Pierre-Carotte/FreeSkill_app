@@ -8,4 +8,7 @@
     <string name="freeskill_logo">FreeSkill logo</string>
     <string name="forgotten_password">Mot de passe oublié ?</string>
     <string name="button_registration">Inscription</string>
+    <string name="label_distance_max">Distance maximale</string>
+    <string name="distance_max">km</string>
+    <string name="label_notifications">Notifications</string>
 </resources>

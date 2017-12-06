@@ -33,7 +33,7 @@ public class Homepage extends AppCompatActivity {
 
     }
 
-    public void sendMessage(View view){
+    public void connection(View view){
         Intent intent = new Intent(this, DisplayMessageActivity.class);
 
         EditText emailField = findViewById(R.id.email);
@@ -55,10 +55,12 @@ public class Homepage extends AppCompatActivity {
             return;
         }
         if(loginTxt.equals("")){
-            Toast.makeText(Homepage.this,"Email vide",Toast.LENGTH_LONG).show();
+            emailField.setError("Email required!");
+            //Toast.makeText(Homepage.this,"Email vide",Toast.LENGTH_LONG).show();
             return;
         }
         if(pwdTxt.equals("")){
+            passField.setError("Pwd required!");
             Toast.makeText(Homepage.this,"Mot de passe vide",Toast.LENGTH_LONG).show();
             return;
         }
@@ -70,6 +72,11 @@ public class Homepage extends AppCompatActivity {
             return;
         }
 
+        startActivity(intent);
+    }
+
+    public void register(View view){
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 }

@@ -21,10 +21,10 @@
         <activity android:name=".DisplayMessageActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".Homepage" >
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Homepage" />
+        </activity>
+        <activity android:name=".Settings"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Homepage" >
         </activity>
     </application>
 
