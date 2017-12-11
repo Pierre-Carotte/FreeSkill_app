@@ -1,12 +1,12 @@
-package freeskill.app;
+package freeskill.app.test;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import freeskill.app.Controller.ProfileScreen;
-import freeskill.app.Controller.SettingsScreen;
+import freeskill.app.controller.ProfileScreen;
+import freeskill.app.controller.SettingsScreen;
 import freeskill.app.R;
 
 /**

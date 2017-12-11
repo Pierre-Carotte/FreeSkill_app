@@ -1,11 +1,11 @@
-package freeskill.app;
+package freeskill.app.test;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import freeskill.app.Controller.HomepageScreen;
+import freeskill.app.controller.HomepageScreen;
 import freeskill.app.R;
 
 public class DisplayMessageActivity extends AppCompatActivity {

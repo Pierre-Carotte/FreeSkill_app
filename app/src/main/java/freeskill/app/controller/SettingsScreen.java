@@ -1,4 +1,4 @@
-package freeskill.app.Controller;
+package freeskill.app.controller;
 
 import android.content.Intent;
 import android.os.Bundle;

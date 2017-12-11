@@ -1,4 +1,4 @@
-package freeskill.app.Controller;
+package freeskill.app.controller;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

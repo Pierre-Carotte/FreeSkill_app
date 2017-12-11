@@ -1,4 +1,4 @@
-package freeskill.app.Controller;
+package freeskill.app.controller;
 
 
 import android.content.Intent;
@@ -22,9 +22,9 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import freeskill.app.DisplayMessageActivity;
+import freeskill.app.test.DisplayMessageActivity;
 import freeskill.app.R;
-import freeskill.app.Test;
+import freeskill.app.test.Test;
 import freeskill.app.utils.HttpsTrustManager;
 import freeskill.app.utils.Tools;
 
@@ -44,7 +44,7 @@ public class HomepageScreen extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        InputStream caInput=getResources().openRawResource(R.raw.freeskillddnsnet);
+        InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
         HttpsTrustManager https = new HttpsTrustManager(caInput);
         https.allowMySSL();
 

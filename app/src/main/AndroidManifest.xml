@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/freeskill_logo_android"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="freeskill.app.Controller.HomepageScreen"
+        <activity android:name="freeskill.app.controller.HomepageScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -19,25 +19,25 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="freeskill.app.DisplayMessageActivity"
+        <activity android:name="freeskill.app.test.DisplayMessageActivity"
             android:label="Test connexion"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.Controller.HomepageScreen" >
+            android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
-        <activity android:name="freeskill.app.Controller.SettingsScreen"
+        <activity android:name="freeskill.app.controller.SettingsScreen"
             android:label="Paramètres"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.Test" >
+            android:parentActivityName="freeskill.app.test.Test" >
         </activity>
-        <activity android:name="freeskill.app.Controller.ProfileScreen"
+        <activity android:name="freeskill.app.controller.ProfileScreen"
             android:label="Profil"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.Test" >
+            android:parentActivityName="freeskill.app.test.Test" >
         </activity>
-        <activity android:name="freeskill.app.Test"
+        <activity android:name="freeskill.app.test.Test"
             android:label="Test"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.Controller.HomepageScreen" >
+            android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
     </application>
 

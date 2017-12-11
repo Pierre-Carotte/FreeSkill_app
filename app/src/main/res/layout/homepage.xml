@@ -5,7 +5,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="freeskill.app.Controller.HomepageScreen">
+    tools:context="freeskill.app.controller.HomepageScreen">
 
     <ImageView
         android:id="@+id/logo"
