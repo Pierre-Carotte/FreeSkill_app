@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-import test.test.R;
+import freeskill.app.R;
 
 /**
  * Created by Olivier on 06/12/2017.

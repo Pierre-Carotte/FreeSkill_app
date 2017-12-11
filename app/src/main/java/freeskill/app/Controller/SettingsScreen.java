@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import test.test.R;
+import freeskill.app.R;
 import freeskill.app.utils.SeekBarListener;
 
 /**

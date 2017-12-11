@@ -7,7 +7,7 @@ import android.view.View;
 
 import freeskill.app.Controller.ProfileScreen;
 import freeskill.app.Controller.SettingsScreen;
-import test.test.R;
+import freeskill.app.R;
 
 /**
  * Created by Olivier on 06/12/2017.

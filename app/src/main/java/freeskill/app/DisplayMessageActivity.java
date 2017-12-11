@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import freeskill.app.Controller.HomepageScreen;
-import test.test.R;
+import freeskill.app.R;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 

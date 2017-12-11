@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import freeskill.app.DisplayMessageActivity;
-import test.test.R;
+import freeskill.app.R;
 import freeskill.app.Test;
 import freeskill.app.utils.HttpsTrustManager;
 import freeskill.app.utils.Tools;
