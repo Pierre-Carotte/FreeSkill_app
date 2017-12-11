@@ -1,4 +1,4 @@
-package test.test.utils;
+package freeskill.app.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

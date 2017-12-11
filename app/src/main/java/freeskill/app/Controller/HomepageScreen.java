@@ -1,4 +1,4 @@
-package test.test;
+package freeskill.app.Controller;
 
 
 import android.content.Intent;
@@ -22,10 +22,13 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import test.test.utils.HttpsTrustManager;
-import test.test.utils.Tools;
+import freeskill.app.DisplayMessageActivity;
+import test.test.R;
+import freeskill.app.Test;
+import freeskill.app.utils.HttpsTrustManager;
+import freeskill.app.utils.Tools;
 
-public class Homepage extends AppCompatActivity {
+public class HomepageScreen extends AppCompatActivity {
 
     public static final String EXTRA_EMAIL = "com.example.test.EMAIL";
     public static final String EXTRA_PASSWORD = "com.example.test.PASSWORD";
@@ -73,24 +76,24 @@ public class Homepage extends AppCompatActivity {
         //Verification of email & password fields
         //Display a toast if one of the connect fields is empty
         if(loginTxt.equals("") && pwdTxt.equals("")){
-            Toast.makeText(Homepage.this,"Aucun champ renseigné",Toast.LENGTH_LONG).show();
+            Toast.makeText(HomepageScreen.this,"Aucun champ renseigné",Toast.LENGTH_LONG).show();
             return;
         }
         if(loginTxt.equals("")){
             emailField.setError("Email required!");
-            //Toast.makeText(Homepage.this,"Email vide",Toast.LENGTH_LONG).show();
+            //Toast.makeText(HomepageScreen.this,"Email vide",Toast.LENGTH_LONG).show();
             return;
         }
         if(pwdTxt.equals("")){
             passField.setError("Pwd required!");
-            Toast.makeText(Homepage.this,"Mot de passe vide",Toast.LENGTH_LONG).show();
+            Toast.makeText(HomepageScreen.this,"Mot de passe vide",Toast.LENGTH_LONG).show();
             return;
         }
         //Check if email field have the good pattern
         Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
         Matcher m = p.matcher(loginTxt);
         if(!m.matches()){
-            Toast.makeText(Homepage.this,"Format incorrect pour l'email",Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomepageScreen.this,"Format incorrect pour l'email",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -108,7 +111,7 @@ public class Homepage extends AppCompatActivity {
                                 intent.putExtra(EXTRA_TOKEN, message);
                                 startActivity(intent);
                             }else{
-                                Toast.makeText(Homepage.this, message ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(HomepageScreen.this, message ,Toast.LENGTH_SHORT).show();
                             }
                         }catch(Exception e){
                             e.printStackTrace();
@@ -117,7 +120,7 @@ public class Homepage extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Homepage.this, error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomepageScreen.this, error.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         // Add the request to the RequestQueue.
@@ -125,7 +128,7 @@ public class Homepage extends AppCompatActivity {
     }
 
     public void register(View view){
-        Intent intent = new Intent(this, Settings.class);
+        Intent intent = new Intent(this, Test.class);
         startActivity(intent);
     }
 }

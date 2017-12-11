@@ -11,22 +11,33 @@
         android:roundIcon="@drawable/freeskill_logo_android"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Homepage"
+        <activity android:name="freeskill.app.Controller.HomepageScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayMessageActivity"
+        <activity android:name="freeskill.app.DisplayMessageActivity"
+            android:label="Test connexion"
             android:screenOrientation="portrait"
-            android:parentActivityName=".Homepage" >
+            android:parentActivityName="freeskill.app.Controller.HomepageScreen" >
         </activity>
-        <activity android:name=".Settings"
+        <activity android:name="freeskill.app.Controller.SettingsScreen"
+            android:label="Paramètres"
             android:screenOrientation="portrait"
-            android:parentActivityName=".Homepage" >
+            android:parentActivityName="freeskill.app.Test" >
+        </activity>
+        <activity android:name="freeskill.app.Controller.ProfileScreen"
+            android:label="Profil"
+            android:screenOrientation="portrait"
+            android:parentActivityName="freeskill.app.Test" >
+        </activity>
+        <activity android:name="freeskill.app.Test"
+            android:label="Test"
+            android:screenOrientation="portrait"
+            android:parentActivityName="freeskill.app.Controller.HomepageScreen" >
         </activity>
     </application>
 

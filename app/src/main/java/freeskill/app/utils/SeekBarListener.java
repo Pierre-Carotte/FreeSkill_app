@@ -1,4 +1,4 @@
-package test.test.utils;
+package freeskill.app.utils;
 
 import android.widget.SeekBar;
 import android.widget.TextView;

@@ -1,4 +1,4 @@
-package test.test.utils;
+package freeskill.app.utils;
 
 import android.content.Context;
 import android.view.View;

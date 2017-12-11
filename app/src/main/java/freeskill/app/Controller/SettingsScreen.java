@@ -1,4 +1,4 @@
-package test.test;
+package freeskill.app.Controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import test.test.utils.SeekBarListener;
+import test.test.R;
+import freeskill.app.utils.SeekBarListener;
 
 /**
  * Created by Olivier on 06/12/2017.
  */
 
-public class Settings extends AppCompatActivity {
+public class SettingsScreen extends AppCompatActivity {
     private SeekBar seekBarDistance;
     private TextView distanceMax;
     @Override
