@@ -7,8 +7,13 @@ import android.widget.TextView;
 
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.R;
+import freeskill.app.model.CurrentApp;
+import freeskill.app.model.query.CurrentProfileQuery;
 
 public class DisplayMessageActivity extends AppCompatActivity {
+
+    private CurrentApp app;
+    private CurrentProfileQuery currentprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +38,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         TextView tokenView = findViewById(R.id.token_display);
         tokenView.setText(token);
 
+        this.app = CurrentApp.getInstance(null);
+        this.app.createProfileEditor().createCurrentProfile();
     }
 }
