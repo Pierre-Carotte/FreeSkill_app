@@ -69,7 +69,6 @@ public class HomepageScreen extends AppCompatActivity{
 
         this.app = CurrentApp.getInstance(this.queue);
 
-        this.currentprofile = new CurrentProfileQuery();
         this.connection = new Connection(this);
 
         InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
@@ -86,13 +85,8 @@ public class HomepageScreen extends AppCompatActivity{
 
 
         this.sharedPreferences = getPreferences(MODE_PRIVATE);
-        //email = "sofiane.atrari@isen.yncrea.fr";
-        //password = "momo";
 
         this.editor = sharedPreferences.edit();
-        //editor.putString("email", this.email);
-        //editor.putString("password", this.password);
-        //editor.apply();
 
         this.emailField = findViewById(R.id.email);
         this.passField = findViewById(R.id.password);

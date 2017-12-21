@@ -47,10 +47,6 @@ public class CurrentApp{
         return this.profileEditor;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }

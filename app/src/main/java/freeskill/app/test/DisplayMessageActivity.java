@@ -38,7 +38,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         TextView tokenView = findViewById(R.id.token_display);
         tokenView.setText(token);
 
-        this.app = CurrentApp.getInstance(null);
-        this.app.createProfileEditor().createCurrentProfile();
+        //this.app = CurrentApp.getInstance(null);
+        //this.app.createProfileEditor().createCurrentProfile();
     }
 }

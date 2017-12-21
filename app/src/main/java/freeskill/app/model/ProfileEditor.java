@@ -2,6 +2,7 @@ package freeskill.app.model;
 
 import com.android.volley.RequestQueue;
 
+import freeskill.app.controller.ProfileScreen;
 import freeskill.app.model.query.CurrentProfileQuery;
 
 /**
@@ -26,8 +27,8 @@ public class ProfileEditor{
         //profile.getProfile(accessToken, queue);
     }
 
-    public void createCurrentProfile() {
-        CurrentProfileQuery currentProfile = new CurrentProfileQuery();
+    public void createCurrentProfile(ProfileScreen profileScreen) {
+        CurrentProfileQuery currentProfile = new CurrentProfileQuery(profileScreen);
         currentProfile.getCurrentProfile(accessToken, queue);
     }
 

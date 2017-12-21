@@ -40,6 +40,11 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
+        <activity android:name="freeskill.app.test.UnderConstruction"
+            android:label="En travaux"
+            android:screenOrientation="portrait"
+            android:parentActivityName="freeskill.app.controller.ProfileScreen" >
+        </activity>
     </application>
 
 </manifest>
