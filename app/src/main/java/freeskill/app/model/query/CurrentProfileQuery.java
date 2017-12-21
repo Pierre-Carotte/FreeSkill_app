@@ -59,7 +59,6 @@ public class CurrentProfileQuery extends HttpsQuery {
             for(int i = 0; i < tags_discover.length(); i++){
                 System.out.println(tags_discover.get(i));
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }

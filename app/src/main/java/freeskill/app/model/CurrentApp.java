@@ -11,6 +11,11 @@ import freeskill.app.model.query.Connection;
 
 public class CurrentApp{
     public ProfileEditor profileEditor;
+
+    public RequestQueue getQueue() {
+        return queue;
+    }
+
     private RequestQueue queue;
     private Connection connection;
     private String accessToken;

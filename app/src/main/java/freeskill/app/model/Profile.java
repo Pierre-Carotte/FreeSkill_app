@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by Olivier on 11/12/2017.
  */
 
-public class CurrentProfile {
+public class Profile {
     private int idAccess;
     private int idFacebook;
     private int idFCM;
@@ -19,9 +19,18 @@ public class CurrentProfile {
     private byte[] picture;
     private double averageMark;
     private String description;
+    private boolean isAssos;
     private ArrayList marks;
     private ArrayList tagShare;
     private ArrayList tagDiscover;
+
+    public boolean isAssos() {
+        return isAssos;
+    }
+
+    public void setAssos(boolean assos) {
+        isAssos = assos;
+    }
 
     public int getIdAccess() {
         return idAccess;
@@ -135,7 +144,7 @@ public class CurrentProfile {
         this.tagDiscover = tagDiscover;
     }
 
-    public CurrentProfile() {
+    public Profile() {
         this.marks = new ArrayList<Mark>();
         this.tagShare = new ArrayList<String>();
         this.tagDiscover = new ArrayList<String>();

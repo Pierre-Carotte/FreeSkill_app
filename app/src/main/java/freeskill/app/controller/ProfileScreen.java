@@ -1,16 +1,24 @@
 package freeskill.app.controller;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import freeskill.app.R;
 
@@ -19,29 +27,27 @@ import freeskill.app.R;
  */
 
 public class ProfileScreen extends AppCompatActivity {
+
+    private ImageView imageView;
+    private TextView textview_description;
+    private TextView textview_tags_share;
+    private TextView textview_tags_discover;
+
+    private RequestQueue queue;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
-        //encode image(image from drawable) to base64 string
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.profileimage);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        this.queue = Volley.newRequestQueue(this);
 
-        //decode base64 String to image
-        byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        this.imageView = this.findViewById(R.id.imageView);
+        this.textview_description = this.findViewById(R.id.textview_description);
+        this.textview_tags_share = this.findViewById(R.id.textview_tags_share);
+        this.textview_tags_discover = this.findViewById(R.id.textview_tags_discover);
 
-        //show image in ImageView
-        ImageView profileImage = findViewById(R.id.imageView);
-        profileImage.setImageBitmap(decodedByte);
-
-        /*RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);*/
+        this.showPicture();
 
     }
 
@@ -51,5 +57,25 @@ public class ProfileScreen extends AppCompatActivity {
 
     public void edit_tags_discover(View view){
         Toast.makeText(ProfileScreen.this,"Edit tags discover",Toast.LENGTH_LONG).show();
+    }
+
+    public void showPicture(){
+        String url = "https://freeskill.ddns.net/user/GetImage";
+        ImageRequest imageRequest = new ImageRequest(
+                url, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                System.out.println(response);
+                imageView.setImageBitmap(response);
+            }
+        },0,0, ImageView.ScaleType.CENTER_CROP,null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(imageRequest);
     }
 }

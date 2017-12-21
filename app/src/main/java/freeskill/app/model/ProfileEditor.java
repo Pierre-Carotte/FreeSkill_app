@@ -9,21 +9,21 @@ import freeskill.app.model.query.CurrentProfileQuery;
  */
 
 public class ProfileEditor{
-    private CurrentProfile currentProfile;
+    private Profile profile;
     private Settings settings;
     private String accessToken;
     private RequestQueue queue;
 
     public ProfileEditor(String accessToken, RequestQueue queue) {
-        this.currentProfile = new CurrentProfile();
+        this.profile = new Profile();
         this.settings = new Settings();
         this.accessToken = accessToken;
         this.queue = queue;
     }
 
     public void setCurrentProfile(){
-        //CurrentProfileQuery currentProfile = new CurrentProfileQuery();
-        //currentProfile.getCurrentProfile(accessToken, queue);
+        //CurrentProfileQuery profile = new CurrentProfileQuery();
+        //profile.getProfile(accessToken, queue);
     }
 
     public void createCurrentProfile() {
@@ -31,7 +31,7 @@ public class ProfileEditor{
         currentProfile.getCurrentProfile(accessToken, queue);
     }
 
-    public CurrentProfile getCurrentProfile() {
-        return currentProfile;
+    public Profile getProfile() {
+        return profile;
     }
 }

@@ -9,6 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.model.CurrentApp;
 
@@ -22,7 +25,7 @@ public class Connection extends HttpsQuery {
         this.homepageScreen = homepageScreen;
     }
 
-    public void getConnection(String email, String password, RequestQueue queue){
+    public void getConnection(final String email, final String password, RequestQueue queue){
         String url = "https://freeskill.ddns.net/auth/connection?email=" + email + "&password=" + password;
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
@@ -42,6 +45,7 @@ public class Connection extends HttpsQuery {
                 this.homepageScreen.startActivity(this.homepageScreen.getIntentSwipeScreen());
             }else{
                 this.setAccessToken(message);
+                System.out.println(message);
             }
             } catch (JSONException e) {
             e.printStackTrace();
