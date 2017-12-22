@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by Olivier on 11/12/2017.
  */
 
-public class CurrentProfile {
+public class Profile {
     private int idAccess;
     private int idFacebook;
     private int idFCM;
@@ -22,6 +22,7 @@ public class CurrentProfile {
     private ArrayList marks;
     private ArrayList tagShare;
     private ArrayList tagDiscover;
+    private boolean isAssos;
 
     public int getIdAccess() {
         return idAccess;
@@ -119,23 +120,40 @@ public class CurrentProfile {
         this.marks = marks;
     }
 
-    public ArrayList getTagShare() {
+    public ArrayList getTagShareArray() {
         return tagShare;
     }
 
-    public void setTagShare(ArrayList tagShare) {
+    public void setTagShareArray(ArrayList tagShare) {
         this.tagShare = tagShare;
+    }
+
+    public void setTagShare(String tagShare) {
+        this.tagShare.add(tagShare);
     }
 
     public ArrayList getTagDiscover() {
         return tagDiscover;
     }
 
-    public void setTagDiscover(ArrayList tagDiscover) {
+
+    public void setTagDiscoverArray(ArrayList tagDiscover) {
         this.tagDiscover = tagDiscover;
     }
 
-    public CurrentProfile() {
+    public void setTagDiscover(String tagDiscover) {
+        this.tagDiscover.add(tagDiscover);
+    }
+
+    public boolean isAssos() {
+        return isAssos;
+    }
+
+    public void setAssos(int assos) {
+        this.isAssos = assos == 1;
+    }
+
+    public Profile() {
         this.marks = new ArrayList<Mark>();
         this.tagShare = new ArrayList<String>();
         this.tagDiscover = new ArrayList<String>();

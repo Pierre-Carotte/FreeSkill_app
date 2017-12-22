@@ -19,4 +19,9 @@
     <string name="button_modify_password">Modifier le mot de passe</string>
     <string name="button_log_out">Déconnexion</string>
     <string name="button_delete_account">Supprimer le compte</string>
+    <string name="tag_share">Je veux partager :</string>
+    <string name="tag_discover">Je veux découvrir :</string>
+    <string name="swipe">Swipe</string>
+    <string name="pass">Passer</string>
+    <string name="meet">Rencontrer</string>
 </resources>

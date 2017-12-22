@@ -84,8 +84,8 @@ public class HomepageScreen extends AppCompatActivity implements Observer{
         this.intentSwipeScreen = new Intent(this, DisplayMessageActivity.class);
 
         //test connexion
-        email = "olivier.faidherbe@isen.yncrea.fr";
-        password = "polonais";
+        email = "florian.gosselin@isen.yncrea.fr";
+        password = "test";
 
         EditText emailField = findViewById(R.id.email);
         //this.email = emailField.getText().toString();
