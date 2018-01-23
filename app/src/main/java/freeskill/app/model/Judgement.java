@@ -36,14 +36,14 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
     private SwipeScreen swipeScreen;
     private ArrayList<Profile> profiles;
 
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<Profile> adapter;
     private MyAppAdapter myAdapter;
     private Profile profile;
 
 
-   public ArrayAdapter<String> getAdapter() {
+/*   public ArrayAdapter<String> getAdapter() {
         return adapter;
-    }
+    }*/
 
     public MyAppAdapter getMyAdapter() {
         return myAdapter;
@@ -55,7 +55,7 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
         this.swipeScreen = swipeScreen;
         this.profiles = new ArrayList<Profile>();
         //this.adapter = new ArrayAdapter<>(this.swipeScreen, R.layout.item,R.id.firstName, this.swipeScreen.al);
-        this.myAdapter = new MyAppAdapter(this.swipeScreen,this.profiles);
+        this.myAdapter = new MyAppAdapter(this.swipeScreen,-1,this.profiles);
     }
 
     public void requestProfiles(final String accessToken){

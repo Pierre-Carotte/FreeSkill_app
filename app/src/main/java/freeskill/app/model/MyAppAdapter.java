@@ -20,15 +20,18 @@ import freeskill.app.R;
  * Created by Florian on 21/12/2017.
  */
 
-public class MyAppAdapter extends BaseAdapter{
+public class MyAppAdapter extends ArrayAdapter<Profile>{
 
     private Context context;
     private ArrayList<Profile> objects;
 
-    public MyAppAdapter(@NonNull Context context, @NonNull ArrayList<Profile> objects) {
+    public MyAppAdapter(@NonNull Context context, int resource,ArrayList<Profile> objects) {
+        super(context, resource,objects);
         this.objects = objects;
         this.context = context;
+
     }
+
 
     @Override
     public int getCount() {
@@ -48,8 +51,6 @@ public class MyAppAdapter extends BaseAdapter{
 
 
     public View getView (int position, View convertView, ViewGroup parent ){
-        View rowView = convertView;
-
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
         }
@@ -89,5 +90,12 @@ public class MyAppAdapter extends BaseAdapter{
         public TextView tags_discover;
         //public ImageView avatar;
     }
+
+    public synchronized void refreshAdapter(List<Profile> profiles){
+        profiles.clear();
+        profiles.addAll(profiles);
+        notifyDataSetChanged();
+    }
+
 
 }

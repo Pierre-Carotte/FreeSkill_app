@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.lorentzos.flingswipe.FlingCardListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.io.InputStream;
@@ -34,7 +35,7 @@ import freeskill.app.utils.HttpsTrustManager;
 
 public class SwipeScreen extends AppCompatActivity {
     public ArrayList<Profile> al;
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<Profile> arrayAdapter;
     private MyAppAdapter myAppArrayAdapter;
     private int i;
     private RequestQueue queue;
@@ -81,12 +82,15 @@ public class SwipeScreen extends AppCompatActivity {
             @Override
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                /*
                 Log.d("LIST", "removed object!");
                 System.out.println("AV " + al.size());
                 al.remove(0);
                 System.out.println("AP " + al.size());
                 //arrayAdapter.notifyDataSetChanged();
+                //myAppArrayAdapter.refreshAdapter(al);
                 myAppArrayAdapter.notifyDataSetChanged();
+                */
             }
 
             @Override
@@ -95,11 +99,19 @@ public class SwipeScreen extends AppCompatActivity {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 makeToast(SwipeScreen.this, "Left!");
+                al.remove(0);
+                myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
+                //myAppArrayAdapter.refreshAdapter(al);
+                myAppArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
                 makeToast(SwipeScreen.this, "Right!");
+                al.remove(0);
+                myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
+                //myAppArrayAdapter.refreshAdapter(al);
+                myAppArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
