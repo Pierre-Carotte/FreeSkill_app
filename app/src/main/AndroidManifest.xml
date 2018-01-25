@@ -28,12 +28,12 @@
         <activity android:name="freeskill.app.controller.SettingsScreen"
             android:label="Paramètres"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.Test" >
+            android:parentActivityName="freeskill.app.test.DisplayMessageActivity" >
         </activity>
         <activity android:name="freeskill.app.controller.ProfileScreen"
             android:label="Profil"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.Test" >
+            android:parentActivityName="freeskill.app.test.DisplayMessageActivity" >
         </activity>
         <activity android:name="freeskill.app.test.Test"
             android:label="Test"
@@ -44,6 +44,11 @@
             android:label="En travaux"
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.ProfileScreen" >
+        </activity>
+        <activity android:name="freeskill.app.controller.UserRegistrationScreen"
+            android:label="Inscription utilisateur"
+            android:screenOrientation="portrait"
+            android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
     </application>
 

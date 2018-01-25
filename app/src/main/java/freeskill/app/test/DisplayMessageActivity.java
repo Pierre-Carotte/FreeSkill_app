@@ -3,10 +3,13 @@ package freeskill.app.test;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.R;
+import freeskill.app.controller.ProfileScreen;
+import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.query.CurrentProfileQuery;
 
@@ -40,5 +43,15 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         //this.app = CurrentApp.getInstance(null);
         //this.app.createProfileEditor().createCurrentProfile();
+    }
+
+    public void profile(View view){
+        Intent intent = new Intent(this, ProfileScreen.class);
+        startActivity(intent);
+    }
+
+    public void settings(View view){
+        Intent intent = new Intent(this, SettingsScreen.class);
+        startActivity(intent);
     }
 }

@@ -21,4 +21,9 @@
     <string name="button_delete_account">Supprimer le compte</string>
     <string name="label_tags_share">Je veux partager:</string>
     <string name="label_tags_discover">Je cherche à découvrir:</string>
+    <string name="editText_first_name">Prénom</string>
+    <string name="editText_last_name">Nom</string>
+    <string name="editText_email">Email</string>
+    <string name="editText_password">Mot de passe</string>
+    <string name="editText_password_confirmation" >Confirmation du mot de passe</string>
 </resources>

@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import freeskill.app.controller.ProfileScreen;
+import freeskill.app.model.Profile;
 
 /**
  * Created by Olivier on 12/12/2017.
@@ -25,8 +26,11 @@ import freeskill.app.controller.ProfileScreen;
 
 public class CurrentProfileQuery extends HttpsQuery  {
     private ProfileScreen profileScreen;
-    public CurrentProfileQuery(ProfileScreen profileScreen) {
+    private Profile profile;
+
+    public CurrentProfileQuery(ProfileScreen profileScreen, Profile profile) {
         this.profileScreen = profileScreen;
+        this.profile = profile;
     }
 
     public void getCurrentProfile(final String accessToken, RequestQueue queue) {
@@ -56,18 +60,25 @@ public class CurrentProfileQuery extends HttpsQuery  {
             JSONObject profile = response.getJSONObject("profile");
             System.out.println(profile);
             System.out.println(profile.getString("first_name"));
+            this.profile.setFirstname(profile.getString("first_name"));
             System.out.println(profile.getString("last_name"));
+            this.profile.setLastname(profile.getString("last_name"));
             System.out.println(profile.getString("email"));
+            this.profile.setEmail(profile.getString("email"));
             System.out.println(profile.getString("description"));
+            this.profile.setDescription(profile.getString("description"));
             System.out.println(profile.getInt("average_mark"));
+            this.profile.setAverageMark(profile.getInt("average_mark"));
 
             JSONArray tags_share = profile.getJSONArray("tags_share");
             for(int i = 0; i < tags_share.length(); i++){
                 System.out.println(tags_share.get(i));
+                this.profile.setTagShare(tags_share.get(i).toString());
             }
             JSONArray tags_discover = profile.getJSONArray("tags_discover");
             for(int i = 0; i < tags_discover.length(); i++){
                 System.out.println(tags_discover.get(i));
+                this.profile.setTagDiscover(tags_discover.get(i).toString());
             }
 
             this.profileScreen.getTextview_username().setText(profile.getString("first_name"));
@@ -78,7 +89,7 @@ public class CurrentProfileQuery extends HttpsQuery  {
             }
             this.profileScreen.getTextview_tags_share().setText(text_tags_share);
             String text_tags_discover = "";
-            for(int i = 0; i < tags_share.length(); i++){
+            for(int i = 0; i < tags_discover.length(); i++){
                 text_tags_discover = text_tags_discover.concat("#" + tags_discover.get(i).toString() + " ");
             }
             this.profileScreen.getTextview_tags_discover().setText(text_tags_discover);

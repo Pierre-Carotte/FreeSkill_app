@@ -16,7 +16,7 @@ public class Profile {
     private String email;
     private double latitude;
     private double longitude;
-    private byte[] picture;
+    private String picture;
     private double averageMark;
     private String description;
     private boolean isAssos;
@@ -96,11 +96,11 @@ public class Profile {
         this.longitude = longitude;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
@@ -132,16 +132,16 @@ public class Profile {
         return tagShare;
     }
 
-    public void setTagShare(ArrayList tagShare) {
-        this.tagShare = tagShare;
+    public void setTagShare(String tagShare) {
+        this.tagShare.add(tagShare);
     }
 
     public ArrayList getTagDiscover() {
         return tagDiscover;
     }
 
-    public void setTagDiscover(ArrayList tagDiscover) {
-        this.tagDiscover = tagDiscover;
+    public void setTagDiscover(String tagDiscover) {
+        this.tagDiscover.add(tagDiscover);
     }
 
     public Profile() {
