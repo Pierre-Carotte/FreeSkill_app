@@ -57,7 +57,8 @@ public class CurrentProfileQuery extends HttpsQuery  {
     @Override
     public void onResponse(JSONObject response) {
         try {
-            JSONObject profile = response.getJSONObject("profile");
+            JSONObject message = response.getJSONObject("message");
+            JSONObject profile = message.getJSONObject("profile");
             System.out.println(profile);
             System.out.println(profile.getString("first_name"));
             this.profile.setFirstname(profile.getString("first_name"));

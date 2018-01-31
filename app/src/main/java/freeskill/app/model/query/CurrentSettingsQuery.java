@@ -55,8 +55,9 @@ public class CurrentSettingsQuery extends HttpsQuery{
     @Override
     public void onResponse(JSONObject response) {
         try {
-            System.out.println(response.getJSONObject("settings"));
-            JSONObject settings = response.getJSONObject("settings");
+            System.out.println(response);
+            JSONObject message = response.getJSONObject("message");
+            JSONObject settings = message.getJSONObject("settings");
             this.settings.setPerimeter(settings.getInt("perimeter"));
             if(settings.getInt("notif_message") == 1){
                 this.settings.setNotif_message(true);

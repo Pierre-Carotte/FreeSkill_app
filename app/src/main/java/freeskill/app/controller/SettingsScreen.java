@@ -1,6 +1,7 @@
 package freeskill.app.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
@@ -28,6 +29,9 @@ public class SettingsScreen extends AppCompatActivity {
     private Switch switch_new_meeting;
     private Switch switch_mark;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,9 @@ public class SettingsScreen extends AppCompatActivity {
         this.app = CurrentApp.getInstance(null);
         this.profileEditor = this.app.createProfileEditor();
         this.profileEditor.createCurrentSettings(this);
+
+        this.sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        this.editor = sharedPreferences.edit();
     }
 
     public SeekBar getSeekBarDistance() {

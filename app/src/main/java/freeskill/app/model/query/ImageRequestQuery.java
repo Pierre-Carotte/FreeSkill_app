@@ -31,6 +31,7 @@ public class ImageRequestQuery implements Response.Listener<Bitmap>, Response.Er
 
     public void getImage(final String accessToken, RequestQueue queue){
         String url = "https://freeskill.ddns.net/user/GetImage/";
+
         ImageRequest imageRequest = new ImageRequest(
                 url, this,0,0, ImageView.ScaleType.CENTER_CROP,null, this){
             //Add the accessToken in the headers of the request
