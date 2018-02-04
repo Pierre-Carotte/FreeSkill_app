@@ -1,5 +1,9 @@
 package freeskill.app.model;
 
+import android.graphics.Bitmap;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 
@@ -8,21 +12,40 @@ import java.util.ArrayList;
  */
 
 public class Profile {
+    private int id;
     private int idAccess;
     private int idFacebook;
     private int idFCM;
+    private int perimeter;
     private String first_name;
     private String last_name;
     private String email;
     private double latitude;
     private double longitude;
-    private byte[] picture;
+    private Bitmap picture;
     private double averageMark;
     private String description;
     private ArrayList marks;
     private ArrayList tagShare;
     private ArrayList tagDiscover;
     private boolean isAssos;
+
+
+    public int getPerimeter() {
+        return perimeter;
+    }
+
+    public void setPerimeter(int perimeter) {
+        this.perimeter = perimeter;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getIdAccess() {
         return idAccess;
@@ -88,11 +111,11 @@ public class Profile {
         this.longitude = longitude;
     }
 
-    public byte[] getPicture() {
+    public Bitmap getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(Bitmap picture) {
         this.picture = picture;
     }
 
@@ -132,7 +155,7 @@ public class Profile {
         this.tagShare.add(tagShare);
     }
 
-    public ArrayList getTagDiscover() {
+    public ArrayList getTagDiscoverArray() {
         return tagDiscover;
     }
 
@@ -151,6 +174,15 @@ public class Profile {
 
     public void setAssos(int assos) {
         this.isAssos = assos == 1;
+    }
+
+    public String getTagToString(ArrayList tagShare){
+        String text_tags = "";
+        for(int i = 0; i < tagShare.size(); i++){
+            System.out.println("TAB_SHARE : " + tagShare.size() + tagShare.toString());
+            text_tags = text_tags.concat("#" + tagShare.get(i).toString() + " ");
+        }
+        return text_tags;
     }
 
     public Profile() {
