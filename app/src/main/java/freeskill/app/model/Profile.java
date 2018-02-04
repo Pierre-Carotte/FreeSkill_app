@@ -128,8 +128,12 @@ public class Profile {
         this.marks = marks;
     }
 
-    public ArrayList getTagShare() {
+    public ArrayList getTagShareArray() {
         return tagShare;
+    }
+
+    public void setTagShareArray(ArrayList tagShare) {
+        this.tagShare = tagShare;
     }
 
     public void setTagShare(String tagShare) {
@@ -140,8 +144,17 @@ public class Profile {
         return tagDiscover;
     }
 
+
+    public void setTagDiscoverArray(ArrayList tagDiscover) {
+        this.tagDiscover = tagDiscover;
+    }
+
     public void setTagDiscover(String tagDiscover) {
         this.tagDiscover.add(tagDiscover);
+    }
+
+    public void setAssos(int assos) {
+        this.isAssos = assos == 1;
     }
 
     public Profile() {

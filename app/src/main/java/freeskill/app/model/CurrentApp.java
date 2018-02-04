@@ -3,6 +3,7 @@ package freeskill.app.model;
 import com.android.volley.RequestQueue;
 
 import freeskill.app.controller.HomepageScreen;
+import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.query.Connection;
 
 /**
@@ -19,6 +20,7 @@ public class CurrentApp{
     private RequestQueue queue;
     private Connection connection;
     private String accessToken;
+    private Judgement judgement;
 
     private static CurrentApp instance = null;
 
@@ -45,6 +47,15 @@ public class CurrentApp{
     public ProfileEditor createProfileEditor() {
         this.profileEditor = new ProfileEditor(this.accessToken, this.queue);
         return this.profileEditor;
+    }
+
+    public Judgement createJudgement(SwipeScreen swipeScreen){
+        this.judgement = new Judgement(this.accessToken,this.queue,swipeScreen);
+        return this.judgement;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
     }
 
     public void setAccessToken(String accessToken) {

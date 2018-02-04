@@ -27,4 +27,9 @@
     <string name="editText_email">Email</string>
     <string name="editText_password">Mot de passe</string>
     <string name="editText_password_confirmation" >Confirmation du mot de passe</string>
+    <string name="tag_share">Je veux partager :</string>
+    <string name="tag_discover">Je veux découvrir :</string>
+    <string name="swipe">Swipe</string>
+    <string name="pass">Passer</string>
+    <string name="meet">Rencontrer</string>
 </resources>
