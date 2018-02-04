@@ -14,6 +14,8 @@ import java.util.Map;
 
 import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Florian on 02/02/2018.
@@ -41,7 +43,7 @@ public class PostJudgement implements Response.Listener<String>, Response.ErrorL
         StringRequest postRequest = new StringRequest(Request.Method.PUT, url,this,this){
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("x-access-token", accessToken);
+                headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
                 return headers;
             }
         };

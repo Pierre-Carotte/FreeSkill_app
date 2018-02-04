@@ -20,8 +20,10 @@ import java.util.Map;
 
 import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.adapters.MyAppAdapter;
 import freeskill.app.model.Profile;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Florian on 18/12/2017.
@@ -95,7 +97,7 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,this,this) {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("x-access-token", accessToken);
+                headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
                 return headers;
             }
         };
