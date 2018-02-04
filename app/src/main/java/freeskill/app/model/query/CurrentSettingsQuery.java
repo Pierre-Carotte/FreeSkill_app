@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import freeskill.app.controller.SettingsScreen;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.Settings;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Olivier on 22/01/2018.
@@ -30,15 +32,18 @@ public class CurrentSettingsQuery extends HttpsQuery{
 
     public void getCurrentSettings(final String accessToken, RequestQueue queue) {
         //Set the URL for the request
-        String url = "https://freeskill.ddns.net/user/GetProfile";
+        //String url = "https://freeskill.ddns.net/user/GetProfile";
 
         // Request a JSON response from the provided URL.
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this){
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET,
+                Constants.API.GetProfile.URI,
+                null, this, this){
             //Add the accessToken in the headers of the request
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("x-access-token", accessToken);
+                headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
+                //headers.put("x-access-token", accessToken);
                 return headers;
             }
         };

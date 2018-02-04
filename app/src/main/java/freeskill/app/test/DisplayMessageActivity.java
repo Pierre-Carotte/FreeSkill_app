@@ -1,8 +1,10 @@
 package freeskill.app.test;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import freeskill.app.R;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.CurrentProfileQuery;
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -53,5 +56,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
     public void settings(View view){
         Intent intent = new Intent(this, SettingsScreen.class);
         startActivity(intent);
+    }
+
+    public void logout(View view){
+        //Log.d("data ", DataConnection.getInstance().getEmail() );
+        DataConnection.getInstance().clearDataConnection();
+
+        this.finish();
     }
 }

@@ -1,5 +1,7 @@
 package freeskill.app.model.query;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -14,10 +16,12 @@ import java.util.Map;
 
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
+import freeskill.app.utils.Constants;
 
 /**
-        * Created by Olivier on 12/12/2017.
-        */
+ * Created by Olivier on 12/12/2017.
+ */
 
 public class Connection extends HttpsQuery {
     HomepageScreen homepageScreen;
@@ -26,7 +30,9 @@ public class Connection extends HttpsQuery {
     }
 
     public void getConnection(final String email, final String password, RequestQueue queue){
-        String url = "https://freeskill.ddns.net/auth/connection?email=" + email + "&password=" + password;
+        String url = Constants.API.Connection.URI + "?" + Constants.API.Connection.param1 +
+                "=" + email + "&"
+                + Constants.API.Connection.param2 +"="+ password;
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, this, this);
@@ -42,14 +48,19 @@ public class Connection extends HttpsQuery {
             String message = response.getString("message");
             if(success.equals("true")){
                 CurrentApp.getInstance(null).setAccessToken(message);
+                //TODO del line bellow
+
+                //Save JWT for persistent connection
+                DataConnection dc = DataConnection.getInstance();
+                dc.setJWT(message);
                 this.homepageScreen.getIntentSwipeScreen().putExtra(this.homepageScreen.EXTRA_TOKEN,
-                                                                        message);
+                        message);
                 this.homepageScreen.startActivity(this.homepageScreen.getIntentSwipeScreen());
             }else{
                 this.setAccessToken(message);
                 System.out.println(message);
             }
-            } catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

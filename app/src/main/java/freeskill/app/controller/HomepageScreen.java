@@ -10,6 +10,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,12 +25,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.Connection;
 import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.test.DisplayMessageActivity;
 import freeskill.app.R;
 import freeskill.app.test.Test;
 import freeskill.app.utils.HttpsTrustManager;
+import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 
 public class HomepageScreen extends AppCompatActivity{
@@ -71,10 +74,6 @@ public class HomepageScreen extends AppCompatActivity{
 
         this.connection = new Connection(this);
 
-        InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
-        HttpsTrustManager https = new HttpsTrustManager(caInput);
-        https.allowMySSL();
-
         ConstraintLayout rootView = findViewById(R.id.rootView);
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +81,6 @@ public class HomepageScreen extends AppCompatActivity{
                 Tools.hideKeyboard(getApplicationContext(),view);
             }
         });
-
 
         this.sharedPreferences = getPreferences(MODE_PRIVATE);
 
@@ -96,6 +94,21 @@ public class HomepageScreen extends AppCompatActivity{
 
         this.emailField.setText(email);
         this.passField.setText(password);
+
+        //Persistent connection
+        //Test if I have token
+        String jwt = DataConnection.getInstance().getJWT();
+        if(null != jwt && "" != jwt){
+            //test if token is valide
+            try {
+                JWTUtils.decoded(jwt);
+                Log.d("token: ", jwt);
+                Intent intent = new Intent(this, DisplayMessageActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.d("test Token", "no token");
+            }
+        }
 
 
     }

@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 
+import freeskill.app.model.DataConnection;
+
 /**
  * Created by Olivier on 14/12/2017.
  */
@@ -14,7 +16,8 @@ public abstract class HttpsQuery implements Response.Listener<JSONObject>, Respo
     protected String accessToken;
 
     public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+        this.accessToken =DataConnection.getInstance().getJWT();
+        //this.accessToken = accessToken;
     }
 
     public String getAccessToken() {

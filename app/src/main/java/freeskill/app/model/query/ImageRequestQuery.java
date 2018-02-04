@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import freeskill.app.controller.ProfileScreen;
+import freeskill.app.model.DataConnection;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Olivier on 15/12/2017.
@@ -30,20 +32,20 @@ public class ImageRequestQuery implements Response.Listener<Bitmap>, Response.Er
     }
 
     public void getImage(final String accessToken, RequestQueue queue){
-        String url = "https://freeskill.ddns.net/user/GetImage/";
+        //String url = "https://freeskill.ddns.net/user/GetImage/";
 
         ImageRequest imageRequest = new ImageRequest(
-                url, this,0,0, ImageView.ScaleType.CENTER_CROP,null, this){
+                Constants.API.GetImage.URI, this,0,0,
+                ImageView.ScaleType.CENTER_CROP,null, this){
             //Add the accessToken in the headers of the request
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("x-access-token", accessToken);
+                headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
+                //headers.put("x-access-token", accessToken);
                 return headers;
             }
         };
-
-
         // Add the request to the RequestQueue.
         queue.add(imageRequest);
     }
