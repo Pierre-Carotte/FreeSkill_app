@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.ProfileEditor;
 import freeskill.app.utils.SeekBarListener;
 
@@ -57,6 +59,11 @@ public class SettingsScreen extends AppCompatActivity {
 
         this.sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
+    }
+
+    public void signOut(View view){
+        DataConnection.getInstance().clearDataConnection();
+        this.startActivity(new Intent(this, HomepageScreen.class));
     }
 
     public SeekBar getSeekBarDistance() {

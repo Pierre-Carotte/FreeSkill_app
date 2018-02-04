@@ -1,12 +1,7 @@
-package freeskill.app.model;
+package freeskill.app.model.query;
 
-import android.app.Activity;
-import android.content.Context;
-import android.provider.ContactsContract;
-import android.view.View;
+import android.graphics.Bitmap;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,10 +15,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import freeskill.app.R;
 import freeskill.app.controller.SwipeScreen;
+import freeskill.app.model.CurrentApp;
+import freeskill.app.model.adapters.MyAppAdapter;
+import freeskill.app.model.Profile;
 
 /**
  * Created by Florian on 18/12/2017.
@@ -35,33 +33,64 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
     private RequestQueue queue;
     private SwipeScreen swipeScreen;
     private ArrayList<Profile> profiles;
-
-    private ArrayAdapter<Profile> adapter;
+    private ArrayAdapter<Bitmap> adapter;
     private MyAppAdapter myAdapter;
     private Profile profile;
+    private ImageRequestProfilesQuery imageRequestProfilesQuery;
+    private List<Integer> idList;
+    private CurrentApp currentApp;
+    private HashMap<Integer,Bitmap> images;
 
+    public HashMap<Integer, Bitmap> getImages() {
+        return images;
+    }
 
-/*   public ArrayAdapter<String> getAdapter() {
+    public ArrayAdapter<Bitmap> getAdapter() {
         return adapter;
-    }*/
+    }
+
+    public void setAdapter(ArrayAdapter<Bitmap> adapter) {
+        this.adapter = adapter;
+    }
+
+    public List<Integer> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Integer> idList) {
+        this.idList = idList;
+    }
 
     public MyAppAdapter getMyAdapter() {
         return myAdapter;
     }
+
 
     public Judgement(String accessToken, RequestQueue queue, SwipeScreen swipeScreen) {
         this.accessToken = accessToken;
         this.queue = queue;
         this.swipeScreen = swipeScreen;
         this.profiles = new ArrayList<Profile>();
-        //this.adapter = new ArrayAdapter<>(this.swipeScreen, R.layout.item,R.id.firstName, this.swipeScreen.al);
-        this.myAdapter = new MyAppAdapter(this.swipeScreen,-1,this.profiles);
+        this.imageRequestProfilesQuery = new ImageRequestProfilesQuery(this,
+                new ImageRequestProfilesQuery.OnImageLoaded() {
+
+            private Judgement judgement;
+            private MyAppAdapter myAppAdapter;
+
+            @Override
+            public void onSuccess(Bitmap bitmap) {
+               /* for(int i = 0; i<this.judgement.profiles.size();i++){
+                    this.judgement.profiles.get(i).setPicture(bitmap);
+                }*/
+            }
+        });
+        this.myAdapter = new MyAppAdapter(this.swipeScreen,-1,this.profiles,this.getImages());
+        this.currentApp = CurrentApp.getInstance(null);
     }
 
     public void requestProfiles(final String accessToken){
-        //this.profiles = new ArrayList<Profile>();
         this.profile = new Profile();
-        String url = "https://freeskill.ddns.net/user/searchProfiles";
+        String url = "https://freeskill.ddns.net/user/SearchProfiles";
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,this,this) {
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -73,7 +102,6 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        System.out.println("DA " + profiles.size());
     }
 
 
@@ -91,30 +119,33 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
                 JSONArray allProfiles = response.getJSONArray("message");
                 for(int i = 0; i<allProfiles.length();i++){
                     Profile p = new Profile();
+                    JSONArray tags_discover = allProfiles.getJSONObject(i).getJSONArray("tags_discover");
+                    JSONArray tags_share = allProfiles.getJSONObject(i).getJSONArray("tags_share");
+
                     p.setFirstname(allProfiles.getJSONObject(i).getString("first_name"));
                     p.setAverageMark(allProfiles.getJSONObject(i).getDouble("average_mark"));
                     p.setDescription(allProfiles.getJSONObject(i).getString("description"));
-                    p.setTagDiscover(allProfiles.getJSONObject(i).getString("tags_discover"));
-                    p.setTagShare(allProfiles.getJSONObject(i).getString("tags_share"));
+                    for(int j =0 ; j < tags_discover.length();j++){
+                        p.setTagDiscover(tags_discover.get(j).toString());
+                        System.out.println(tags_discover.get(j).toString());
+                    }
+                    for(int j =0 ; j < tags_share.length();j++){
+                        p.setTagShare(tags_share.get(j).toString());
+                    }
                     p.setAssos(allProfiles.getJSONObject(i).getInt("is_assos"));
-                    //A RAJOUTER
-                    //id
-                    //perimeter
-
-                    System.out.println(p.getDescription());
+                    p.setId(allProfiles.getJSONObject(i).getInt("id"));
+                    p.setPerimeter(allProfiles.getJSONObject(i).getInt("distance"));
 
                     profiles.add(p);
                 }
-                System.out.println("oki " + profiles.size());
                 for(int i = 0;i<this.profiles.size();i++){
                     this.swipeScreen.al.add(this.profiles.get(i));
-                    System.out.println("AL SIZE : "  + this.swipeScreen.al.size());
-                    System.out.println("AL FN : "  + this.swipeScreen.al.get(i));
-
+                    this.imageRequestProfilesQuery.getImage(this.currentApp.getAccessToken(),
+                            this.currentApp.getQueue(),this.profiles.get(i).getId());
                 }
-
-                //this.adapter.notifyDataSetChanged();
                 this.myAdapter.notifyDataSetChanged();
+                //this.adapter.notifyDataSetChanged();
+
 
 
 

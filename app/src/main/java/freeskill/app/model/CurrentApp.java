@@ -5,22 +5,23 @@ import com.android.volley.RequestQueue;
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.query.Connection;
+import freeskill.app.model.query.Judgement;
 
 /**
  * Created by Olivier on 11/12/2017.
  */
 
-public class CurrentApp{
+public class CurrentApp {
     public ProfileEditor profileEditor;
-
-    public RequestQueue getQueue() {
-        return queue;
-    }
 
     private RequestQueue queue;
     private Connection connection;
     private String accessToken;
     private Judgement judgement;
+
+    public RequestQueue getQueue() {
+        return queue;
+    }
 
     private static CurrentApp instance = null;
 

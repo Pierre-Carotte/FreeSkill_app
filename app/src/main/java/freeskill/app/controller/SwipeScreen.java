@@ -1,19 +1,14 @@
 package freeskill.app.controller;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.lorentzos.flingswipe.FlingCardListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.io.InputStream;
@@ -24,9 +19,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.Judgement;
-import freeskill.app.model.MyAppAdapter;
+import freeskill.app.model.query.Judgement;
+import freeskill.app.model.adapters.MyAppAdapter;
 import freeskill.app.model.Profile;
+import freeskill.app.model.query.PostJudgement;
 import freeskill.app.utils.HttpsTrustManager;
 
 /**
@@ -35,12 +31,13 @@ import freeskill.app.utils.HttpsTrustManager;
 
 public class SwipeScreen extends AppCompatActivity {
     public ArrayList<Profile> al;
-    private ArrayAdapter<Profile> arrayAdapter;
     private MyAppAdapter myAppArrayAdapter;
-    private int i;
+    private ArrayAdapter<Bitmap> arrayBitmap;
     private RequestQueue queue;
     private Judgement judgement;
     private CurrentApp currentApp;
+    private PostJudgement postJudgement;
+    public String meet= "";
 
 
 
@@ -64,19 +61,18 @@ public class SwipeScreen extends AppCompatActivity {
 
         this.al = new ArrayList<>();
 
-
         this.currentApp = CurrentApp.getInstance(null);
         this.judgement = this.currentApp.createJudgement(this);
         this.judgement.requestProfiles(this.currentApp.getAccessToken());
 
+        this.postJudgement = new PostJudgement(this.currentApp.getAccessToken(),this.queue,this);
 
-        System.out.println( "OUI " + al.size());
 
-        //arrayAdapter = this.judgement.getAdapter();
+
         myAppArrayAdapter = this.judgement.getMyAdapter();
+        //arrayBitmap = this.judgement.getAdapter();
 
 
-        //flingContainer.setAdapter(arrayAdapter);
         flingContainer.setAdapter(myAppArrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
@@ -95,18 +91,22 @@ public class SwipeScreen extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
+                //Send judgment request when the card exit on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
+                meet="PASS";
+                SwipeScreen.this.postJudgement.post(SwipeScreen.this.currentApp.getAccessToken());
                 makeToast(SwipeScreen.this, "Left!");
                 al.remove(0);
                 myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
-                //myAppArrayAdapter.refreshAdapter(al);
                 myAppArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
+                //Send judgment request when the card exit on the right!
+                meet="MEET";
+                SwipeScreen.this.postJudgement.post(SwipeScreen.this.currentApp.getAccessToken());
                 makeToast(SwipeScreen.this, "Right!");
                 al.remove(0);
                 myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
@@ -118,11 +118,8 @@ public class SwipeScreen extends AppCompatActivity {
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
                 //If the resquest is empty we have to put a message to say that there is no more similar profile available in the range
-                //judgement.requestProfiles(currentApp.getAccessToken());
-               //al.add("VIDE ".concat(String.valueOf(i)));
-               //arrayAdapter.notifyDataSetChanged();
-                //Log.d("LIST", "notified");
-                //i++;
+                judgement.requestProfiles(currentApp.getAccessToken());
+                //arrayAdapter.notifyDataSetChanged();
             }
 
             @Override

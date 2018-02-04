@@ -12,6 +12,7 @@ import freeskill.app.controller.HomepageScreen;
 import freeskill.app.R;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
+import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.CurrentProfileQuery;
@@ -58,10 +59,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void logout(View view){
-        //Log.d("data ", DataConnection.getInstance().getEmail() );
-        DataConnection.getInstance().clearDataConnection();
-
-        this.finish();
+    public void swipe (View view){
+        Intent intent = new Intent(this,SwipeScreen.class);
+        startActivity(intent);
     }
 }
