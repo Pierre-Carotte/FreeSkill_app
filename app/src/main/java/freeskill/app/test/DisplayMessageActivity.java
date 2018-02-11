@@ -1,20 +1,20 @@
 package freeskill.app.test;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import freeskill.app.controller.ChatListActivity;
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.R;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
 import freeskill.app.controller.SwipeScreen;
+import freeskill.app.controller.fragments.ChatListFragment;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.CurrentProfileQuery;
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -63,4 +63,19 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SwipeScreen.class);
         startActivity(intent);
     }
+
+    public void chatList(View view) {
+        CurrentApp ca = CurrentApp.getInstance(null);
+        Log.d("chatlist", "Get chatList");
+        Intent intent = new Intent(this, ChatListActivity.class);
+        Log.d("chatlist", "Intent ok");
+        startActivity(intent);
+      /*  GetMatches gm = new GetMatches();
+        try {
+            gm.getChatList(ca.getQueue());
+        } catch (AuthFailureError authFailureError) {
+            Log.e("chatList", "Request getMatches failded");
+        }*/
+    }
+
 }

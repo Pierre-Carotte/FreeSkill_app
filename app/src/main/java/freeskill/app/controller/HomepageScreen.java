@@ -18,9 +18,6 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import java.io.InputStream;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +28,6 @@ import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.test.DisplayMessageActivity;
 import freeskill.app.R;
 import freeskill.app.test.Test;
-import freeskill.app.utils.HttpsTrustManager;
 import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 
@@ -128,6 +124,7 @@ public class HomepageScreen extends AppCompatActivity{
         editor.putString("email", this.email);
         editor.putString("password", this.password);
         editor.apply();
+
 
         if (!isConnected()) {
             Snackbar.make(view, "Aucune connexion à internet.", Snackbar.LENGTH_LONG).show();

@@ -32,4 +32,9 @@
     <string name="swipe">Swipe</string>
     <string name="pass">Passer</string>
     <string name="meet">Rencontrer</string>
+    <string name="chatList">ChatList</string>
+    <string name="noMessage">Pas de conversation</string>
+    <string name="days">jours</string>
+    <string name="hours">heures</string>
+    <string name="minutes">minutes</string>
 </resources>

@@ -1,15 +1,11 @@
 package freeskill.app.model.query;
 
-import android.graphics.Bitmap;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
@@ -22,7 +18,6 @@ import freeskill.app.controller.ProfileScreen;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
 import freeskill.app.utils.Constants;
-import freeskill.app.utils.JWTUtils;
 
 /**
  * Created by Olivier on 12/12/2017.
@@ -42,7 +37,6 @@ public class CurrentProfileQuery extends HttpsQuery  {
         imageRequestQuery.getImage(accessToken, queue);
         //Set the URL for the request
         //String url = "https://freeskill.ddns.net/user/GetProfile";
-
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.API.GetProfile.URI, null, this, this){
@@ -55,8 +49,10 @@ public class CurrentProfileQuery extends HttpsQuery  {
                 return headers;
             }
         };
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
     }
 
     @Override

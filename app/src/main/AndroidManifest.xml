@@ -57,6 +57,11 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
+        <activity android:name=".controller.ChatListActivity"
+            android:label="ChatList"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".test.Test">
+        </activity>
     </application>
 
 </manifest>
