@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/color_freeskill">
+
+    <ImageView
+        android:id="@+id/action_bar_back"
+        android:layout_width="@dimen/size_actionbar"
+        android:layout_height="@dimen/size_actionbar"
+        android:background="@android:color/transparent"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/button_back" />
+
+
+    <ImageView
+        android:id="@+id/action_bar_settings"
+        android:layout_width="@dimen/size_actionbar"
+        android:layout_height="@dimen/size_actionbar"
+        android:background="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/button_settings" />
+
+
+</RelativeLayout>

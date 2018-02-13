@@ -6,6 +6,7 @@ import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.model.query.CurrentSettingsQuery;
+import freeskill.app.model.query.PostCurrentSettings;
 
 /**
  * Created by Olivier on 11/12/2017.
@@ -34,7 +35,7 @@ public class ProfileEditor{
 
     public void createCurrentSettings(SettingsScreen settingsScreen){
         CurrentSettingsQuery currentSettings = new CurrentSettingsQuery(settingsScreen, this.settings);
-        currentSettings.getCurrentSettings(accessToken, queue);
+        currentSettings.getCurrentSettings(queue);
     }
 
     public void createCurrentSettings(){
@@ -47,10 +48,19 @@ public class ProfileEditor{
 
     public void createCurrentProfile(ProfileScreen profileScreen) {
         CurrentProfileQuery currentProfile = new CurrentProfileQuery(profileScreen, this.profile);
-        currentProfile.getCurrentProfile(accessToken, queue);
+        currentProfile.getCurrentProfile(queue);
     }
 
     public Profile getProfile() {
         return profile;
+    }
+
+    public void updateCurrentSettings(){
+        PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
+        postCurrentSettings.postCurrentSettings(
+                this.queue, this.settings.getPerimeter(), this.settings.isNotif_match(),
+                this.settings.isNotif_message(), this.settings.isNotif_meeting(),
+                this.settings.isNotif_meeting_reminder(), this.settings.isNotif_notation()
+        );
     }
 }

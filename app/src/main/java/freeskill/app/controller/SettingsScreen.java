@@ -3,17 +3,20 @@ package freeskill.app.controller;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import freeskill.app.R;
+import freeskill.app.controller.listener.SwitchOnCheckedChangeListener;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.ProfileEditor;
-import freeskill.app.utils.SeekBarListener;
+import freeskill.app.controller.listener.SeekBarListener;
 
 /**
  * Created by Olivier on 06/12/2017.
@@ -50,15 +53,17 @@ public class SettingsScreen extends AppCompatActivity {
         this.switch_meeting_reminder = findViewById(R.id.switch_meeting_reminder);
         this.switch_mark = findViewById(R.id.switch_notation);
 
-        seekBarDistance.setMax(50);
-        seekBarDistance.setOnSeekBarChangeListener(new SeekBarListener(distanceMax, " km"));
-
         this.app = CurrentApp.getInstance(null);
         this.profileEditor = this.app.createProfileEditor();
         this.profileEditor.createCurrentSettings(this);
-
         this.sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
+
+        seekBarDistance.setMax(50);
+        seekBarDistance.setOnSeekBarChangeListener(new SeekBarListener(distanceMax, " km"));
+
+        addListeners();
+        addCustomActionBar();
     }
 
     public void signOut(View view){
@@ -94,4 +99,37 @@ public class SettingsScreen extends AppCompatActivity {
         return switch_mark;
     }
 
+    public void addListeners(){
+        this.switch_new_message.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
+                ("notif_message"));
+        this.switch_new_match.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
+                ("notif_match"));
+        this.switch_new_meeting.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
+                ("notif_meeting"));
+        this.switch_meeting_reminder.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
+                ("notif_reminder"));
+        this.switch_mark.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
+                ("notif_mark"));
+    }
+
+    public void addCustomActionBar() {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar_settings);
+        View view = getSupportActionBar().getCustomView();
+
+        ImageView imageViewBack = this.findViewById(R.id.action_bar_back);
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsScreen.this.startActivity(new Intent(SettingsScreen.this, ProfileScreen.class));
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.profileEditor.updateCurrentSettings();
+    }
 }

@@ -28,7 +28,33 @@ public class Constants {
         public class GetImage {
             public static final String URI = "https://freeskill.ddns.net/user/GetImage/";
         }
+        public class SetProfile {
+            public static final String URI = "https://freeskill.ddns.net/user/SetProfile?";
+        }
+        public class SetJudgement{
+            public static final String URI = "https://freeskill.ddns.net/user/SetJudgement?";
+        }
     }
+
+    public class Preferences{
+        public static final String SHARED_PREFERENCES_CONNECTION = "conection";
+        public static final String SHARED_PREFERENCES_PROFILE = "profile";
+        public static final String SHARED_PREFERENCES_SETTINGS = "settings";
+    }
+
+    public class PreferencesConnection{
+        public static final String PREF_LOGIN = "email";
+    }
+
+    public class PreferencesSettings{
+        public static final String PREF_PERIMETER = "perimeter";
+        public static final String PREF_NOTIF_MATCH = "notif_match";
+        public static final String PREF_NOTIF_MESSAGE = "notif_message";
+        public static final String PREF_NOTIF_MEETING = "notif_meeting";
+        public static final String PREF_NOTIF_REMINDER = "notif_reminder";
+        public static final String PREF_NOTIF_MARK = "notif_mark";
+    }
+
 
 
 }

@@ -11,6 +11,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import freeskill.app.FreeskillApplication;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
@@ -37,9 +41,11 @@ public class CurrentProfileQuery extends HttpsQuery  {
         this.profile = profile;
     }
 
-    public void getCurrentProfile(final String accessToken, RequestQueue queue) {
-        ImageRequestQuery imageRequestQuery = new ImageRequestQuery(this.profileScreen);
-        imageRequestQuery.getImage(accessToken, queue);
+    public void getCurrentProfile(RequestQueue queue) {
+        //ImageRequestQuery imageRequestQuery = new ImageRequestQuery(this.profileScreen);
+        //imageRequestQuery.getImage(accessToken, queue);
+        imageRequest();
+
         //Set the URL for the request
         //String url = "https://freeskill.ddns.net/user/GetProfile";
 
@@ -65,25 +71,18 @@ public class CurrentProfileQuery extends HttpsQuery  {
             JSONObject message = response.getJSONObject("message");
             JSONObject profile = message.getJSONObject("profile");
             System.out.println(profile);
-            System.out.println(profile.getString("first_name"));
             this.profile.setFirstname(profile.getString("first_name"));
-            System.out.println(profile.getString("last_name"));
             this.profile.setLastname(profile.getString("last_name"));
-            System.out.println(profile.getString("email"));
             this.profile.setEmail(profile.getString("email"));
-            System.out.println(profile.getString("description"));
             this.profile.setDescription(profile.getString("description"));
-            System.out.println(profile.getInt("average_mark"));
             this.profile.setAverageMark(profile.getInt("average_mark"));
 
             JSONArray tags_share = profile.getJSONArray("tags_share");
             for(int i = 0; i < tags_share.length(); i++){
-                System.out.println(tags_share.get(i));
                 this.profile.setTagShare(tags_share.get(i).toString());
             }
             JSONArray tags_discover = profile.getJSONArray("tags_discover");
             for(int i = 0; i < tags_discover.length(); i++){
-                System.out.println(tags_discover.get(i));
                 this.profile.setTagDiscover(tags_discover.get(i).toString());
             }
 
@@ -108,5 +107,19 @@ public class CurrentProfileQuery extends HttpsQuery  {
     @Override
     public void onErrorResponse(VolleyError error) {
 
+    }
+
+    public void imageRequest(){
+        /*
+        TODO ADD constat URI to get image
+         */
+        String urlImage = "https://freeskill.ddns.net/user/getimage/";
+        GlideUrl glideUrl = new GlideUrl(urlImage, new LazyHeaders.Builder()
+                .addHeader(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT())
+                .build());
+
+        Glide.with(FreeskillApplication.getContext()).load(glideUrl)
+                //.signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
+                .into(this.profileScreen.getImageView());
     }
 }

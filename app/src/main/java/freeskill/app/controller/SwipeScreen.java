@@ -1,14 +1,26 @@
 package freeskill.app.controller;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.io.InputStream;
@@ -22,6 +34,7 @@ import freeskill.app.model.CurrentApp;
 import freeskill.app.model.query.Judgement;
 import freeskill.app.model.adapters.MyAppAdapter;
 import freeskill.app.model.Profile;
+import freeskill.app.model.query.PostCurrentLocation;
 import freeskill.app.model.query.PostJudgement;
 import freeskill.app.utils.HttpsTrustManager;
 
@@ -39,6 +52,11 @@ public class SwipeScreen extends AppCompatActivity {
     private PostJudgement postJudgement;
     public String meet= "";
 
+    private FusedLocationProviderClient mFusedLocationClient;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private double latitude;
+    private double longitude;
+
 
 
 
@@ -54,6 +72,9 @@ public class SwipeScreen extends AppCompatActivity {
         HttpsTrustManager https = new HttpsTrustManager(caInput);
         https.allowMySSL();
         ButterKnife.bind(this);
+
+        initLocation();
+        getLocation();
 
 
         //progressBar=(ProgressBar) findViewById(R.id.progressBar);
@@ -95,7 +116,7 @@ public class SwipeScreen extends AppCompatActivity {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 meet="PASS";
-                SwipeScreen.this.postJudgement.post(SwipeScreen.this.currentApp.getAccessToken());
+                SwipeScreen.this.postJudgement.post();
                 makeToast(SwipeScreen.this, "Left!");
                 al.remove(0);
                 myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
@@ -106,7 +127,7 @@ public class SwipeScreen extends AppCompatActivity {
             public void onRightCardExit(Object dataObject) {
                 //Send judgment request when the card exit on the right!
                 meet="MEET";
-                SwipeScreen.this.postJudgement.post(SwipeScreen.this.currentApp.getAccessToken());
+                SwipeScreen.this.postJudgement.post();
                 makeToast(SwipeScreen.this, "Right!");
                 al.remove(0);
                 myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
@@ -140,9 +161,12 @@ public class SwipeScreen extends AppCompatActivity {
             }
         });
 
+
+        addCustomActionBar();
+
     }
 
-    static void makeToast(Context ctx, String s){
+    public static void makeToast(Context ctx, String s){
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
     }
 
@@ -160,6 +184,83 @@ public class SwipeScreen extends AppCompatActivity {
     }
 
 
+    public void addCustomActionBar() {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar_swipescreen);
+        View view = getSupportActionBar().getCustomView();
 
+        ImageView imageViewProfile = this.findViewById(R.id.action_bar_profile);
+        imageViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SwipeScreen.this.startActivity(new Intent(SwipeScreen.this, ProfileScreen.class));
+            }
+        });
+
+        ImageView imageViewMessage = this.findViewById(R.id.action_bar_message);
+        imageViewMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO uncomment when ChatList will be finished
+                SwipeScreen.this.startActivity(new Intent(SwipeScreen.this, SwipeScreen.class));
+            }
+        });
+    }
+
+    private void initLocation() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                //Cela signifie que la permission à déjà était
+                //demandé et l'utilisateur l'a refusé
+                //Vous pouvez aussi expliquer à l'utilisateur pourquoi
+                //cette permission est nécessaire et la redemander
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            } else {
+                //Sinon demander la permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
+        }
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+    }
+
+    public void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mFusedLocationClient.getLastLocation().addOnSuccessListener(this,
+                new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                            System.out.println(latitude);
+                            System.out.println(longitude);
+                            PostCurrentLocation postCurrentLocation = new PostCurrentLocation(latitude,
+                                    longitude);
+                            postCurrentLocation.getCurrentLocation(currentApp.getQueue());
+                        }
+                    }
+                });
+    }
 
 }

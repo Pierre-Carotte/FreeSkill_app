@@ -1,6 +1,8 @@
 package freeskill.app.model.query;
 
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,9 +25,9 @@ import freeskill.app.utils.Constants;
  * Created by Olivier on 12/12/2017.
  */
 
-public class Connection extends HttpsQuery {
+public class GetConnection extends HttpsQuery {
     HomepageScreen homepageScreen;
-    public Connection(HomepageScreen homepageScreen) {
+    public GetConnection(HomepageScreen homepageScreen) {
         this.homepageScreen = homepageScreen;
     }
 
@@ -56,9 +58,11 @@ public class Connection extends HttpsQuery {
                 this.homepageScreen.getIntentSwipeScreen().putExtra(this.homepageScreen.EXTRA_TOKEN,
                         message);
                 this.homepageScreen.startActivity(this.homepageScreen.getIntentSwipeScreen());
+                this.homepageScreen.finish();
             }else{
                 this.setAccessToken(message);
                 System.out.println(message);
+                Snackbar.make(this.homepageScreen.getCurrentFocus(), "Les identifiants de connexion sont incorrects.", Snackbar.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -67,5 +71,7 @@ public class Connection extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        Snackbar.make(this.homepageScreen.getCurrentFocus(), "Problème de connexion avec le serveur.", Snackbar.LENGTH_LONG).show();
+        Log.d("ERROR_RESPONSE", error.toString());
     }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1074910122802",
+    "firebase_url": "https://freeskillapp-1ace7.firebaseio.com",
+    "project_id": "freeskillapp-1ace7",
+    "storage_bucket": "freeskillapp-1ace7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074910122802:android:9ed965449ddda104",
+        "android_client_info": {
+          "package_name": "freeskill.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074910122802-0of103e803nrc40mso9qshnjn6aj6dau.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "freeskill.app",
+            "certificate_hash": "8c90990fc3a765d06b0136bc78c4c39a6e752ffd"
+          }
+        },
+        {
+          "client_id": "1074910122802-pu37110fn7aodnj9pk0engo8ag77gl5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWQMV31aK0IwrXy4_lVBdu1qrzo8prS1w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074910122802-pu37110fn7aodnj9pk0engo8ag77gl5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

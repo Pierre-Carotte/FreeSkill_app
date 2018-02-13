@@ -1,7 +1,10 @@
-package freeskill.app.utils;
+package freeskill.app.controller.listener;
 
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import freeskill.app.model.CurrentApp;
+import freeskill.app.model.Settings;
 
 /**
  * Created by Olivier on 06/12/2017.
@@ -11,9 +14,14 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
     private TextView textView;
     private String text;
 
+    CurrentApp currentApp;
+    Settings settings;
+
     public SeekBarListener(TextView textView, String text) {
         this.textView = textView;
         this.text = text;
+        this.currentApp = CurrentApp.getInstance(null);
+        this.settings = currentApp.profileEditor.getCurrentSettings();
     }
 
     @Override
@@ -39,6 +47,6 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        this.settings.setPerimeter(seekBar.getProgress());
     }
 }

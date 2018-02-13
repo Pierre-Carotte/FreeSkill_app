@@ -1,9 +1,9 @@
 package freeskill.app.controller;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,15 +11,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
-
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.Profile;
 import freeskill.app.model.ProfileEditor;
 import freeskill.app.test.UnderConstruction;
 
@@ -59,6 +52,40 @@ public class ProfileScreen extends AppCompatActivity {
         this.profileEditor = this.app.createProfileEditor();
         this.profileEditor.createCurrentProfile(this);
 
+/*        this.ratingBar_stars.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    System.out.println("Click ratingBar_stars");
+                }
+                return true;
+            }
+        });*/
+
+        addCustomActionBar();
+    }
+
+    public void addCustomActionBar(){
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar_profilescreen);
+        View view =getSupportActionBar().getCustomView();
+
+        ImageView imageViewSettings= this.findViewById(R.id.action_bar_settings);
+        imageViewSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfileScreen.this.startActivity(new Intent(ProfileScreen.this, SettingsScreen.class));
+            }
+        });
+
+        ImageView imageViewBack= this.findViewById(R.id.action_bar_back);
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfileScreen.this.startActivity(new Intent(ProfileScreen.this, SwipeScreen.class));
+            }
+        });
     }
 
     public void edit_tags_share(View view){
@@ -100,4 +127,5 @@ public class ProfileScreen extends AppCompatActivity {
     public RatingBar getRatingBar_stars() {
         return ratingBar_stars;
     }
+
 }

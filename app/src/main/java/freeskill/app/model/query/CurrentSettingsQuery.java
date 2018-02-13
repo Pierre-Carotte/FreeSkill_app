@@ -30,7 +30,7 @@ public class CurrentSettingsQuery extends HttpsQuery{
         this.settings = settings;
     }
 
-    public void getCurrentSettings(final String accessToken, RequestQueue queue) {
+    public void getCurrentSettings(RequestQueue queue) {
         //Set the URL for the request
         //String url = "https://freeskill.ddns.net/user/GetProfile";
 
@@ -60,9 +60,9 @@ public class CurrentSettingsQuery extends HttpsQuery{
     @Override
     public void onResponse(JSONObject response) {
         try {
-            System.out.println(response);
             JSONObject message = response.getJSONObject("message");
             JSONObject settings = message.getJSONObject("settings");
+            System.out.println(settings);
             this.settings.setPerimeter(settings.getInt("perimeter"));
             if(settings.getInt("notif_message") == 1){
                 this.settings.setNotif_message(true);

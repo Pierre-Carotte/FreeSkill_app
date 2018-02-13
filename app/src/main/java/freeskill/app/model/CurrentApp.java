@@ -4,7 +4,7 @@ import com.android.volley.RequestQueue;
 
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.controller.SwipeScreen;
-import freeskill.app.model.query.Connection;
+import freeskill.app.model.query.GetConnection;
 import freeskill.app.model.query.Judgement;
 
 /**
@@ -15,7 +15,7 @@ public class CurrentApp {
     public ProfileEditor profileEditor;
 
     private RequestQueue queue;
-    private Connection connection;
+    private GetConnection connection;
     private String accessToken;
     private Judgement judgement;
 
@@ -36,8 +36,8 @@ public class CurrentApp {
         return instance;
     }
 
-    public Connection createConnection(HomepageScreen homepageScreen) {
-        this.connection = new Connection(homepageScreen);
+    public GetConnection createConnection(HomepageScreen homepageScreen) {
+        this.connection = new GetConnection(homepageScreen);
         return this.connection;
     }
 
