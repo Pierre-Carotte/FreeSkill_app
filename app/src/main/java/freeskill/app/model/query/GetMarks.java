@@ -52,7 +52,12 @@ public class GetMarks implements Response.Listener<JSONObject>, Response.ErrorLi
     }
 
     public void getMarks(String accessToken){
-        String url = Constants.API.GetMarks.URI + this.listMarksScreen.getIdProfile();
+        String url = "";
+        if(this.listMarksScreen.getIdProfile() != 0){
+            url = Constants.API.GetMarks.URI + this.listMarksScreen.getIdProfile();
+        }else{
+            url = Constants.API.GetMarks.URI;
+        }
         System.out.println("url :: " + url);
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,this,this) {

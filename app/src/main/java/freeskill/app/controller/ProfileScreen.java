@@ -1,10 +1,12 @@
 package freeskill.app.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -34,6 +36,7 @@ public class ProfileScreen extends AppCompatActivity {
     private TextView textview_username;
     private RatingBar ratingBar_stars;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,15 +55,16 @@ public class ProfileScreen extends AppCompatActivity {
         this.profileEditor = this.app.createProfileEditor();
         this.profileEditor.createCurrentProfile(this);
 
-/*        this.ratingBar_stars.setOnTouchListener(new View.OnTouchListener() {
+        this.ratingBar_stars.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    System.out.println("Click ratingBar_stars");
+                    Intent intent = new Intent(ProfileScreen.this, ListMarksScreen.class);
+                    startActivity(intent);
                 }
                 return true;
             }
-        });*/
+        });
 
         addCustomActionBar();
     }

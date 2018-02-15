@@ -41,12 +41,13 @@ public class ListMarksScreen extends AppCompatActivity {
         setContentView(R.layout.marks_by_tag);
 
         Intent intent = getIntent();
-        this.idProfile = intent.getIntExtra("idProfile", -1);
+        if(intent.getIntExtra("idProfile", -1) == -1){
+            this.idProfile = 0;
+        }else{
+            this.idProfile = intent.getIntExtra("idProfile", -1);
+        }
 
         queue = Volley.newRequestQueue(this);
-        InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
-        HttpsTrustManager https = new HttpsTrustManager(caInput);
-        https.allowMySSL();
 
         this.currentApp = CurrentApp.getInstance(null);
         this.getMarks = new GetMarks(this.currentApp.getAccessToken(),this.queue,this);
@@ -56,17 +57,6 @@ public class ListMarksScreen extends AppCompatActivity {
 
         // Get ListView object from xml
         listView = findViewById(R.id.listViewMarks);
-
-        // Defined Array values to show in ListView
-        String[] values = new String[] { "Android",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
 
         // Assign adapter to ListView
         listView.setAdapter(adapter);
