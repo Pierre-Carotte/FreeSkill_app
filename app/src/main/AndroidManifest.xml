@@ -39,6 +39,11 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.test.DisplayMessageActivity">
         </activity>
+        <activity android:name="freeskill.app.test.Test"
+        android:label="Test"
+        android:screenOrientation="portrait"
+        android:parentActivityName="freeskill.app.controller.HomepageScreen" >
+        </activity>
         <activity android:name="freeskill.app.controller.SwipeScreen"
             android:label="Swipe"
             android:screenOrientation="portrait">
@@ -52,6 +57,12 @@
             android:label="Inscription utilisateur"
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.HomepageScreen" >
+        </activity>
+        <activity android:name=".controller.ListMarksScreen"
+            android:label="marks list by tag"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.SwipeScreen"
+            >
         </activity>
 
         <service

@@ -47,6 +47,10 @@ public class Constants {
         public class Register{
             public static final String URI = "https://freeskill.ddns.net/auth/register";
         }
+
+        public class GetMarks {
+            public static final String URI = "https://freeskill.ddns.net/user/GetMarks/";
+        }
     }
 
     public class Preferences{

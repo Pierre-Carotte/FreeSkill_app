@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,8 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -45,7 +49,6 @@ import freeskill.app.utils.HttpsTrustManager;
 public class SwipeScreen extends AppCompatActivity {
     public ArrayList<Profile> al;
     private MyAppAdapter myAppArrayAdapter;
-    private ArrayAdapter<Bitmap> arrayBitmap;
     private RequestQueue queue;
     private Judgement judgement;
     private CurrentApp currentApp;
@@ -56,6 +59,7 @@ public class SwipeScreen extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private double latitude;
     private double longitude;
+
 
 
     @BindView(R.id.frame)
@@ -75,9 +79,6 @@ public class SwipeScreen extends AppCompatActivity {
         getLocation();
 
 
-        //progressBar=(ProgressBar) findViewById(R.id.progressBar);
-
-
         this.al = new ArrayList<>();
 
         this.currentApp = CurrentApp.getInstance(null);
@@ -88,8 +89,6 @@ public class SwipeScreen extends AppCompatActivity {
 
 
         myAppArrayAdapter = this.judgement.getMyAdapter();
-        //arrayBitmap = this.judgement.getAdapter();
-
 
         flingContainer.setAdapter(myAppArrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -128,7 +127,6 @@ public class SwipeScreen extends AppCompatActivity {
                 makeToast(SwipeScreen.this, "Right!");
                 al.remove(0);
                 myAppArrayAdapter.remove(myAppArrayAdapter.getItem(0));
-                //myAppArrayAdapter.refreshAdapter(al);
                 myAppArrayAdapter.notifyDataSetChanged();
             }
 
@@ -136,8 +134,6 @@ public class SwipeScreen extends AppCompatActivity {
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
                 //If the resquest is empty we have to put a message to say that there is no more similar profile available in the range
-                judgement.requestProfiles(currentApp.getAccessToken());
-                //arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -154,8 +150,12 @@ public class SwipeScreen extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 makeToast(SwipeScreen.this, "Clicked!");
+                Intent intent = new Intent(SwipeScreen.this, ListMarksScreen.class);
+                intent.putExtra("idProfile", al.get(0).getId());
+                startActivity(intent);
             }
         });
+
 
 
         addCustomActionBar();

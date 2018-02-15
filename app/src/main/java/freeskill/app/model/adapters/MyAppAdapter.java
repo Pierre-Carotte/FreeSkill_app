@@ -1,10 +1,13 @@
 package freeskill.app.model.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -12,11 +15,21 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import freeskill.app.R;
+import freeskill.app.controller.ProfileScreen;
+import freeskill.app.controller.SwipeScreen;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
+import freeskill.app.model.query.Judgement;
+import freeskill.app.test.Test;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Florian on 21/12/2017.
@@ -26,17 +39,13 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
 
     private Context context;
     private ArrayList<Profile> objects;
-    private HashMap<Integer,Bitmap> images;
 
-    public HashMap<Integer, Bitmap> getImages() {
-        return images;
-    }
 
-    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects,HashMap<Integer,Bitmap> images) {
+
+    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects) {
         super(context, resource,objects);
         this.objects = objects;
         this.context = context;
-        this.images = images;
     }
 
 
@@ -57,6 +66,7 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     public View getView (int position, View convertView, ViewGroup parent ){
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
@@ -70,10 +80,23 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
             viewHolder.tags_share = (TextView) convertView.findViewById(R.id.tag_share_content);
             viewHolder.tags_discover = (TextView) convertView.findViewById(R.id.tag_discover_content);
             viewHolder.imageProfile = (ImageView) convertView.findViewById(R.id.imageView);
+            viewHolder.distance = convertView.findViewById(R.id.distance);
             convertView.setTag(viewHolder);
         }
         //getItem(position) va récupérer l'item [position] de la List<Tweet> tweets
         Profile profile = getItem(position);
+
+        //Put it in a class ?
+        String urlImage = Constants.API.GetImage.URI + profile.getId();
+        GlideUrl glideUrl = new GlideUrl(urlImage, new LazyHeaders.Builder()
+                .addHeader(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT())
+                .build());
+
+        Glide.with(context)
+                .load(glideUrl)
+                //.centerCrop()
+                .into(viewHolder.imageProfile);
+
 
         //fill the view
         viewHolder.firstName.setText(profile.getFirstname());
@@ -81,9 +104,12 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
         viewHolder.description.setText(profile.getDescription());
         viewHolder.tags_share.setText(profile.getTagToString(profile.getTagShareArray()));
         viewHolder.tags_discover.setText(profile.getTagToString(profile.getTagDiscoverArray()));
-        //System.out.println(this.images.size());
+        if(profile.getDistance() == 0){
+            viewHolder.distance.setText("A moins de " + (profile.getDistance()+1) + " km de vous");
+        }else{
+            viewHolder.distance.setText("A " + profile.getDistance() + "km de vous");
+        }
         //viewHolder.imageProfile.setImageBitmap(profile.getPicture());
-        //System.out.println(this.images.size());
 
 
         return convertView;
@@ -95,9 +121,10 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
         return new CharSequence[0];
     }
 
-    private class CardViewHolder{
+        private class CardViewHolder{
         public TextView firstName;
-        private RatingBar mark;
+        public TextView distance;
+        public RatingBar mark;
         public TextView description;
         public TextView tags_share;
         public TextView tags_discover;

@@ -9,6 +9,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,21 +40,15 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
     private ArrayAdapter<Bitmap> adapter;
     private MyAppAdapter myAdapter;
     private Profile profile;
-    private ImageRequestProfilesQuery imageRequestProfilesQuery;
     private List<Integer> idList;
     private CurrentApp currentApp;
-    private HashMap<Integer,Bitmap> images;
 
-    public HashMap<Integer, Bitmap> getImages() {
-        return images;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public ArrayAdapter<Bitmap> getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(ArrayAdapter<Bitmap> adapter) {
-        this.adapter = adapter;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public List<Integer> getIdList() {
@@ -73,20 +69,7 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
         this.queue = queue;
         this.swipeScreen = swipeScreen;
         this.profiles = new ArrayList<Profile>();
-        this.imageRequestProfilesQuery = new ImageRequestProfilesQuery(this,
-                new ImageRequestProfilesQuery.OnImageLoaded() {
-
-            private Judgement judgement;
-            private MyAppAdapter myAppAdapter;
-
-            @Override
-            public void onSuccess(Bitmap bitmap) {
-               /* for(int i = 0; i<this.judgement.profiles.size();i++){
-                    this.judgement.profiles.get(i).setPicture(bitmap);
-                }*/
-            }
-        });
-        this.myAdapter = new MyAppAdapter(this.swipeScreen,-1,this.profiles,this.getImages());
+        this.myAdapter = new MyAppAdapter(this.swipeScreen,-1,this.profiles);
         this.currentApp = CurrentApp.getInstance(null);
     }
 
@@ -125,13 +108,11 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
                     JSONArray tags_share = allProfiles.getJSONObject(i).getJSONArray("tags_share");
 
                     p.setFirstname(allProfiles.getJSONObject(i).getString("first_name"));
-
                     if(allProfiles.getJSONObject(i).getString("average_mark") != "null"){
                         p.setAverageMark(allProfiles.getJSONObject(i).getDouble("average_mark"));
                     }else{
                         p.setAverageMark(0);
                     }
-
                     p.setDescription(allProfiles.getJSONObject(i).getString("description"));
                     for(int j =0 ; j < tags_discover.length();j++){
                         p.setTagDiscover(tags_discover.get(j).toString());
@@ -142,21 +123,14 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
                     }
                     p.setAssos(allProfiles.getJSONObject(i).getInt("is_assos"));
                     p.setId(allProfiles.getJSONObject(i).getInt("id"));
-                    p.setPerimeter(allProfiles.getJSONObject(i).getInt("distance"));
+                    p.setDistance(allProfiles.getJSONObject(i).getInt("distance"));
 
                     profiles.add(p);
                 }
                 for(int i = 0;i<this.profiles.size();i++){
                     this.swipeScreen.al.add(this.profiles.get(i));
-                    this.imageRequestProfilesQuery.getImage(this.currentApp.getAccessToken(),
-                            this.currentApp.getQueue(),this.profiles.get(i).getId());
                 }
                 this.myAdapter.notifyDataSetChanged();
-                //this.adapter.notifyDataSetChanged();
-
-
-
-
             }
         } catch (Exception e){
             e.printStackTrace();
