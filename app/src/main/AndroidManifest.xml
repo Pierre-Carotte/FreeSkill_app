@@ -57,6 +57,12 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
+        <activity android:name=".controller.ListMarksScreen"
+            android:label="marks list by tag"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.SwipeScreen"
+            >
+        </activity>
     </application>
 
 </manifest>

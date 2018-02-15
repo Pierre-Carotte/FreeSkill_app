@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="460dp"
     android:layout_gravity="center"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:background="@android:color/background_light">
 
 
@@ -17,19 +17,30 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="163dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="profile_image"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/firstName"
             android:layout_width="343dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:width="100dp"
             android:background="@android:color/darker_gray"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
 
         <!--        <View
             android:id="@+id/item_swipe_right_indicator"
@@ -49,20 +60,19 @@
             android:alpha="0"
             android:background="#A5F" />-->
 
-        <RatingBar
-            android:id="@+id/mark"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/background_light"
-            android:isIndicator="true"
-            android:clickable="true"
-            android:numStars="@integer/stars_number"
-            android:progressDrawable="@drawable/ratingbar_yellow"
-            android:rating="3.5" />
+            <RatingBar
+                android:id="@+id/mark"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/background_light"
+                android:isIndicator="true"
+                android:numStars="@integer/stars_number"
+                android:progressDrawable="@drawable/ratingbar_yellow"
+                android:rating="3.5" />
 
         <TextView
             android:id="@+id/tag_share"
@@ -100,9 +110,9 @@
         <TextView
             android:id="@+id/descriptionText"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="248dp"
             android:background="@android:color/background_light"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
 
     </LinearLayout>

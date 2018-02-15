@@ -28,6 +28,10 @@ public class Constants {
         public class GetImage {
             public static final String URI = "https://freeskill.ddns.net/user/GetImage/";
         }
+
+        public class GetMarks {
+            public static final String URI = "https://freeskill.ddns.net/user/GetMarks/";
+        }
     }
 
 

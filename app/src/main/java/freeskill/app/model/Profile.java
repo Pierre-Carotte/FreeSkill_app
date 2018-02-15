@@ -17,6 +17,7 @@ public class Profile {
     private int idFacebook;
     private int idFCM;
     private int perimeter;
+    private int distance;
     private String first_name;
     private String last_name;
     private String email;
@@ -30,6 +31,14 @@ public class Profile {
     private ArrayList tagDiscover;
     private boolean isAssos;
 
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 
     public int getPerimeter() {
         return perimeter;
