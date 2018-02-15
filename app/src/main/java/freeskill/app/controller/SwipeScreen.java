@@ -50,14 +50,12 @@ public class SwipeScreen extends AppCompatActivity {
     private Judgement judgement;
     private CurrentApp currentApp;
     private PostJudgement postJudgement;
-    public String meet= "";
+    public String meet = "";
 
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private double latitude;
     private double longitude;
-
-
 
 
     @BindView(R.id.frame)
@@ -68,7 +66,7 @@ public class SwipeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.swipe);
         queue = Volley.newRequestQueue(this);
-        InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
+        InputStream caInput = getResources().openRawResource(R.raw.letsencryptauthorityx3);
         HttpsTrustManager https = new HttpsTrustManager(caInput);
         https.allowMySSL();
         ButterKnife.bind(this);
@@ -86,8 +84,7 @@ public class SwipeScreen extends AppCompatActivity {
         this.judgement = this.currentApp.createJudgement(this);
         this.judgement.requestProfiles(this.currentApp.getAccessToken());
 
-        this.postJudgement = new PostJudgement(this.currentApp.getAccessToken(),this.queue,this);
-
+        this.postJudgement = new PostJudgement(this.currentApp.getAccessToken(), this.queue, this);
 
 
         myAppArrayAdapter = this.judgement.getMyAdapter();
@@ -115,7 +112,7 @@ public class SwipeScreen extends AppCompatActivity {
                 //Send judgment request when the card exit on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                meet="PASS";
+                meet = "PASS";
                 SwipeScreen.this.postJudgement.post();
                 makeToast(SwipeScreen.this, "Left!");
                 al.remove(0);
@@ -126,7 +123,7 @@ public class SwipeScreen extends AppCompatActivity {
             @Override
             public void onRightCardExit(Object dataObject) {
                 //Send judgment request when the card exit on the right!
-                meet="MEET";
+                meet = "MEET";
                 SwipeScreen.this.postJudgement.post();
                 makeToast(SwipeScreen.this, "Right!");
                 al.remove(0);
@@ -152,7 +149,6 @@ public class SwipeScreen extends AppCompatActivity {
         });
 
 
-
         // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
@@ -166,7 +162,7 @@ public class SwipeScreen extends AppCompatActivity {
 
     }
 
-    public static void makeToast(Context ctx, String s){
+    public static void makeToast(Context ctx, String s) {
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
     }
 
