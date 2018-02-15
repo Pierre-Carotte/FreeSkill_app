@@ -11,7 +11,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
+import freeskill.app.model.Settings;
 import freeskill.app.utils.Constants;
 
 /**
@@ -20,19 +22,35 @@ import freeskill.app.utils.Constants;
 
 public class PostCurrentSettings extends HttpsQuery {
 
-    public void postCurrentSettings(RequestQueue queue, int perimeter, boolean notif_match,
+    /*public void postCurrentSettings(RequestQueue queue, int perimeter, boolean notif_match,
                                     boolean notif_message, boolean notif_meeting,
-                                    boolean notif_reminder, boolean notif_mark){
+                                    boolean notif_reminder, boolean notif_mark){*/
 
-        Map<String, String> putParam= new HashMap<String, String>();
-        putParam.put("perimeter", String.valueOf(perimeter));
-        putParam.put("notif_match", String.valueOf(booleanToInt(notif_match)));
-        putParam.put("notif_message", String.valueOf(booleanToInt(notif_message)));
-        putParam.put("notif_meeting", String.valueOf(booleanToInt(notif_meeting)));
-        putParam.put("notif_reminder", String.valueOf(booleanToInt(notif_reminder)));
-        putParam.put("notif_mark", String.valueOf(booleanToInt(notif_mark)));
 
-        System.out.println(new JSONObject(putParam));
+    public void postCurrentSettings(RequestQueue queue, String field, int value){
+
+        Map<String, Integer> putParam= new HashMap<String, Integer>();
+        switch(field){
+            case Constants.JSONparameters.PERIMETER:
+                putParam.put(Constants.JSONparameters.PERIMETER, value);
+                break;
+            case Constants.JSONparameters.NOTIF_MATCH:
+                putParam.put(Constants.JSONparameters.NOTIF_MATCH, value);
+                break;
+            case Constants.JSONparameters.NOTIF_MESSAGE:
+                putParam.put(Constants.JSONparameters.NOTIF_MESSAGE, value);
+                break;
+            case Constants.JSONparameters.NOTIF_MEETING:
+                putParam.put(Constants.JSONparameters.NOTIF_MEETING, value);
+                break;
+            case Constants.JSONparameters.NOTIF_REMINDER:
+                putParam.put(Constants.JSONparameters.NOTIF_REMINDER, value);
+                break;
+            case Constants.JSONparameters.NOTIF_MARK:
+                putParam.put(Constants.JSONparameters.NOTIF_MARK, value);
+                break;
+        }
+
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.PUT,
                 Constants.API.SetProfile.URI
@@ -42,7 +60,8 @@ public class PostCurrentSettings extends HttpsQuery {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
+                headers.put(Constants.General.KEY_ACCESS_TOKEN,
+                        DataConnection.getInstance().getJWT());
                 return headers;
             }
         };
@@ -53,16 +72,11 @@ public class PostCurrentSettings extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        System.out.println(error.getMessage());
+        //System.out.println("Erreur Volley " + error.getMessage());
     }
 
     @Override
     public void onResponse(JSONObject response) {
         System.out.println(response);
-    }
-
-    public static int booleanToInt(boolean value) {
-        // Convert true to 1 and false to 0.
-        return value ? 1 : 0;
     }
 }

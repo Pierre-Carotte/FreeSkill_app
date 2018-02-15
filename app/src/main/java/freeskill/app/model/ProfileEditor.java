@@ -15,11 +15,9 @@ import freeskill.app.model.query.PostCurrentSettings;
 public class ProfileEditor{
     private Profile profile;
     private Settings settings;
-    private String accessToken;
     private RequestQueue queue;
 
     public ProfileEditor(String accessToken, RequestQueue queue) {
-        this.accessToken = accessToken;
         this.queue = queue;
         this.createCurrentProfile();
         this.createCurrentSettings();
@@ -28,10 +26,6 @@ public class ProfileEditor{
     public void createCurrentProfile(){
         this.profile = new Profile();
     }
-
-    //public Profile getCurrentProfile(){
-        //return this.profile;
-    //}
 
     public void createCurrentSettings(SettingsScreen settingsScreen){
         CurrentSettingsQuery currentSettings = new CurrentSettingsQuery(settingsScreen, this.settings);
@@ -55,12 +49,8 @@ public class ProfileEditor{
         return profile;
     }
 
-    public void updateCurrentSettings(){
+    public void updateCurrentSettings(String field, int value){
         PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
-        postCurrentSettings.postCurrentSettings(
-                this.queue, this.settings.getPerimeter(), this.settings.isNotif_match(),
-                this.settings.isNotif_message(), this.settings.isNotif_meeting(),
-                this.settings.isNotif_meeting_reminder(), this.settings.isNotif_notation()
-        );
+        postCurrentSettings.postCurrentSettings(this.queue, field, value);
     }
 }

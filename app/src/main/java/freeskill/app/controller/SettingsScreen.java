@@ -5,8 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -125,11 +129,5 @@ public class SettingsScreen extends AppCompatActivity {
                 SettingsScreen.this.startActivity(new Intent(SettingsScreen.this, ProfileScreen.class));
             }
         });
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        this.profileEditor.updateCurrentSettings();
     }
 }

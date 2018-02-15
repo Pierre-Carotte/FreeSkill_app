@@ -125,7 +125,13 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
                     JSONArray tags_share = allProfiles.getJSONObject(i).getJSONArray("tags_share");
 
                     p.setFirstname(allProfiles.getJSONObject(i).getString("first_name"));
-                    p.setAverageMark(allProfiles.getJSONObject(i).getDouble("average_mark"));
+
+                    if(allProfiles.getJSONObject(i).getString("average_mark") != "null"){
+                        p.setAverageMark(allProfiles.getJSONObject(i).getDouble("average_mark"));
+                    }else{
+                        p.setAverageMark(0);
+                    }
+
                     p.setDescription(allProfiles.getJSONObject(i).getString("description"));
                     for(int j =0 ; j < tags_discover.length();j++){
                         p.setTagDiscover(tags_discover.get(j).toString());

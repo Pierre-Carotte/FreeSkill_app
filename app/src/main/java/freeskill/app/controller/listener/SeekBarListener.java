@@ -4,7 +4,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.ProfileEditor;
 import freeskill.app.model.Settings;
+import freeskill.app.utils.Constants;
 
 /**
  * Created by Olivier on 06/12/2017.
@@ -16,12 +18,14 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     CurrentApp currentApp;
     Settings settings;
+    ProfileEditor profileEditor;
 
     public SeekBarListener(TextView textView, String text) {
         this.textView = textView;
         this.text = text;
         this.currentApp = CurrentApp.getInstance(null);
         this.settings = currentApp.profileEditor.getCurrentSettings();
+        this.profileEditor = currentApp.profileEditor;
     }
 
     @Override
@@ -47,6 +51,12 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        this.settings.setPerimeter(seekBar.getProgress());
+        if(seekBar.getProgress() == 0){
+            this.settings.setPerimeter(seekBar.getProgress()+1);
+        }else{
+            this.settings.setPerimeter(seekBar.getProgress());
+        }
+        this.profileEditor.updateCurrentSettings(Constants.JSONparameters.PERIMETER,
+                this.settings.getPerimeter());
     }
 }

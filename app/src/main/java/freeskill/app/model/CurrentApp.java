@@ -6,6 +6,7 @@ import freeskill.app.controller.HomepageScreen;
 import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.query.GetConnection;
 import freeskill.app.model.query.Judgement;
+import freeskill.app.model.query.PostUserRegistration;
 
 /**
  * Created by Olivier on 11/12/2017.
@@ -62,4 +63,14 @@ public class CurrentApp {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+    public ProfileEditor getProfileEditor() {
+        return profileEditor;
+    }
+
+    public void userRegistration(String firstname, String lastname, String email, String password){
+        PostUserRegistration postUserRegistration = new PostUserRegistration();
+        postUserRegistration.postUserRegistration(this.queue, firstname, lastname, email, password);
+    }
+
 }

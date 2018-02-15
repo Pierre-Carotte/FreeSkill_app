@@ -14,10 +14,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
+import com.bumptech.glide.signature.StringSignature;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,7 +59,6 @@ public class CurrentProfileQuery extends HttpsQuery  {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("x-access-token", DataConnection.getInstance().getJWT());
-                //headers.put("x-access-token", accessToken);
                 return headers;
             }
         };
@@ -68,14 +69,20 @@ public class CurrentProfileQuery extends HttpsQuery  {
     @Override
     public void onResponse(JSONObject response) {
         try {
-            JSONObject message = response.getJSONObject("message");
-            JSONObject profile = message.getJSONObject("profile");
+            JSONObject profile = response.getJSONObject("message").getJSONObject("profile");
             System.out.println(profile);
             this.profile.setFirstname(profile.getString("first_name"));
             this.profile.setLastname(profile.getString("last_name"));
             this.profile.setEmail(profile.getString("email"));
             this.profile.setDescription(profile.getString("description"));
-            this.profile.setAverageMark(profile.getInt("average_mark"));
+
+            if(profile.getString("average_mark") != "null"){
+                this.profile.setAverageMark(profile.getDouble("average_mark"));
+                this.profileScreen.getRatingBar_stars().setRating
+                        ((float)profile.getDouble("average_mark"));
+            }else{
+                this.profileScreen.getRatingBar_stars().setRating(0);
+            }
 
             JSONArray tags_share = profile.getJSONArray("tags_share");
             for(int i = 0; i < tags_share.length(); i++){
@@ -87,7 +94,7 @@ public class CurrentProfileQuery extends HttpsQuery  {
             }
 
             this.profileScreen.getTextview_username().setText(profile.getString("first_name"));
-            this.profileScreen.getRatingBar_stars().setRating(profile.getInt("average_mark"));
+
             String text_tags_share = "";
             for(int i = 0; i < tags_share.length(); i++){
                 text_tags_share = text_tags_share.concat("#" + tags_share.get(i).toString() + " ");
@@ -110,16 +117,15 @@ public class CurrentProfileQuery extends HttpsQuery  {
     }
 
     public void imageRequest(){
-        /*
-        TODO ADD constat URI to get image
-         */
-        String urlImage = "https://freeskill.ddns.net/user/getimage/";
-        GlideUrl glideUrl = new GlideUrl(urlImage, new LazyHeaders.Builder()
+
+        GlideUrl glideUrl = new GlideUrl(Constants.API.GetImage.URI, new LazyHeaders.Builder()
                 .addHeader(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT())
                 .build());
 
+        //TODO change signature
         Glide.with(FreeskillApplication.getContext()).load(glideUrl)
-                //.signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
+                .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
                 .into(this.profileScreen.getImageView());
+
     }
 }

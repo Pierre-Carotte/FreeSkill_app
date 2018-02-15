@@ -39,15 +39,9 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.test.DisplayMessageActivity">
         </activity>
-        <activity android:name="freeskill.app.test.Test"
-        android:label="Test"
-        android:screenOrientation="portrait"
-        android:parentActivityName="freeskill.app.controller.HomepageScreen" >
-        </activity>
         <activity android:name="freeskill.app.controller.SwipeScreen"
             android:label="Swipe"
-            android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.Test" >
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name="freeskill.app.test.UnderConstruction"
             android:label="En travaux"

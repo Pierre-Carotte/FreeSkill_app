@@ -14,6 +14,16 @@ public class Constants {
         public static final String ID_USER = "idUser";
         public static final String EMAIL = "email";
     }
+
+    public class JSONparameters {
+        public static final String PERIMETER = "perimeter";
+        public static final String NOTIF_MATCH = "notif_match";
+        public static final String NOTIF_MESSAGE = "notif_message";
+        public static final String NOTIF_MEETING = "notif_meeting";
+        public static final String NOTIF_REMINDER = "notif_reminder";
+        public static final String NOTIF_MARK = "notif_mark";
+    }
+
     //API Freeskill
     public class API {
         public class Connection {
@@ -33,6 +43,9 @@ public class Constants {
         }
         public class SetJudgement{
             public static final String URI = "https://freeskill.ddns.net/user/SetJudgement?";
+        }
+        public class Register{
+            public static final String URI = "https://freeskill.ddns.net/auth/register";
         }
     }
 
