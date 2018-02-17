@@ -19,7 +19,7 @@ import freeskill.app.model.CurrentApp;
  * Created by Florian on 02/02/2018.
  */
 
-public class PostJudgement implements Response.Listener<String>, Response.ErrorListener{
+public class PostJudgement implements Response.Listener<String>, Response.ErrorListener {
 
     private Judgement judgement;
     private String accessToken;
@@ -27,18 +27,18 @@ public class PostJudgement implements Response.Listener<String>, Response.ErrorL
     private SwipeScreen swipeScreen;
     private CurrentApp currentApp;
 
-    public PostJudgement(String accessToken, RequestQueue queue, SwipeScreen swipeScreen)  {
-        this.accessToken=accessToken;
+    public PostJudgement(String accessToken, RequestQueue queue, SwipeScreen swipeScreen) {
+        this.accessToken = accessToken;
         this.queue = queue;
         this.swipeScreen = swipeScreen;
         this.currentApp = CurrentApp.getInstance(null);
     }
 
-    public void post(final String accessToken){
-        String url = "https://freeskill.ddns.net/user/SetJudgement?"+ "judged=" + this.swipeScreen.al.get(0).getId()
-                + "&meet="+ this.swipeScreen.meet;
+    public void post(final String accessToken) {
+        String url = "https://freeskill.ddns.net/user/SetJudgement?" + "judged=" + this.swipeScreen.al.get(0).getId()
+                + "&meet=" + this.swipeScreen.meet;
         System.out.println(url);
-        StringRequest postRequest = new StringRequest(Request.Method.PUT, url,this,this){
+        StringRequest postRequest = new StringRequest(Request.Method.PUT, url, this, this) {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("x-access-token", accessToken);

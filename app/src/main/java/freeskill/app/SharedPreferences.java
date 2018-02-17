@@ -6,15 +6,15 @@ package freeskill.app;
 
 public class SharedPreferences {
 
-    public void setProfile(){
+    public void setProfile() {
 
     }
 
-    public void setSettings(){
+    public void setSettings() {
 
     }
 
-    public void setConnection(){
+    public void setConnection() {
 
     }
 }

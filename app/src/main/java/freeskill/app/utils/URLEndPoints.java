@@ -6,6 +6,6 @@ package freeskill.app.utils;
 
 public class URLEndPoints {
 
-    private static final String ROOT_URL="https://freeskill.ddns.net/";
+    private static final String ROOT_URL = "https://freeskill.ddns.net/";
 
 }

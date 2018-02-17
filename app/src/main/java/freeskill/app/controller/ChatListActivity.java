@@ -1,9 +1,7 @@
 package freeskill.app.controller;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import freeskill.app.R;
 import freeskill.app.controller.fragments.ChatListFragment;
@@ -19,9 +17,9 @@ public class ChatListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
 
-        // Ajoute le fragment TweetsFragment au container de l'activité
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new ChatListFragment()).commit();
         }
+
     }
 }

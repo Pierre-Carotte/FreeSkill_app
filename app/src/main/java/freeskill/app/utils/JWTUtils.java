@@ -21,7 +21,7 @@ public class JWTUtils {
             jObject = new JSONObject(getJson(split[1]));
             return jObject;
         } catch (UnsupportedEncodingException e) {
-            Log.d("JWT_DECODED", "BAD TOKEN" );
+            Log.d("JWT_DECODED", "BAD TOKEN");
             return null;
         }
 

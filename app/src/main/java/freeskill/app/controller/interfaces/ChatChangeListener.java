@@ -1,7 +1,5 @@
 package freeskill.app.controller.interfaces;
 
-import java.util.List;
-
 import freeskill.app.model.chat.ChatList;
 
 /**

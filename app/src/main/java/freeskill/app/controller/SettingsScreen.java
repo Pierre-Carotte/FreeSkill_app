@@ -61,7 +61,7 @@ public class SettingsScreen extends AppCompatActivity {
         this.editor = sharedPreferences.edit();
     }
 
-    public void signOut(View view){
+    public void signOut(View view) {
         DataConnection.getInstance().clearDataConnection();
         this.startActivity(new Intent(this, HomepageScreen.class));
     }

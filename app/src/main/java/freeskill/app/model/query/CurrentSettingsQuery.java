@@ -21,7 +21,7 @@ import freeskill.app.utils.Constants;
  * Created by Olivier on 22/01/2018.
  */
 
-public class CurrentSettingsQuery extends HttpsQuery{
+public class CurrentSettingsQuery extends HttpsQuery {
     private SettingsScreen settingsScreen;
     private Settings settings;
 
@@ -37,7 +37,7 @@ public class CurrentSettingsQuery extends HttpsQuery{
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.API.GetProfile.URI,
-                null, this, this){
+                null, this, this) {
             //Add the accessToken in the headers of the request
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -64,35 +64,40 @@ public class CurrentSettingsQuery extends HttpsQuery{
             JSONObject message = response.getJSONObject("message");
             JSONObject settings = message.getJSONObject("settings");
             this.settings.setPerimeter(settings.getInt("perimeter"));
-            if(settings.getInt("notif_message") == 1){
+            if (settings.getInt("notif_message") == 1) {
                 this.settings.setNotif_message(true);
-            }else{
+            } else {
                 this.settings.setNotif_message(false);
-            };
+            }
+            ;
 
-            if(settings.getInt("notif_reminder") == 1){
+            if (settings.getInt("notif_reminder") == 1) {
                 this.settings.setNotif_meeting_reminder(true);
-            }else{
+            } else {
                 this.settings.setNotif_meeting_reminder(false);
-            };
+            }
+            ;
 
-            if(settings.getInt("notif_match") == 1){
+            if (settings.getInt("notif_match") == 1) {
                 this.settings.setNotif_match(true);
-            }else{
+            } else {
                 this.settings.setNotif_match(false);
-            };
+            }
+            ;
 
-            if(settings.getInt("notif_meeting") == 1){
+            if (settings.getInt("notif_meeting") == 1) {
                 this.settings.setNotif_meeting(true);
-            }else{
+            } else {
                 this.settings.setNotif_meeting(false);
-            };
+            }
+            ;
 
-            if(settings.getInt("notif_mark") == 1){
+            if (settings.getInt("notif_mark") == 1) {
                 this.settings.setNotif_notation(true);
-            }else{
+            } else {
                 this.settings.setNotif_notation(false);
-            };
+            }
+            ;
 
             this.settingsScreen.getSeekBarDistance().setProgress(this.settings.getPerimeter());
             this.settingsScreen.getDistanceMax().setText(String.valueOf(this.settings.getPerimeter()) + " " + "km");

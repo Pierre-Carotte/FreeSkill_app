@@ -10,9 +10,9 @@ import freeskill.app.R;
  */
 
 public class UserRegistrationScreen extends AppCompatActivity {
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.user_registration);
-        }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.user_registration);
+    }
 }

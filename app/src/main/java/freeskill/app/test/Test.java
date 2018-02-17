@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import freeskill.app.R;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
-import freeskill.app.R;
-import freeskill.app.controller.UserRegistrationScreen;
 import freeskill.app.controller.SwipeScreen;
+import freeskill.app.controller.UserRegistrationScreen;
 
 /**
  * Created by Olivier on 06/12/2017.
@@ -22,23 +22,23 @@ public class Test extends AppCompatActivity {
         setContentView(R.layout.test);
     }
 
-    public void settings(View view){
+    public void settings(View view) {
         Intent intent = new Intent(this, SettingsScreen.class);
         startActivity(intent);
     }
 
-    public void profile(View view){
+    public void profile(View view) {
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
     }
 
-    public void userRegistration(View view){
+    public void userRegistration(View view) {
         Intent intent = new Intent(this, UserRegistrationScreen.class);
         startActivity(intent);
     }
 
-    public void swipe (View view){
-        Intent intent = new Intent(this,SwipeScreen.class);
+    public void swipe(View view) {
+        Intent intent = new Intent(this, SwipeScreen.class);
         startActivity(intent);
     }
 }

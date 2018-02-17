@@ -11,7 +11,7 @@ import freeskill.app.model.query.CurrentSettingsQuery;
  * Created by Olivier on 11/12/2017.
  */
 
-public class ProfileEditor{
+public class ProfileEditor {
     private Profile profile;
     private Settings settings;
     private String accessToken;
@@ -24,24 +24,24 @@ public class ProfileEditor{
         this.createCurrentSettings();
     }
 
-    public void createCurrentProfile(){
+    public void createCurrentProfile() {
         this.profile = new Profile();
     }
 
     //public Profile getCurrentProfile(){
-        //return this.profile;
+    //return this.profile;
     //}
 
-    public void createCurrentSettings(SettingsScreen settingsScreen){
+    public void createCurrentSettings(SettingsScreen settingsScreen) {
         CurrentSettingsQuery currentSettings = new CurrentSettingsQuery(settingsScreen, this.settings);
         currentSettings.getCurrentSettings(accessToken, queue);
     }
 
-    public void createCurrentSettings(){
+    public void createCurrentSettings() {
         this.settings = new Settings();
     }
 
-    public Settings getCurrentSettings(){
+    public Settings getCurrentSettings() {
         return this.settings;
     }
 

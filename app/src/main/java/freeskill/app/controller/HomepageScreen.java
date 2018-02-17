@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,17 +21,17 @@ import com.android.volley.toolbox.Volley;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.Connection;
 import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.test.DisplayMessageActivity;
-import freeskill.app.R;
 import freeskill.app.test.Test;
 import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 
-public class HomepageScreen extends AppCompatActivity{
+public class HomepageScreen extends AppCompatActivity {
 
     public static final String EXTRA_EMAIL = "com.example.test.EMAIL";
     public static final String EXTRA_PASSWORD = "com.example.test.PASSWORD";
@@ -74,7 +74,7 @@ public class HomepageScreen extends AppCompatActivity{
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Tools.hideKeyboard(getApplicationContext(),view);
+                Tools.hideKeyboard(getApplicationContext(), view);
             }
         });
 
@@ -94,7 +94,7 @@ public class HomepageScreen extends AppCompatActivity{
         //Persistent connection
         //Test if I have token
         String jwt = DataConnection.getInstance().getJWT();
-        if(null != jwt && "" != jwt){
+        if (null != jwt && "" != jwt) {
             //test if token is valide
             try {
                 JWTUtils.decoded(jwt);
@@ -109,7 +109,7 @@ public class HomepageScreen extends AppCompatActivity{
 
     }
 
-    public void connection(View view){
+    public void connection(View view) {
         this.intentSwipeScreen = new Intent(this, DisplayMessageActivity.class);
 
         this.email = emailField.getText().toString();
@@ -137,30 +137,30 @@ public class HomepageScreen extends AppCompatActivity{
 
         //Verification of email & password fields
         //Display a toast if one of the connect fields is empty
-        if(loginTxt.equals("") && pwdTxt.equals("")){
-            Toast.makeText(HomepageScreen.this,"Aucun champ renseigné",Toast.LENGTH_LONG).show();
+        if (loginTxt.equals("") && pwdTxt.equals("")) {
+            Toast.makeText(HomepageScreen.this, "Aucun champ renseigné", Toast.LENGTH_LONG).show();
             return;
         }
-        if(loginTxt.equals("")){
+        if (loginTxt.equals("")) {
             emailField.setError("Email required!");
             //Toast.makeText(HomepageScreen.this,"Email vide",Toast.LENGTH_LONG).show();
             return;
         }
-        if(pwdTxt.equals("")){
+        if (pwdTxt.equals("")) {
             passField.setError("Pwd required!");
-            Toast.makeText(HomepageScreen.this,"Mot de passe vide",Toast.LENGTH_LONG).show();
+            Toast.makeText(HomepageScreen.this, "Mot de passe vide", Toast.LENGTH_LONG).show();
             return;
         }
         //Check if email field have the good pattern
         Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
         Matcher m = p.matcher(loginTxt);
-        if(!m.matches()){
-            Toast.makeText(HomepageScreen.this,"Format incorrect pour l'email",Toast.LENGTH_SHORT).show();
+        if (!m.matches()) {
+            Toast.makeText(HomepageScreen.this, "Format incorrect pour l'email", Toast.LENGTH_SHORT).show();
             return;
         }
     }
 
-    public void register(View view){
+    public void register(View view) {
         this.intentRegisterScreen = new Intent(this, Test.class);
         startActivity(this.intentRegisterScreen);
     }

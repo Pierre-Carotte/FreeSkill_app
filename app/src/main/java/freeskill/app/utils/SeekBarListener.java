@@ -21,12 +21,12 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
         if (fromUser) {
             if (progress >= 0 && progress <= seekBar.getMax()) {
                 String progressString;
-                if(progress == 0){
-                    progressString = String.valueOf(progress+1);
-                }else {
+                if (progress == 0) {
+                    progressString = String.valueOf(progress + 1);
+                } else {
                     progressString = String.valueOf(progress);
                 }
-                this.textView.setText( progressString + this.text); // the TextView Reference
+                this.textView.setText(progressString + this.text); // the TextView Reference
                 seekBar.setSecondaryProgress(progress);
             }
         }

@@ -1,7 +1,6 @@
 package freeskill.app.controller;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,15 +10,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
-
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.Profile;
 import freeskill.app.model.ProfileEditor;
 import freeskill.app.test.UnderConstruction;
 
@@ -61,19 +53,19 @@ public class ProfileScreen extends AppCompatActivity {
 
     }
 
-    public void edit_tags_share(View view){
+    public void edit_tags_share(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags share",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags share", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_tags_discover(View view){
+    public void edit_tags_discover(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags discover",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags discover", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_description(View view){
+    public void edit_description(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit description",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit description", Toast.LENGTH_LONG).show();
     }
 
 

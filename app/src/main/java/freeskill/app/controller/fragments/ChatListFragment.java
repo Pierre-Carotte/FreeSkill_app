@@ -1,9 +1,8 @@
 package freeskill.app.controller.fragments;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -17,6 +16,7 @@ import android.widget.ProgressBar;
 import com.android.volley.AuthFailureError;
 
 import freeskill.app.R;
+import freeskill.app.controller.ChatActivity;
 import freeskill.app.controller.interfaces.ChatChangeListener;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.adapters.ChatListAdapter;
@@ -31,6 +31,7 @@ import freeskill.app.model.query.GetMatches;
 public class ChatListFragment extends Fragment implements ChatChangeListener {
 
     private ListView mListView;
+    private ChatList chatList = null;
 
     public ChatListFragment() {
     }
@@ -61,7 +62,6 @@ public class ChatListFragment extends Fragment implements ChatChangeListener {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("Start fragrement", "ok");
         GetMatches getMatches = new GetMatches(this);
         CurrentApp ca = CurrentApp.getInstance(null);
         try {
@@ -74,10 +74,16 @@ public class ChatListFragment extends Fragment implements ChatChangeListener {
 
     @Override
     public void onChatRetrieved(ChatList chatList) {
-        /*for (Chat chat : chatList.getChat()){
-            Log.d("ChatRetrieved", chat.getName());
-        }*/
-        final ChatListAdapter chatListAdapter = new ChatListAdapter(chatList);
+        this.chatList = chatList;
+        final ChatListAdapter chatListAdapter = new ChatListAdapter(this, chatList);
         mListView.setAdapter(chatListAdapter);
+    }
+
+    public void onClickChat(Chat chat) {
+
+        //getFragmentManager().beginTransaction().replace(R.id.container, ChatFragment.newIntance(chat)).commit();
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra("chat", chat);
+        startActivity(intent);
     }
 }

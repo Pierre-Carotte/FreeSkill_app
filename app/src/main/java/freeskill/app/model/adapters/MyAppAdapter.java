@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import freeskill.app.R;
 import freeskill.app.model.Profile;
@@ -24,18 +22,18 @@ import freeskill.app.model.Profile;
  * Created by Florian on 21/12/2017.
  */
 
-public class MyAppAdapter extends ArrayAdapter<Profile>{
+public class MyAppAdapter extends ArrayAdapter<Profile> {
 
     private Context context;
     private ArrayList<Profile> objects;
-    private HashMap<Integer,Bitmap> images;
+    private HashMap<Integer, Bitmap> images;
 
     public HashMap<Integer, Bitmap> getImages() {
         return images;
     }
 
-    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects,HashMap<Integer,Bitmap> images) {
-        super(context, resource,objects);
+    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects, HashMap<Integer, Bitmap> images) {
+        super(context, resource, objects);
         this.objects = objects;
         this.context = context;
         this.images = images;
@@ -59,12 +57,12 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
     }
 
 
-    public View getView (int position, View convertView, ViewGroup parent ){
-        if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
         }
         CardViewHolder viewHolder = (CardViewHolder) convertView.getTag();
-        if(viewHolder == null){
+        if (viewHolder == null) {
             viewHolder = new CardViewHolder();
             viewHolder.firstName = (TextView) convertView.findViewById(R.id.firstName);
             viewHolder.mark = (RatingBar) convertView.findViewById(R.id.mark);
@@ -97,7 +95,7 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
         return new CharSequence[0];
     }
 
-    private class CardViewHolder{
+    private class CardViewHolder {
         public TextView firstName;
         private RatingBar mark;
         public TextView description;

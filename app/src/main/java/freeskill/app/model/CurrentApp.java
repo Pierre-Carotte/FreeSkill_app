@@ -1,15 +1,10 @@
 package freeskill.app.model;
 
-import android.util.Log;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.controller.SwipeScreen;
-import freeskill.app.model.chat.ChatList;
 import freeskill.app.model.query.Connection;
-import freeskill.app.model.query.GetMatches;
 import freeskill.app.model.query.Judgement;
 
 /**
@@ -45,7 +40,6 @@ public class CurrentApp {
         this.connection = new Connection(homepageScreen);
         return this.connection;
     }
-
 
 
     public void getConnection(String email, String password) {
