@@ -17,6 +17,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import freeskill.app.R;
 import freeskill.app.model.DataConnection;
@@ -27,12 +28,15 @@ import freeskill.app.utils.Constants;
  * Created by Florian on 21/12/2017.
  */
 
-public class MyAppAdapter extends ArrayAdapter<Profile>{
+public class MyAppAdapter extends ArrayAdapter<Profile> {
 
     private Context context;
     private ArrayList<Profile> objects;
+    private HashMap<Integer, Bitmap> images;
 
 
+    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects, HashMap<Integer, Bitmap> images) {
+        super(context, resource, objects);
 
     public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects) {
         super(context, resource,objects);
@@ -58,13 +62,16 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
     }
 
 
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
     @SuppressLint("ClickableViewAccessibility")
     public View getView (int position, View convertView, ViewGroup parent ){
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
         }
         CardViewHolder viewHolder = (CardViewHolder) convertView.getTag();
-        if(viewHolder == null){
+        if (viewHolder == null) {
             viewHolder = new CardViewHolder();
             viewHolder.firstName = (TextView) convertView.findViewById(R.id.firstName);
             viewHolder.mark = (RatingBar) convertView.findViewById(R.id.mark);
@@ -114,6 +121,7 @@ public class MyAppAdapter extends ArrayAdapter<Profile>{
     }
 
         private class CardViewHolder{
+    private class CardViewHolder {
         public TextView firstName;
         public TextView distance;
         public RatingBar mark;

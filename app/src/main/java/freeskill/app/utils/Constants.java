@@ -1,5 +1,7 @@
 package freeskill.app.utils;
 
+import com.android.volley.Request;
+
 /**
  * Created by Sofiane-e on 04/02/2018.
  */
@@ -9,6 +11,7 @@ public class Constants {
     public class General {
         public static final String KEY_ACCESS_TOKEN = "x-access-token";
     }
+
     //Key from JSON WEB TOKEN TO DECODE
     public class JWT {
         public static final String ID_USER = "idUser";
@@ -35,9 +38,36 @@ public class Constants {
         public class GetProfile {
             public static final String URI = "https://freeskill.ddns.net/user/GetProfile";
         }
+
         public class GetImage {
             public static final String URI = "https://freeskill.ddns.net/user/GetImage/";
         }
+
+        public class GetMessages {
+            public static final String URI = "https://freeskill.ddns.net/user/getMessages?";
+            public static final String interlocutor = "interlocutor";
+            public static final int METHOD = Request.Method.GET;
+        }
+
+        public class GetChatList{
+            public static final String URI = "https://freeskill.ddns.net/user/getmatches/";
+            public static final int METHOD = Request.Method.GET;
+
+        }
+        public class SendMessage {
+            public static final String URI = "https://freeskill.ddns.net/user/SendMessage?";
+            public static final String interlocutor = "interlocutor";
+            public static final String message = "message";
+            public static final int METHOD = Request.Method.PUT;
+        }
+
+        public class SetMessageIsRead {
+            public static final String URI = "https://freeskill.ddns.net/user/SetMessageIsRead?";
+            public static final String interlocutor = "interlocutor";
+            public static final String idmsg = "idmsg";
+            public static final int METHOD = Request.Method.PUT;
+        }
+
         public class SetProfile {
             public static final String URI = "https://freeskill.ddns.net/user/SetProfile?";
         }

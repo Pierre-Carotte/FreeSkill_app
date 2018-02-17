@@ -4,8 +4,6 @@ import com.android.volley.Response;
 
 import org.json.JSONObject;
 
-import java.util.Observable;
-
 import freeskill.app.model.DataConnection;
 
 /**
@@ -16,7 +14,7 @@ public abstract class HttpsQuery implements Response.Listener<JSONObject>, Respo
     protected String accessToken;
 
     public void setAccessToken(String accessToken) {
-        this.accessToken =DataConnection.getInstance().getJWT();
+        this.accessToken = DataConnection.getInstance().getJWT();
         //this.accessToken = accessToken;
     }
 

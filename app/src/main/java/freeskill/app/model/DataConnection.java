@@ -1,6 +1,5 @@
 package freeskill.app.model;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -50,14 +49,16 @@ public class DataConnection {
         }
     }
 
-    public int getIdUser() { return this.sharedPreferences.getInt("idUser", -1); }
+    public int getIdUser() {
+        return this.sharedPreferences.getInt("idUser", -1);
+    }
 
     public String getEmail() {
         return this.sharedPreferences.getString("email", null);
     }
 
-    public void clearDataConnection(){
-        if(null != this.getEmail()){
+    public void clearDataConnection() {
+        if (null != this.getEmail()) {
             Log.d("test", this.getEmail());
         }
         this.sharedPreferences.edit().putString("jwt", "").commit();

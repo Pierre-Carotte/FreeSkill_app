@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FreeSkill_app.iml" filepath="$PROJECT_DIR$/FreeSkill_app.iml" />
       <module fileurl="file://C:\Users\Olivier\AndroidStudioProjects\FreeSkill_app\.idea\FreeSkill_app.iml" filepath="C:\Users\Olivier\AndroidStudioProjects\FreeSkill_app\.idea\FreeSkill_app.iml" />
-      <module fileurl="file://D:\AndroidProject\Freeskill_app\FreeSkill_app\FreeSkill_app.iml" filepath="D:\AndroidProject\Freeskill_app\FreeSkill_app\FreeSkill_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\AndroidProject\Freeskill_app\FreeSkill_app\app\app.iml" filepath="D:\AndroidProject\Freeskill_app\FreeSkill_app\app\app.iml" />
     </modules>
   </component>
 </project>

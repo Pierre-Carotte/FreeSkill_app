@@ -70,7 +70,7 @@ public class SettingsScreen extends AppCompatActivity {
         addCustomActionBar();
     }
 
-    public void signOut(View view){
+    public void signOut(View view) {
         DataConnection.getInstance().clearDataConnection();
         this.startActivity(new Intent(this, HomepageScreen.class));
     }

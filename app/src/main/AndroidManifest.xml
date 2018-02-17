@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="freeskill.app">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -16,20 +16,17 @@
         android:roundIcon="@drawable/freeskill_logo_android"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="freeskill.app.controller.HomepageScreen"
+        <activity
+            android:name="freeskill.app.controller.HomepageScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="freeskill.app.test.DisplayMessageActivity"
-            android:label="Test connexion"
-            android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.controller.HomepageScreen" >
-        </activity>
-        <activity android:name="freeskill.app.controller.SettingsScreen"
+        <activity
+            android:name="freeskill.app.controller.SettingsScreen"
             android:label="Paramètres"
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.test.DisplayMessageActivity" >
@@ -45,15 +42,22 @@
         android:parentActivityName="freeskill.app.controller.HomepageScreen" >
         </activity>
         <activity android:name="freeskill.app.controller.SwipeScreen"
+            android:parentActivityName="freeskill.app.test.DisplayMessageActivity"></activity>
+        <activity
+            android:name="freeskill.app.controller.SwipeScreen"
             android:label="Swipe"
+            android:screenOrientation="portrait"
+            android:parentActivityName="freeskill.app.test.Test"></activity>
+        <activity
+            android:name="freeskill.app.test.UnderConstruction"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name="freeskill.app.test.UnderConstruction"
             android:label="En travaux"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.controller.ProfileScreen" >
-        </activity>
-        <activity android:name="freeskill.app.controller.UserRegistrationScreen"
+            android:parentActivityName="freeskill.app.controller.ProfileScreen"></activity>
+        <activity
+            android:name="freeskill.app.controller.UserRegistrationScreen"
             android:label="Inscription utilisateur"
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.controller.HomepageScreen" >
@@ -77,6 +81,17 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+            android:parentActivityName="freeskill.app.controller.HomepageScreen"></activity>
+        <activity
+            android:name=".controller.ChatListActivity"
+            android:label="ChatList"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".test.Test"></activity>
+        <activity
+            android:name=".controller.ChatActivity"
+            android:label="Chat"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.ChatListActivity"></activity>
     </application>
 
 </manifest>

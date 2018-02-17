@@ -2,8 +2,6 @@ package freeskill.app.model;
 
 import android.graphics.Bitmap;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 
 
@@ -185,9 +183,9 @@ public class Profile {
         this.isAssos = assos == 1;
     }
 
-    public String getTagToString(ArrayList tagShare){
+    public String getTagToString(ArrayList tagShare) {
         String text_tags = "";
-        for(int i = 0; i < tagShare.size(); i++){
+        for (int i = 0; i < tagShare.size(); i++) {
             System.out.println("TAB_SHARE : " + tagShare.size() + tagShare.toString());
             text_tags = text_tags.concat("#" + tagShare.get(i).toString() + " ");
         }

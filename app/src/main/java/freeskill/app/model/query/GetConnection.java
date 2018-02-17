@@ -12,10 +12,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 import freeskill.app.controller.HomepageScreen;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
@@ -27,14 +23,16 @@ import freeskill.app.utils.Constants;
 
 public class GetConnection extends HttpsQuery {
     HomepageScreen homepageScreen;
+
+
     public GetConnection(HomepageScreen homepageScreen) {
         this.homepageScreen = homepageScreen;
     }
 
-    public void getConnection(final String email, final String password, RequestQueue queue){
+    public void getConnection(final String email, final String password, RequestQueue queue) {
         String url = Constants.API.Connection.URI + "?" + Constants.API.Connection.param1 +
                 "=" + email + "&"
-                + Constants.API.Connection.param2 +"="+ password;
+                + Constants.API.Connection.param2 + "=" + password;
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, this, this);
@@ -48,7 +46,7 @@ public class GetConnection extends HttpsQuery {
         try {
             String success = response.getString("success");
             String message = response.getString("message");
-            if(success.equals("true")){
+            if (success.equals("true")) {
                 CurrentApp.getInstance(null).setAccessToken(message);
                 //TODO del line bellow
 

@@ -60,7 +60,7 @@ public class Settings {
         this.notif_notation = notif_notation;
     }
 
-    public void editSettings(){
+    public void editSettings() {
 
     }
 }

@@ -28,7 +28,7 @@ public class SharedPreferences {
                 (Constants.Preferences.SHARED_PREFERENCES_SETTINGS, Context.MODE_PRIVATE);
     }
 
-    public void setProfile(){
+    public void setProfile() {
 
     }
 

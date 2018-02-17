@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group>
+        <item
+            android:id="@+id/chat_profile"
+            android:title="@string/menu_chat_profil" />
+        <item
+            android:id="@+id/chat_marks"
+            android:title="@string/menu_chat_mark" />
+        <item
+            android:id="@+id/chat_make_meet"
+            android:title="@string/menu_chat_make_meets" />
+        <item
+            android:id="@+id/chat_delete"
+            android:title="@string/menu_chat_delete_match" />
+        <item
+            android:id="@+id/chat_signal"
+            android:title="@string/menu_chat_signal_profil" />
+    </group>
+</menu>

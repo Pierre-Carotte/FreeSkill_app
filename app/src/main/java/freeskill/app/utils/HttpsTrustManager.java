@@ -59,7 +59,7 @@ public class HttpsTrustManager implements X509TrustManager {
         return _AcceptedIssuers;
     }
 
-    public void allowMySSL(){
+    public void allowMySSL() {
 
         try {
 

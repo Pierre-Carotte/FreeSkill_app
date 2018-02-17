@@ -15,10 +15,10 @@ public class FreeskillApplication extends Application {
 
     private static Context sContext;
 
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         //Add CA for let's encrypt and HTTPS
-        InputStream caInput=getResources().openRawResource(R.raw.letsencryptauthorityx3);
+        InputStream caInput = getResources().openRawResource(R.raw.letsencryptauthorityx3);
         HttpsTrustManager https = new HttpsTrustManager(caInput);
         https.allowMySSL();
         // Keep a reference to the application context

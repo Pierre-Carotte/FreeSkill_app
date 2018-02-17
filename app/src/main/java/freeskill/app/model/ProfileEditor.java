@@ -12,7 +12,7 @@ import freeskill.app.model.query.PostCurrentSettings;
  * Created by Olivier on 11/12/2017.
  */
 
-public class ProfileEditor{
+public class ProfileEditor {
     private Profile profile;
     private Settings settings;
     private RequestQueue queue;
@@ -23,7 +23,7 @@ public class ProfileEditor{
         this.createCurrentSettings();
     }
 
-    public void createCurrentProfile(){
+    public void createCurrentProfile() {
         this.profile = new Profile();
     }
 
@@ -32,11 +32,11 @@ public class ProfileEditor{
         currentSettings.getCurrentSettings(queue);
     }
 
-    public void createCurrentSettings(){
+    public void createCurrentSettings() {
         this.settings = new Settings();
     }
 
-    public Settings getCurrentSettings(){
+    public Settings getCurrentSettings() {
         return this.settings;
     }
 

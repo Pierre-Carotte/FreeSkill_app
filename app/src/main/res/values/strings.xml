@@ -26,10 +26,21 @@
     <string name="editText_last_name">Nom</string>
     <string name="editText_email">Email</string>
     <string name="editText_password">Mot de passe</string>
-    <string name="editText_password_confirmation" >Confirmation du mot de passe</string>
+    <string name="editText_password_confirmation">Confirmation du mot de passe</string>
     <string name="tag_share">Je veux partager :</string>
     <string name="tag_discover">Je veux découvrir :</string>
     <string name="swipe">Swipe</string>
     <string name="pass">Passer</string>
     <string name="meet">Rencontrer</string>
+    <string name="chatList">ChatList</string>
+    <string name="noMessage">Pas de conversation</string>
+    <string name="days">jours</string>
+    <string name="hours">heures</string>
+    <string name="minutes">minutes</string>
+    <!-- Button menu chat -->
+    <string name="menu_chat_profil">Profil</string>
+    <string name="menu_chat_mark">Noter</string>
+    <string name="menu_chat_make_meets">Rendez-vous</string>
+    <string name="menu_chat_delete_match">Supprimer</string>
+    <string name="menu_chat_signal_profil">Signaler</string>
 </resources>

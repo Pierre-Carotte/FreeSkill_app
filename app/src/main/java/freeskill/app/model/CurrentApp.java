@@ -31,8 +31,8 @@ public class CurrentApp {
     }
 
     public static CurrentApp getInstance(RequestQueue queue) {
-        if (instance == null)
-        { 	instance = new CurrentApp(queue);
+        if (instance == null) {
+            instance = new CurrentApp(queue);
         }
         return instance;
     }
@@ -42,7 +42,8 @@ public class CurrentApp {
         return this.connection;
     }
 
-    public void getConnection(String email, String password){
+
+    public void getConnection(String email, String password) {
         this.connection.getConnection(email, password, this.queue);
     }
 
@@ -51,8 +52,8 @@ public class CurrentApp {
         return this.profileEditor;
     }
 
-    public Judgement createJudgement(SwipeScreen swipeScreen){
-        this.judgement = new Judgement(this.accessToken,this.queue,swipeScreen);
+    public Judgement createJudgement(SwipeScreen swipeScreen) {
+        this.judgement = new Judgement(this.accessToken, this.queue, swipeScreen);
         return this.judgement;
     }
 

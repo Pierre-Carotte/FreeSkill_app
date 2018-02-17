@@ -92,19 +92,19 @@ public class ProfileScreen extends AppCompatActivity {
         });
     }
 
-    public void edit_tags_share(View view){
+    public void edit_tags_share(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags share",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags share", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_tags_discover(View view){
+    public void edit_tags_discover(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags discover",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags discover", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_description(View view){
+    public void edit_description(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit description",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit description", Toast.LENGTH_LONG).show();
     }
 
 
