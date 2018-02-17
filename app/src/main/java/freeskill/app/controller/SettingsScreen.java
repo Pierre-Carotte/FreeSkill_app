@@ -1,11 +1,8 @@
 package freeskill.app.controller;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,19 +11,12 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
-
-import java.io.IOException;
-
-import freeskill.app.FreeskillApplication;
 import freeskill.app.R;
 import freeskill.app.controller.listener.SeekBarListener;
 import freeskill.app.controller.listener.SwitchOnCheckedChangeListener;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.ProfileEditor;
-import freeskill.app.services.MyFirebaseInstanceIdService;
 
 /**
  * Created by Olivier on 06/12/2017.
@@ -76,7 +66,7 @@ public class SettingsScreen extends AppCompatActivity {
         addCustomActionBar();
     }
 
-    public void signOut(View view){
+    public void signOut(View view) {
         /*try {
             FirebaseInstanceId.getInstance().deleteInstanceId();
         } catch (IOException e) {
@@ -114,7 +104,7 @@ public class SettingsScreen extends AppCompatActivity {
         return switch_mark;
     }
 
-    public void addListeners(){
+    public void addListeners() {
         this.switch_new_message.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener
                 ("notif_message"));
         this.switch_new_match.setOnCheckedChangeListener(new SwitchOnCheckedChangeListener

@@ -11,9 +11,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
-import freeskill.app.model.Settings;
 import freeskill.app.utils.Constants;
 
 /**
@@ -27,10 +25,10 @@ public class PostCurrentSettings extends HttpsQuery {
                                     boolean notif_reminder, boolean notif_mark){*/
 
 
-    public void postCurrentSettings(RequestQueue queue, String field, String value){
+    public void postCurrentSettings(RequestQueue queue, String field, String value) {
 
-        Map<String, String> putParam= new HashMap<String, String>();
-        switch(field){
+        Map<String, String> putParam = new HashMap<String, String>();
+        switch (field) {
             case Constants.JSONparameters.PERIMETER:
                 putParam.put(Constants.JSONparameters.PERIMETER, value);
                 break;
@@ -57,8 +55,8 @@ public class PostCurrentSettings extends HttpsQuery {
         // Request a JSON response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.PUT,
                 Constants.API.SetProfile.URI
-                + "profileUpdate=" + new JSONObject(putParam), null, this,
-                this){
+                        + "profileUpdate=" + new JSONObject(putParam), null, this,
+                this) {
             //Add the accessToken in the headers of the request
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

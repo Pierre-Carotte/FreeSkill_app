@@ -13,7 +13,6 @@ import com.bumptech.glide.signature.StringSignature;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,37 +69,37 @@ public class CurrentProfileQuery extends HttpsQuery {
             this.profile.setEmail(profile.getString("email"));
             this.profile.setDescription(profile.getString("description"));
 
-            if(profile.getString("average_mark") != "null"){
+            if (profile.getString("average_mark") != "null") {
                 this.profile.setAverageMark(profile.getDouble("average_mark"));
                 this.profileScreen.getRatingBar_stars().setRating
-                        ((float)profile.getDouble("average_mark"));
-            }else{
+                        ((float) profile.getDouble("average_mark"));
+            } else {
                 this.profileScreen.getRatingBar_stars().setRating(0);
             }
 
             JSONArray tags_share = profile.getJSONArray("tags_share");
-            for(int i = 0; i < tags_share.length(); i++){
+            for (int i = 0; i < tags_share.length(); i++) {
                 this.profile.setTagShare(tags_share.get(i).toString());
             }
             JSONArray tags_discover = profile.getJSONArray("tags_discover");
-            for(int i = 0; i < tags_discover.length(); i++){
+            for (int i = 0; i < tags_discover.length(); i++) {
                 this.profile.setTagDiscover(tags_discover.get(i).toString());
             }
 
             this.profileScreen.getTextview_username().setText(profile.getString("first_name"));
 
             String text_tags_share = "";
-            for(int i = 0; i < tags_share.length(); i++){
+            for (int i = 0; i < tags_share.length(); i++) {
                 text_tags_share = text_tags_share.concat("#" + tags_share.get(i).toString() + " ");
             }
             this.profileScreen.getTextview_tags_share().setText(text_tags_share);
             String text_tags_discover = "";
-            for(int i = 0; i < tags_discover.length(); i++){
+            for (int i = 0; i < tags_discover.length(); i++) {
                 text_tags_discover = text_tags_discover.concat("#" + tags_discover.get(i).toString() + " ");
             }
             this.profileScreen.getTextview_tags_discover().setText(text_tags_discover);
             this.profileScreen.getTextview_description().setText(profile.getString("description"));
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -110,7 +109,7 @@ public class CurrentProfileQuery extends HttpsQuery {
 
     }
 
-    public void imageRequest(){
+    public void imageRequest() {
 
         GlideUrl glideUrl = new GlideUrl(Constants.API.GetImage.URI, new LazyHeaders.Builder()
                 .addHeader(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT())

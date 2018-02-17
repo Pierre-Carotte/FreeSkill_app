@@ -69,13 +69,13 @@ public class ProfileScreen extends AppCompatActivity {
         addCustomActionBar();
     }
 
-    public void addCustomActionBar(){
+    public void addCustomActionBar() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.custom_actionbar_profilescreen);
-        View view =getSupportActionBar().getCustomView();
+        View view = getSupportActionBar().getCustomView();
 
-        ImageView imageViewSettings= this.findViewById(R.id.action_bar_settings);
+        ImageView imageViewSettings = this.findViewById(R.id.action_bar_settings);
         imageViewSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +83,7 @@ public class ProfileScreen extends AppCompatActivity {
             }
         });
 
-        ImageView imageViewBack= this.findViewById(R.id.action_bar_back);
+        ImageView imageViewBack = this.findViewById(R.id.action_bar_back);
         imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,19 +92,19 @@ public class ProfileScreen extends AppCompatActivity {
         });
     }
 
-    public void edit_tags_share(View view){
+    public void edit_tags_share(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags share",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags share", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_tags_discover(View view){
+    public void edit_tags_discover(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit tags discover",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit tags discover", Toast.LENGTH_LONG).show();
     }
 
-    public void edit_description(View view){
+    public void edit_description(View view) {
         startActivity(this.intentUnderConstruction);
-        Toast.makeText(ProfileScreen.this,"Edit description",Toast.LENGTH_LONG).show();
+        Toast.makeText(ProfileScreen.this, "Edit description", Toast.LENGTH_LONG).show();
     }
 
 

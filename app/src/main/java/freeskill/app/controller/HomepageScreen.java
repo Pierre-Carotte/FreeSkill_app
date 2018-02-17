@@ -24,10 +24,8 @@ import java.util.regex.Pattern;
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
-import freeskill.app.model.query.GetConnection;
 import freeskill.app.model.query.CurrentProfileQuery;
-import freeskill.app.R;
-import freeskill.app.utils.CheckConnectionDialogFragment;
+import freeskill.app.model.query.GetConnection;
 import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 

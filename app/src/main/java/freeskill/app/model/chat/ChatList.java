@@ -24,6 +24,7 @@ public class ChatList {
     public void build(JSONArray resJsonArray) {
         this.chatL = resJsonArray;
         this.chatL.length();
+
         for (int i = 0; i < this.chatL.length(); i++) {
             try {
                 JSONObject res = (JSONObject) this.chatL.get(i);
@@ -54,6 +55,15 @@ public class ChatList {
             }
         }
         return messagesList;
+    }
+
+    public Chat findChatByName(String name) {
+        for (Chat res : chat) {
+            if (res.getName().equals(name)) {
+                return res;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Chat> getChat() {

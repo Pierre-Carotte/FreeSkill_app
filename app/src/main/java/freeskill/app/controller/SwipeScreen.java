@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -13,11 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -35,9 +29,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.query.Judgement;
-import freeskill.app.model.adapters.MyAppAdapter;
 import freeskill.app.model.Profile;
+import freeskill.app.model.adapters.MyAppAdapter;
+import freeskill.app.model.query.Judgement;
 import freeskill.app.model.query.PostCurrentLocation;
 import freeskill.app.model.query.PostJudgement;
 import freeskill.app.utils.HttpsTrustManager;
@@ -59,7 +53,6 @@ public class SwipeScreen extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private double latitude;
     private double longitude;
-
 
 
     @BindView(R.id.frame)
@@ -155,7 +148,6 @@ public class SwipeScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         addCustomActionBar();

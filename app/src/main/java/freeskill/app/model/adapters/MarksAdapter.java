@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import freeskill.app.R;
 import freeskill.app.model.Mark;
-import freeskill.app.model.Profile;
 
 /**
  * Created by Florian on 12/02/2018.
@@ -44,11 +43,11 @@ public class MarksAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_mark_by_tag,parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_mark_by_tag, parent, false);
         }
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        if(viewHolder == null){
+        if (viewHolder == null) {
             viewHolder = new ViewHolder();
             viewHolder.tagName = convertView.findViewById(R.id.tag);
             viewHolder.ratingBar = convertView.findViewById(R.id.mark2);
@@ -67,7 +66,7 @@ public class MarksAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         public TextView tagName;
         public RatingBar ratingBar;
         public TextView nbMarks;

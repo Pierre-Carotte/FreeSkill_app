@@ -2,7 +2,6 @@ package freeskill.app.model.query;
 
 import android.util.Log;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -11,20 +10,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import freeskill.app.controller.fragments.ChatFragment;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.chat.Chat;
-import freeskill.app.model.chat.FactoryMessage;
-import freeskill.app.model.chat.Message;
+import freeskill.app.model.chat.ChatList;
 import freeskill.app.utils.Constants;
 
 /**
  * Created by Sofiane-e on 17/02/2018.
  */
 
-public class GetMessages extends HttpsQuery{
+public class GetMessages extends HttpsQuery {
     private static final GetMessages ourInstance = new GetMessages();
     private final RequestQueue queue;
     ChatFragment chatFragment;
@@ -47,6 +43,7 @@ public class GetMessages extends HttpsQuery{
                 null, this, this);
         queue.add(stringR);
     }
+
     @Override
     public void onErrorResponse(VolleyError error) {
 
@@ -64,13 +61,17 @@ public class GetMessages extends HttpsQuery{
                 Log.e("sendmeassage", "success false");
                 return;
             }
-            JSONArray messageTab = response.getJSONArray("message");
-            Log.d("getMessagges", messageTab.toString());
-            if (messageTab.length() == 1) {
-                //Chat chat = new Chat((JSONObject) messageTab.get(0));
-                chatFragment.notifyNewChat((JSONObject) messageTab.get(0));
-               // chatFragment.getChat().getMessages().addAll(messages);
-                //chatFragment.getmMessageAdapter().notifyDataSetChanged();
+            JSONArray chatlistJson = response.getJSONArray("message");
+            if (chatlistJson.length() > 0) {
+                ChatList chatList = new ChatList();
+                chatList.build(chatlistJson);
+                Log.d("name", chatFragment.getChat().getName());
+                Chat chat = chatList.findChatByName(chatFragment.getChat().getName());
+                if (chat != null) {
+                    chatFragment.notifyNewChat(chat);
+                }
+                //Log.d("getMessagges", messageTab.toString());
+                //chatFragment.notifyNewChat((JSONObject) messageTab.get(0));
             }
         } catch (JSONException e) {
             e.printStackTrace();

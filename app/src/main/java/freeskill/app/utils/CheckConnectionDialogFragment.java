@@ -1,21 +1,11 @@
 package freeskill.app.utils;
 
-import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import freeskill.app.FreeskillApplication;
-import freeskill.app.R;
-import freeskill.app.controller.HomepageScreen;
 
 /**
  * Created by Olivier on 15/02/2018.

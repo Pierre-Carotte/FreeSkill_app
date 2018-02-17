@@ -1,6 +1,5 @@
 package freeskill.app.model.query;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -11,7 +10,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import freeskill.app.model.DataConnection;
 import freeskill.app.utils.Constants;
 
 /**
@@ -21,9 +19,9 @@ import freeskill.app.utils.Constants;
 public class PostUserRegistration extends HttpsQuery {
 
     public void postUserRegistration(RequestQueue queue, String firstname, String lastname,
-                                     String email, String password){
+                                     String email, String password) {
 
-        Map<String, String> putParam= new HashMap<>();
+        Map<String, String> putParam = new HashMap<>();
         putParam.put("firstname", String.valueOf(firstname));
         putParam.put("name", String.valueOf(lastname));
         putParam.put("email", String.valueOf(email));

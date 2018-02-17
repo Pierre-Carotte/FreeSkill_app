@@ -39,7 +39,6 @@ public class ChatListFragment extends Fragment implements ChatChangeListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_chatlist, container, false);
-        Log.d("Add chatlist fragrement", "ok");
         mListView = (ListView) rootView.findViewById(R.id.chatListView);
 
 
@@ -75,13 +74,12 @@ public class ChatListFragment extends Fragment implements ChatChangeListener {
     @Override
     public void onChatRetrieved(ChatList chatList) {
         this.chatList = chatList;
+        Log.d("onchatretrieved", "ok");
         final ChatListAdapter chatListAdapter = new ChatListAdapter(this, chatList);
         mListView.setAdapter(chatListAdapter);
     }
 
     public void onClickChat(Chat chat) {
-
-        //getFragmentManager().beginTransaction().replace(R.id.container, ChatFragment.newIntance(chat)).commit();
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra("chat", chat);
         startActivity(intent);

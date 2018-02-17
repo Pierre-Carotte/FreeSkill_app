@@ -1,5 +1,7 @@
 package freeskill.app.model.chat;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,15 +41,15 @@ public class Message implements Serializable {
 
     public Message(JSONObject message) {
         try {
-            idMessage = message.getInt("id");
-            idUser1 = message.getInt("id_user1");
-            idUser2 = message.getInt("id_user2");
+            this.idMessage = message.getInt("id");
+            this.idUser1 = message.getInt("id_user1");
+            this.idUser2 = message.getInt("id_user2");
             this.message = message.getString("message");
-            date = parseDate(message.getString("dath_message"));
+            this.date = parseDate(message.getString("dath_message"));
             int isReadInt = message.getInt("is_read");
-            boolean isRead = false;
+            this.isRead = false;
             if (isReadInt == 1) {
-                isRead = true;
+                this.isRead = true;
             }
         } catch (JSONException e) {
             e.printStackTrace();

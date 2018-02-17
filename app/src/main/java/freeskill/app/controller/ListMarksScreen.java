@@ -4,20 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import java.io.InputStream;
-
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
-import freeskill.app.model.Mark;
 import freeskill.app.model.adapters.MarksAdapter;
 import freeskill.app.model.query.GetMarks;
-import freeskill.app.utils.HttpsTrustManager;
 
 /**
  * Created by Florian on 11/02/2018.
@@ -42,16 +37,16 @@ public class ListMarksScreen extends AppCompatActivity {
         setContentView(R.layout.marks_by_tag);
 
         Intent intent = getIntent();
-        if(intent.getIntExtra("idProfile", -1) == -1){
+        if (intent.getIntExtra("idProfile", -1) == -1) {
             this.idProfile = 0;
-        }else{
+        } else {
             this.idProfile = intent.getIntExtra("idProfile", -1);
         }
 
         queue = Volley.newRequestQueue(this);
 
         this.currentApp = CurrentApp.getInstance(null);
-        this.getMarks = new GetMarks(this.currentApp.getAccessToken(),this.queue,this);
+        this.getMarks = new GetMarks(this.currentApp.getAccessToken(), this.queue, this);
         this.getMarks.getMarks(this.currentApp.getAccessToken());
 
         this.adapter = this.getMarks.getAdapter();
@@ -66,14 +61,14 @@ public class ListMarksScreen extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(this.idProfile == 0) {
+        if (this.idProfile == 0) {
             switch (item.getItemId()) {
                 case android.R.id.home:
                     Intent intent = new Intent(this, ProfileScreen.class);
                     startActivity(intent);
             }
             return true;
-        }else{
+        } else {
             switch (item.getItemId()) {
                 case android.R.id.home:
                     Intent intent = new Intent(this, SwipeScreen.class);

@@ -27,7 +27,7 @@ public class ProfileEditor {
         this.profile = new Profile();
     }
 
-    public void createCurrentSettings(SettingsScreen settingsScreen){
+    public void createCurrentSettings(SettingsScreen settingsScreen) {
         CurrentSettingsQuery currentSettings = new CurrentSettingsQuery(settingsScreen, this.settings);
         currentSettings.getCurrentSettings(queue);
     }
@@ -49,7 +49,7 @@ public class ProfileEditor {
         return profile;
     }
 
-    public void updateCurrentSettings(String field, String value){
+    public void updateCurrentSettings(String field, String value) {
         PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
         postCurrentSettings.postCurrentSettings(this.queue, field, value);
     }

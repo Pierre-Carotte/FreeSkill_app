@@ -2,7 +2,6 @@ package freeskill.app.model.query;
 
 import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -57,7 +56,7 @@ public class GetConnection extends HttpsQuery {
                         message);
                 this.homepageScreen.startActivity(this.homepageScreen.getIntentSwipeScreen());
                 this.homepageScreen.finish();
-            }else{
+            } else {
                 this.setAccessToken(message);
                 System.out.println(message);
                 Snackbar.make(this.homepageScreen.getCurrentFocus(), "Les identifiants de connexion sont incorrects.", Snackbar.LENGTH_LONG).show();

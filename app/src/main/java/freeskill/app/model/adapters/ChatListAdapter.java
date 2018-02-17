@@ -1,7 +1,6 @@
 package freeskill.app.model.adapters;
 
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +34,6 @@ import static freeskill.app.utils.Tools.parseMessageDate;
 
 public class ChatListAdapter extends BaseAdapter {
     private ChatList chatList;
-    private RecyclerView mMessageRecycler;
-    private ChatAdpater mMessageAdapter;
     private ChatListFragment mChatList;
 
     public ChatListAdapter(ChatListFragment mChatList, ChatList chatList) {
@@ -52,6 +49,7 @@ public class ChatListAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return null != chatList.getChat() ? chatList.getChat().get(position) : null;
+        // return 1;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class ChatListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
 
-        LayoutInflater mInflater = LayoutInflater.from(FreeskillApplication.getContext());
+        LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
 
         if (null == convertView) {
             convertView = mInflater.inflate(R.layout.chat_list_item, null);

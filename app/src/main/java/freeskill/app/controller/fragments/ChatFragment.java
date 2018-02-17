@@ -107,11 +107,13 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     }
 
     //when we call query getMessages of chat, the query notify with new json object chat
-    public void notifyNewChat(JSONObject chatJSON) {
-        chat = new Chat(chatJSON);
-        mMessageAdapter.setChat(chat);
-        mMessageAdapter.notifyDataSetChanged();
-        linearLayout.scrollToPosition(mMessageAdapter.getItemCount() - 1);
+    public void notifyNewChat(Chat chat) {
+        if (this.chat.getMessages().size() < chat.getMessages().size()) {
+            this.chat = chat;
+            mMessageAdapter.setChat(chat);
+            mMessageAdapter.notifyDataSetChanged();
+            linearLayout.scrollToPosition(mMessageAdapter.getItemCount() - 1);
+        }
     }
 
     public Chat getChat() {

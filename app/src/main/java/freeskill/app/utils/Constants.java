@@ -50,11 +50,12 @@ public class Constants {
             public static final int METHOD = Request.Method.GET;
         }
 
-        public class GetChatList{
+        public class GetChatList {
             public static final String URI = "https://freeskill.ddns.net/user/getmatches/";
             public static final int METHOD = Request.Method.GET;
 
         }
+
         public class SendMessage {
             public static final String URI = "https://freeskill.ddns.net/user/SendMessage?";
             public static final String interlocutor = "interlocutor";
@@ -72,10 +73,12 @@ public class Constants {
         public class SetProfile {
             public static final String URI = "https://freeskill.ddns.net/user/SetProfile?";
         }
-        public class SetJudgement{
+
+        public class SetJudgement {
             public static final String URI = "https://freeskill.ddns.net/user/SetJudgement?";
         }
-        public class Register{
+
+        public class Register {
             public static final String URI = "https://freeskill.ddns.net/auth/register";
         }
 
@@ -84,17 +87,17 @@ public class Constants {
         }
     }
 
-    public class Preferences{
+    public class Preferences {
         public static final String SHARED_PREFERENCES_CONNECTION = "conection";
         public static final String SHARED_PREFERENCES_PROFILE = "profile";
         public static final String SHARED_PREFERENCES_SETTINGS = "settings";
     }
 
-    public class PreferencesConnection{
+    public class PreferencesConnection {
         public static final String PREF_LOGIN = "email";
     }
 
-    public class PreferencesSettings{
+    public class PreferencesSettings {
         public static final String PREF_PERIMETER = "perimeter";
         public static final String PREF_NOTIF_MATCH = "notif_match";
         public static final String PREF_NOTIF_MESSAGE = "notif_message";
@@ -102,7 +105,6 @@ public class Constants {
         public static final String PREF_NOTIF_REMINDER = "notif_reminder";
         public static final String PREF_NOTIF_MARK = "notif_mark";
     }
-
 
 
 }

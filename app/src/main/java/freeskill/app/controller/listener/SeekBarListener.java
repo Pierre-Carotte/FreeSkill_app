@@ -52,9 +52,9 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if(seekBar.getProgress() == 0){
-            this.settings.setPerimeter(seekBar.getProgress()+1);
-        }else{
+        if (seekBar.getProgress() == 0) {
+            this.settings.setPerimeter(seekBar.getProgress() + 1);
+        } else {
             this.settings.setPerimeter(seekBar.getProgress());
         }
         this.profileEditor.updateCurrentSettings(Constants.JSONparameters.PERIMETER,

@@ -5,12 +5,8 @@ import android.util.Log;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaders;
 
 import org.json.JSONObject;
 
@@ -26,7 +22,7 @@ import freeskill.app.utils.Constants;
  * Created by Florian on 02/02/2018.
  */
 
-public class PostJudgement extends HttpsQuery{
+public class PostJudgement extends HttpsQuery {
 
     private Judgement judgement;
     private String accessToken;
@@ -34,18 +30,18 @@ public class PostJudgement extends HttpsQuery{
     private SwipeScreen swipeScreen;
     private CurrentApp currentApp;
 
-    public PostJudgement(String accessToken, RequestQueue queue, SwipeScreen swipeScreen)  {
-        this.accessToken=accessToken;
+    public PostJudgement(String accessToken, RequestQueue queue, SwipeScreen swipeScreen) {
+        this.accessToken = accessToken;
         this.queue = queue;
         this.swipeScreen = swipeScreen;
         this.currentApp = CurrentApp.getInstance(null);
     }
 
-    public void post(){
+    public void post() {
         String url = Constants.API.SetJudgement.URI + "judged=" + this.swipeScreen.al.get(0).getId()
-                + "&meet="+ this.swipeScreen.meet;
+                + "&meet=" + this.swipeScreen.meet;
         System.out.println(url);
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.PUT, url,null,this,this){
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.PUT, url, null, this, this) {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
@@ -72,7 +68,7 @@ public class PostJudgement extends HttpsQuery{
             if (response.getInt("match") == 1) {
                 this.swipeScreen.makeToast(this.swipeScreen, "MATCH");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
     }

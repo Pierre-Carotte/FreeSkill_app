@@ -1,12 +1,10 @@
 package freeskill.app.controller;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.Timer;
@@ -16,7 +14,6 @@ import freeskill.app.R;
 import freeskill.app.controller.fragments.ChatFragment;
 import freeskill.app.model.chat.Chat;
 import freeskill.app.model.query.GetMessages;
-import freeskill.app.utils.Tools;
 
 /**
  * Created by Sofiane-e on 11/02/2018.
@@ -26,6 +23,7 @@ public class ChatActivity extends AppCompatActivity {
     private Chat chat;
     ChatFragment chatFragment;
     TimerTask timerTaskObj;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,8 +106,8 @@ public class ChatActivity extends AppCompatActivity {
          */
     }
 
-    private void updateChat(){
-        //Log.d("timerChatActivity", "ok");
+    private void updateChat() {
+        Log.d("timerChatActivity", "ok");
         GetMessages.getInstance().request(chatFragment, chat.getIdUser());
     }
 

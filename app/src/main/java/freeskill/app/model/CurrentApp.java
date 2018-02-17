@@ -69,7 +69,7 @@ public class CurrentApp {
         return profileEditor;
     }
 
-    public void userRegistration(String firstname, String lastname, String email, String password){
+    public void userRegistration(String firstname, String lastname, String email, String password) {
         PostUserRegistration postUserRegistration = new PostUserRegistration();
         postUserRegistration.postUserRegistration(this.queue, firstname, lastname, email, password);
     }

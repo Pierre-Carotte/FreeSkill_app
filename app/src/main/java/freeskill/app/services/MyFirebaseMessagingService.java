@@ -17,6 +17,7 @@ import freeskill.app.controller.SwipeScreen;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyAndroidFCMService";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Log data to Log Cat
@@ -26,18 +27,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         createNotification(remoteMessage.getNotification().getBody());
     }
 
-    private void createNotification( String messageBody) {
-        Intent intent = new Intent( this , SwipeScreen. class );
+    private void createNotification(String messageBody) {
+        Intent intent = new Intent(this, SwipeScreen.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent resultIntent = PendingIntent.getActivity( this , 0, intent,
+        PendingIntent resultIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder( this )
+        NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Android Tutorial Point FCM Tutorial")
                 .setContentText(messageBody)
-                .setAutoCancel( true )
+                .setAutoCancel(true)
                 .setSound(notificationSoundURI)
                 .setContentIntent(resultIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);

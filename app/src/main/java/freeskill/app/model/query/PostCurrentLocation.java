@@ -6,15 +6,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.DataConnection;
-import freeskill.app.model.Settings;
 import freeskill.app.utils.Constants;
 
 /**
@@ -34,7 +31,7 @@ public class PostCurrentLocation extends HttpsQuery {
         //Set the URL for the request
         String url = "https://freeskill.ddns.net/user/setLocation";
 
-        Map<String, String> putParam= new HashMap<String, String>();
+        Map<String, String> putParam = new HashMap<String, String>();
         putParam.put("lat", String.valueOf(latitude));
         putParam.put("lon", String.valueOf(longitude));
 
