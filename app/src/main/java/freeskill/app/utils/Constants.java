@@ -25,6 +25,7 @@ public class Constants {
         public static final String NOTIF_MEETING = "notif_meeting";
         public static final String NOTIF_REMINDER = "notif_reminder";
         public static final String NOTIF_MARK = "notif_mark";
+        public static final String ID_FCM = "id_fcm";
     }
 
     //API Freeskill

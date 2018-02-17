@@ -8,10 +8,10 @@ import freeskill.app.utils.Constants;
  * Created by Olivier on 25/01/2018.
  */
 
-public class SharedPreferences {
-    private SharedPreferences sharedPreferencesConnection;
-    private SharedPreferences sharedPreferencesProfile;
-    private SharedPreferences sharedPreferencesSettings;
+public class FreeSkillSharedPreferences {
+    private FreeSkillSharedPreferences freeSkillSharedPreferencesConnection;
+    private FreeSkillSharedPreferences freeSkillSharedPreferencesProfile;
+    private FreeSkillSharedPreferences freeSkillSharedPreferencesSettings;
 
     private static android.content.SharedPreferences getSharedPreferencesConnection(){
         return FreeskillApplication.getContext().getSharedPreferences
@@ -47,5 +47,10 @@ public class SharedPreferences {
     public void setConnection(String login){
         final android.content.SharedPreferences prefs = getSharedPreferencesConnection();
         prefs.edit().putString(Constants.PreferencesConnection.PREF_LOGIN, login).apply();
+    }
+
+    public void setID_FCM(String token){
+        final android.content.SharedPreferences prefs = getSharedPreferencesConnection();
+        prefs.edit().putString(Constants.JSONparameters.ID_FCM, token).apply();
     }
 }

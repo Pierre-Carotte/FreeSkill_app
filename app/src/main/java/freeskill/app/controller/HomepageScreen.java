@@ -27,8 +27,7 @@ import freeskill.app.model.DataConnection;
 import freeskill.app.model.query.GetConnection;
 import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.R;
-import freeskill.app.test.DisplayMessageActivity;
-import freeskill.app.test.Test;
+import freeskill.app.utils.CheckConnectionDialogFragment;
 import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 
@@ -59,11 +58,6 @@ public class HomepageScreen extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-
-    /*private FusedLocationProviderClient mFusedLocationClient;
-    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private double latitude;
-    private double longitude;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +95,7 @@ public class HomepageScreen extends AppCompatActivity {
         //Test if the token is available
         String jwt = DataConnection.getInstance().getJWT();
         if (null != jwt && "" != jwt) {
-            //test if token is valide
+            //test if token is valid
             try {
                 JWTUtils.decoded(jwt);
                 Log.d("token: ", jwt);
@@ -115,8 +109,8 @@ public class HomepageScreen extends AppCompatActivity {
             }
         }
 
-        /*initLocation();
-        getLocation();*/
+        /*CheckConnectionDialogFragment.newInstance().show(this.getSupportFragmentManager(),
+                "Absence de connexion internet");*/
     }
 
     public void connection(View view) {

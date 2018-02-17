@@ -27,9 +27,9 @@ public class PostCurrentSettings extends HttpsQuery {
                                     boolean notif_reminder, boolean notif_mark){*/
 
 
-    public void postCurrentSettings(RequestQueue queue, String field, int value){
+    public void postCurrentSettings(RequestQueue queue, String field, String value){
 
-        Map<String, Integer> putParam= new HashMap<String, Integer>();
+        Map<String, String> putParam= new HashMap<String, String>();
         switch(field){
             case Constants.JSONparameters.PERIMETER:
                 putParam.put(Constants.JSONparameters.PERIMETER, value);
@@ -48,6 +48,9 @@ public class PostCurrentSettings extends HttpsQuery {
                 break;
             case Constants.JSONparameters.NOTIF_MARK:
                 putParam.put(Constants.JSONparameters.NOTIF_MARK, value);
+                break;
+            case Constants.JSONparameters.ID_FCM:
+                putParam.put(Constants.JSONparameters.ID_FCM, value);
                 break;
         }
 
@@ -72,7 +75,7 @@ public class PostCurrentSettings extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        //System.out.println("Erreur Volley " + error.getMessage());
+        System.out.println("Erreur Volley " + error.getMessage());
     }
 
     @Override

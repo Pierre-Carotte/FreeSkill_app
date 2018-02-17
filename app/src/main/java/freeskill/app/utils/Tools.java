@@ -20,6 +20,9 @@ import java.util.concurrent.TimeUnit;
 import freeskill.app.FreeskillApplication;
 import freeskill.app.R;
 
+import android.R.string;
+
+
 /**
  * Created by Florian on 01/12/2017.
  */

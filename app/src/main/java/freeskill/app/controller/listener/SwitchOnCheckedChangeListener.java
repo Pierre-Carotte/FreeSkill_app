@@ -32,27 +32,27 @@ public class SwitchOnCheckedChangeListener implements CompoundButton.OnCheckedCh
             case "notif_match":
                 settings.setNotif_match(isChecked);
                 this.profileEditor.updateCurrentSettings(Constants.JSONparameters.NOTIF_MATCH,
-                        Tools.booleanToInt(this.settings.isNotif_match()));
+                        String.valueOf(Tools.booleanToInt(this.settings.isNotif_match())));
                 break;
             case "notif_message":
                 settings.setNotif_message(isChecked);
                 this.profileEditor.updateCurrentSettings(Constants.JSONparameters.NOTIF_MESSAGE,
-                        Tools.booleanToInt(this.settings.isNotif_message()));
+                        String.valueOf(Tools.booleanToInt(this.settings.isNotif_message())));
                 break;
             case "notif_meeting":
                 settings.setNotif_meeting(isChecked);
                 this.profileEditor.updateCurrentSettings(Constants.JSONparameters.NOTIF_MEETING,
-                        Tools.booleanToInt(this.settings.isNotif_meeting()));
+                        String.valueOf(Tools.booleanToInt(this.settings.isNotif_meeting())));
                 break;
             case "notif_reminder":
                 settings.setNotif_meeting_reminder(isChecked);
                 this.profileEditor.updateCurrentSettings(Constants.JSONparameters.NOTIF_REMINDER,
-                        Tools.booleanToInt(this.settings.isNotif_meeting_reminder()));
+                        String.valueOf(Tools.booleanToInt(this.settings.isNotif_meeting_reminder())));
                 break;
             case "notif_mark":
                 settings.setNotif_notation(isChecked);
                 this.profileEditor.updateCurrentSettings(Constants.JSONparameters.NOTIF_MARK,
-                        Tools.booleanToInt(this.settings.isNotif_notation()));
+                        String.valueOf(Tools.booleanToInt(this.settings.isNotif_notation())));
                 break;
         }
     }

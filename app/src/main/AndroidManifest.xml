@@ -36,26 +36,16 @@
             android:screenOrientation="portrait"
             android:parentActivityName="freeskill.app.test.DisplayMessageActivity">
         </activity>
-        <activity android:name="freeskill.app.test.Test"
-        android:label="Test"
-        android:screenOrientation="portrait"
-        android:parentActivityName="freeskill.app.controller.HomepageScreen" >
-        </activity>
-        <activity android:name="freeskill.app.controller.SwipeScreen"
-            android:parentActivityName="freeskill.app.test.DisplayMessageActivity"></activity>
         <activity
             android:name="freeskill.app.controller.SwipeScreen"
-            android:label="Swipe"
-            android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.Test"></activity>
-        <activity
-            android:name="freeskill.app.test.UnderConstruction"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name="freeskill.app.test.UnderConstruction"
+        <activity
+            android:name="freeskill.app.test.UnderConstruction"
             android:label="En travaux"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.controller.ProfileScreen"></activity>
+            android:parentActivityName="freeskill.app.controller.ProfileScreen">
+        </activity>
         <activity
             android:name="freeskill.app.controller.UserRegistrationScreen"
             android:label="Inscription utilisateur"
@@ -70,28 +60,31 @@
         </activity>
 
         <service
-            android:name=".services.MyFirebaseMessagingService">
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".services.MyFirebaseInstanceIdService">
+            android:name=".services.MyFirebaseInstanceIdService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
-            android:parentActivityName="freeskill.app.controller.HomepageScreen"></activity>
         <activity
             android:name=".controller.ChatListActivity"
             android:label="ChatList"
             android:screenOrientation="portrait"
-            android:parentActivityName=".test.Test"></activity>
+            android:parentActivityName=".controller.SwipeScreen">
+        </activity>
         <activity
             android:name=".controller.ChatActivity"
             android:label="Chat"
             android:screenOrientation="portrait"
-            android:parentActivityName=".controller.ChatListActivity"></activity>
+            android:parentActivityName=".controller.ChatListActivity">
+        </activity>
     </application>
 
 </manifest>

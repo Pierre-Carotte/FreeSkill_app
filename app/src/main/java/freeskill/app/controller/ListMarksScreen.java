@@ -3,6 +3,7 @@ package freeskill.app.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -61,5 +62,24 @@ public class ListMarksScreen extends AppCompatActivity {
         // Assign adapter to ListView
         listView.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(this.idProfile == 0) {
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    Intent intent = new Intent(this, ProfileScreen.class);
+                    startActivity(intent);
+            }
+            return true;
+        }else{
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    Intent intent = new Intent(this, SwipeScreen.class);
+                    startActivity(intent);
+            }
+            return true;
+        }
     }
 }

@@ -58,6 +58,6 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
             this.settings.setPerimeter(seekBar.getProgress());
         }
         this.profileEditor.updateCurrentSettings(Constants.JSONparameters.PERIMETER,
-                this.settings.getPerimeter());
+                String.valueOf(this.settings.getPerimeter()));
     }
 }

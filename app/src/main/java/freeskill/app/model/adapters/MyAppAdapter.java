@@ -2,9 +2,12 @@ package freeskill.app.model.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,25 +21,27 @@ import com.bumptech.glide.load.model.LazyHeaders;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import freeskill.app.R;
+import freeskill.app.controller.ProfileScreen;
+import freeskill.app.controller.SwipeScreen;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
+import freeskill.app.model.query.Judgement;
 import freeskill.app.utils.Constants;
 
 /**
  * Created by Florian on 21/12/2017.
  */
 
-public class MyAppAdapter extends ArrayAdapter<Profile> {
+public class MyAppAdapter extends ArrayAdapter<Profile>{
 
     private Context context;
     private ArrayList<Profile> objects;
-    private HashMap<Integer, Bitmap> images;
 
 
-    public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects, HashMap<Integer, Bitmap> images) {
-        super(context, resource, objects);
 
     public MyAppAdapter(@NonNull Context context, int resource, ArrayList<Profile> objects) {
         super(context, resource,objects);
@@ -62,16 +67,13 @@ public class MyAppAdapter extends ArrayAdapter<Profile> {
     }
 
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
     @SuppressLint("ClickableViewAccessibility")
     public View getView (int position, View convertView, ViewGroup parent ){
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item,parent, false);
         }
         CardViewHolder viewHolder = (CardViewHolder) convertView.getTag();
-        if (viewHolder == null) {
+        if(viewHolder == null){
             viewHolder = new CardViewHolder();
             viewHolder.firstName = (TextView) convertView.findViewById(R.id.firstName);
             viewHolder.mark = (RatingBar) convertView.findViewById(R.id.mark);
@@ -120,8 +122,7 @@ public class MyAppAdapter extends ArrayAdapter<Profile> {
         return new CharSequence[0];
     }
 
-        private class CardViewHolder{
-    private class CardViewHolder {
+    private class CardViewHolder{
         public TextView firstName;
         public TextView distance;
         public RatingBar mark;

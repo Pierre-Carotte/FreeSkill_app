@@ -2,6 +2,8 @@ package freeskill.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import java.io.InputStream;
 

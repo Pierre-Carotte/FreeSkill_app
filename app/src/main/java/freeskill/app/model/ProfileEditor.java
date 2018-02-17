@@ -49,7 +49,7 @@ public class ProfileEditor {
         return profile;
     }
 
-    public void updateCurrentSettings(String field, int value){
+    public void updateCurrentSettings(String field, String value){
         PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
         postCurrentSettings.postCurrentSettings(this.queue, field, value);
     }

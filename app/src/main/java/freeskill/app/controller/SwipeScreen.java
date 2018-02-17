@@ -199,7 +199,7 @@ public class SwipeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO uncomment when ChatList will be finished
-                SwipeScreen.this.startActivity(new Intent(SwipeScreen.this, SwipeScreen.class));
+                SwipeScreen.this.startActivity(new Intent(SwipeScreen.this, ChatListActivity.class));
             }
         });
     }
