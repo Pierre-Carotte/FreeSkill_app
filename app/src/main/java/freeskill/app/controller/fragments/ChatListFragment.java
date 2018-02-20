@@ -73,10 +73,12 @@ public class ChatListFragment extends Fragment implements ChatChangeListener {
 
     @Override
     public void onChatRetrieved(ChatList chatList) {
-        this.chatList = chatList;
-        Log.d("onchatretrieved", "ok");
-        final ChatListAdapter chatListAdapter = new ChatListAdapter(this, chatList);
-        mListView.setAdapter(chatListAdapter);
+            this.chatList = chatList;
+            Log.d("onchatretrieved", "ok");
+            final ChatListAdapter chatListAdapter = new ChatListAdapter(this, chatList);
+            mListView.setAdapter(chatListAdapter);
+
+
     }
 
     public void onClickChat(Chat chat) {

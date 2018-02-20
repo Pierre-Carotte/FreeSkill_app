@@ -50,14 +50,13 @@ public class Constants {
             public static final int METHOD = Request.Method.GET;
         }
 
-        public class GetChatList {
+        public class GetChatList{
             public static final String URI = "https://freeskill.ddns.net/user/getmatches/";
             public static final int METHOD = Request.Method.GET;
 
         }
-
         public class SendMessage {
-            public static final String URI = "https://freeskill.ddns.net/user/SendMessage?";
+            public static final String URI = "https://freeskill.ddns.net/user/SendMessage";
             public static final String interlocutor = "interlocutor";
             public static final String message = "message";
             public static final int METHOD = Request.Method.PUT;
@@ -84,6 +83,15 @@ public class Constants {
 
         public class GetMarks {
             public static final String URI = "https://freeskill.ddns.net/user/GetMarks/";
+        }
+        public class DeleteMatch {
+            public static final String URI = "https://freeskill.ddns.net/user/DelMatch/";;
+            public static final int METHOD = Request.Method.DELETE;
+        }
+
+        public class ReportUser {
+            public static final String URI = "https://freeskill.ddns.net/user/setReport/";;
+            public static final int METHOD = Request.Method.PUT;
         }
     }
 

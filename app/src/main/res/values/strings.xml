@@ -3,6 +3,8 @@
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Se connecter</string>
     <string name="button_logout">Se déconnecter</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
     <string name="edit_mail">Email</string>
     <string name="edit_password">Mot de passe</string>
     <string name="email_format_error" />
@@ -43,4 +45,9 @@
     <string name="menu_chat_make_meets">Rendez-vous</string>
     <string name="menu_chat_delete_match">Supprimer</string>
     <string name="menu_chat_signal_profil">Signaler</string>
+    <!-- Messages dialogs menu chat -->
+    <string name="delete_user_dialog_name">Supprimer un match</string>
+    <string name="delete_user_dialog_message">Voulez-vous supprimer votre match?</string>
+    <string name="report_user_dialog_name">Signaler un match</string>
+    <string name="report_user_dialog_message">Voulez-vous signaler votre match?</string>
 </resources>

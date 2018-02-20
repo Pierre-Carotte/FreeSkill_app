@@ -22,7 +22,7 @@ import freeskill.app.utils.Constants;
 
 public class GetMatches extends HttpsQuery {
     //private ChatList c;
-    ChatChangeListener mListener;
+    private ChatChangeListener mListener;
 
     public GetMatches(ChatChangeListener mListener) {
         this.mListener = mListener;
@@ -30,7 +30,7 @@ public class GetMatches extends HttpsQuery {
 
     public void getChatList(RequestQueue queue) throws AuthFailureError {
         // Request a JSON response from the provided URL.
-        JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.GET,
+        JsonObjectRequest stringR = new CustomJsonObjectRequest(Constants.API.GetChatList.METHOD,
                 Constants.API.GetChatList.URI,
                 null, this, this);
         // Add the request to the RequestQueue.
@@ -39,19 +39,16 @@ public class GetMatches extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        Log.e("Error GetMatches", error.getMessage());
     }
 
     @Override
     public void onResponse(JSONObject response) {
         Log.d("Matches", response.toString());
-
         try {
             JSONArray resJsonArray = response.getJSONArray("message");
             ChatList chatList = new ChatList();
             chatList.build(resJsonArray);
-            //Log.d("Matches", resJsonArray.toString());
-
             mListener.onChatRetrieved(chatList);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -163,12 +163,16 @@ public class SwipeScreen extends AppCompatActivity {
         /**
          * Trigger the right event manually.
          */
-        flingContainer.getTopCardListener().selectRight();
+        if(!al.isEmpty()){
+            flingContainer.getTopCardListener().selectRight();
+        }
     }
 
     @OnClick(R.id.pass)
     public void left() {
-        flingContainer.getTopCardListener().selectLeft();
+        if(!al.isEmpty()){
+            flingContainer.getTopCardListener().selectLeft();
+        }
     }
 
 
