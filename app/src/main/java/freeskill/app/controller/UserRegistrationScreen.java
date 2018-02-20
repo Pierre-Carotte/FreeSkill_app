@@ -1,11 +1,13 @@
 package freeskill.app.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
@@ -45,13 +47,29 @@ public class UserRegistrationScreen extends AppCompatActivity {
     }
 
     public void register(View view) {
-        if ((editText_password.getText().toString()).equals(editText_password_confirmation.getText().toString())) {
+        if(editText_first_name.getText().toString().isEmpty() ||
+                editText_last_name.getText().toString().isEmpty() ||
+                editText_email.getText().toString().isEmpty() ||
+                editText_password.getText().toString().isEmpty() ||
+                editText_password_confirmation.getText().toString().isEmpty()) {
+            Snackbar.make(view, "Veuillez remplir tous les champs",
+                    Snackbar.LENGTH_LONG).show();
+        }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(editText_email.getText().toString())
+                .matches()) {
+            Snackbar.make(view, "Veuillez écrire un email correct",
+                    Snackbar.LENGTH_LONG).show();
+        }else if ((editText_password.getText().toString()).equals(editText_password_confirmation
+                .getText().toString()) && !editText_password.getText().toString().isEmpty() &&
+                !editText_password_confirmation.getText().toString().isEmpty()) {
             this.currentApp.userRegistration(editText_first_name.getText().toString(),
                     editText_last_name.getText().toString(), editText_email.getText().toString(),
                     editText_password.getText().toString());
-            lockEditText();
             Snackbar.make(view, "Inscription en cours.",
                     Snackbar.LENGTH_LONG).show();
+            Intent intentHomePage = new Intent(this, HomepageScreen.class);
+            intentHomePage.putExtra("EMAIL", this.editText_email.getText().toString());
+            this.startActivity(intentHomePage);
+            this.finish();
         } else {
             Snackbar.make(view, "Les mots de passe ne sont pas identiques.",
                     Snackbar.LENGTH_LONG).show();
@@ -63,23 +81,5 @@ public class UserRegistrationScreen extends AppCompatActivity {
         System.out.println(editText_email.getText().toString());
         System.out.println(editText_password.getText().toString());
         System.out.println(editText_password_confirmation.getText().toString());
-    }
-
-    public void lockEditText() {
-        editText_first_name.setFocusableInTouchMode(false);
-        editText_first_name.setClickable(false);
-        editText_first_name.setCursorVisible(false);
-        editText_last_name.setFocusableInTouchMode(false);
-        editText_last_name.setClickable(false);
-        editText_last_name.setCursorVisible(false);
-        editText_email.setFocusableInTouchMode(false);
-        editText_email.setClickable(false);
-        editText_email.setCursorVisible(false);
-        editText_password.setFocusableInTouchMode(false);
-        editText_password.setClickable(false);
-        editText_password.setCursorVisible(false);
-        editText_password_confirmation.setFocusableInTouchMode(false);
-        editText_password_confirmation.setClickable(false);
-        editText_password_confirmation.setCursorVisible(false);
     }
 }

@@ -28,31 +28,30 @@
         <activity
             android:name="freeskill.app.controller.SettingsScreen"
             android:label="Paramètres"
-            android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.DisplayMessageActivity"></activity>
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name="freeskill.app.controller.ProfileScreen"
             android:label="Profil"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.test.DisplayMessageActivity"></activity>
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
             android:name="freeskill.app.controller.SwipeScreen"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="freeskill.app.test.UnderConstruction"
-            android:label="En travaux"
-            android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.controller.ProfileScreen"></activity>
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name="freeskill.app.controller.UserRegistrationScreen"
             android:label="Inscription utilisateur"
             android:screenOrientation="portrait"
-            android:parentActivityName="freeskill.app.controller.HomepageScreen"></activity>
+            android:parentActivityName="freeskill.app.controller.HomepageScreen">
+        </activity>
         <activity
             android:name=".controller.ListMarksScreen"
             android:label="marks list by tag"
             android:screenOrientation="portrait"
-            android:parentActivityName=".controller.SwipeScreen"></activity>
+            android:parentActivityName=".controller.SwipeScreen">
+        </activity>
 
         <service
             android:name=".services.MyFirebaseMessagingService"

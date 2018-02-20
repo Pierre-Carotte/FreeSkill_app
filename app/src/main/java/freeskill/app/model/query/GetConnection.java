@@ -52,8 +52,6 @@ public class GetConnection extends HttpsQuery {
                 //Save JWT for persistent connection
                 DataConnection dc = DataConnection.getInstance();
                 dc.setJWT(message);
-                this.homepageScreen.getIntentSwipeScreen().putExtra(this.homepageScreen.EXTRA_TOKEN,
-                        message);
                 this.homepageScreen.startActivity(this.homepageScreen.getIntentSwipeScreen());
                 this.homepageScreen.finish();
             } else {

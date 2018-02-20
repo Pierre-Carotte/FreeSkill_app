@@ -2,6 +2,8 @@ package freeskill.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import java.io.InputStream;
 
@@ -21,6 +23,7 @@ public class FreeskillApplication extends Application {
         InputStream caInput = getResources().openRawResource(R.raw.letsencryptauthorityx3);
         HttpsTrustManager https = new HttpsTrustManager(caInput);
         https.allowMySSL();
+
         // Keep a reference to the application context
         sContext = getApplicationContext();
     }

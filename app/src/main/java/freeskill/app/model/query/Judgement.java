@@ -23,6 +23,7 @@ import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
 import freeskill.app.model.adapters.MyAppAdapter;
+import freeskill.app.utils.CheckConnectionDialogFragment;
 import freeskill.app.utils.Constants;
 
 /**
@@ -90,6 +91,8 @@ public class Judgement implements Response.Listener<JSONObject>, Response.ErrorL
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        CheckConnectionDialogFragment.newInstance().show(this.swipeScreen.getSupportFragmentManager(),
+                "Absence de connexion internet");
         System.out.println(error.getMessage());
     }
 

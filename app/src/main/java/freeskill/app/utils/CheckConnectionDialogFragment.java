@@ -18,6 +18,7 @@ public class CheckConnectionDialogFragment extends AppCompatDialogFragment {
         Bundle args = new Bundle();
         args.putInt("title", 20);
         dialog.setArguments(args);
+        dialog.setCancelable(false);
         return dialog;
     }
 
@@ -27,11 +28,6 @@ public class CheckConnectionDialogFragment extends AppCompatDialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Absence de connexion internet")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // FIRE ZE MISSILES!
-                    }
-                })
                 .setNegativeButton("Quitter", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Kill the application process

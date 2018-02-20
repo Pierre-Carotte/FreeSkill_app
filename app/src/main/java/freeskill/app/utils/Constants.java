@@ -26,6 +26,9 @@ public class Constants {
         public static final String NOTIF_REMINDER = "notif_reminder";
         public static final String NOTIF_MARK = "notif_mark";
         public static final String ID_FCM = "id_fcm";
+        public static final String DESCRIPTION = "description";
+        public static final String TAGS_SHARE = "tags_share";
+        public static final String TAGS_DISCOVER = "tags_discover";
     }
 
     //API Freeskill
@@ -44,6 +47,10 @@ public class Constants {
             public static final String URI = "https://freeskill.ddns.net/user/GetImage/";
         }
 
+        public class SetImage {
+            public static final String URI = "https://freeskill.ddns.net/user/SetImage/";
+        }
+
         public class GetMessages {
             public static final String URI = "https://freeskill.ddns.net/user/getMessages?";
             public static final String interlocutor = "interlocutor";
@@ -57,7 +64,7 @@ public class Constants {
         }
 
         public class SendMessage {
-            public static final String URI = "https://freeskill.ddns.net/user/SendMessage?";
+            public static final String URI = "https://freeskill.ddns.net/user/SendMessage";
             public static final String interlocutor = "interlocutor";
             public static final String message = "message";
             public static final int METHOD = Request.Method.PUT;

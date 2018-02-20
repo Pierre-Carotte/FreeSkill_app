@@ -6,6 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -20,10 +21,27 @@ import freeskill.app.utils.Constants;
 
 public class PostCurrentSettings extends HttpsQuery {
 
-    /*public void postCurrentSettings(RequestQueue queue, int perimeter, boolean notif_match,
-                                    boolean notif_message, boolean notif_meeting,
-                                    boolean notif_reminder, boolean notif_mark){*/
+    public void postCurrentProfileTags(RequestQueue queue, String field, JSONArray putParam) {
+        Map<String, JSONArray> putParamArray = new HashMap<>();
+        putParamArray.put(field, putParam);
+        // Request a JSON response from the provided URL.
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.PUT,
+                Constants.API.SetProfile.URI
+                        + "profileUpdate=" + new JSONObject(putParamArray), null, this,
+                this) {
+            //Add the accessToken in the headers of the request
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put(Constants.General.KEY_ACCESS_TOKEN,
+                        DataConnection.getInstance().getJWT());
+                return headers;
+            }
+        };
 
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
 
     public void postCurrentSettings(RequestQueue queue, String field, String value) {
 
@@ -49,6 +67,9 @@ public class PostCurrentSettings extends HttpsQuery {
                 break;
             case Constants.JSONparameters.ID_FCM:
                 putParam.put(Constants.JSONparameters.ID_FCM, value);
+                break;
+            case Constants.JSONparameters.DESCRIPTION:
+                putParam.put(Constants.JSONparameters.DESCRIPTION, value);
                 break;
         }
 
