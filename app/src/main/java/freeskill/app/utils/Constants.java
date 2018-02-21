@@ -48,7 +48,7 @@ public class Constants {
         }
 
         public class SetImage {
-            public static final String URI = "https://freeskill.ddns.net/user/SetImage/";
+            public static final String URI = "https://freeskill.ddns.net/user/setimage";
         }
 
         public class GetMessages {

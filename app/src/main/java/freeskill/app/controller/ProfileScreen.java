@@ -2,12 +2,16 @@ package freeskill.app.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,14 +21,29 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import freeskill.app.FreeskillApplication;
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
+import freeskill.app.model.DataConnection;
 import freeskill.app.model.ProfileEditor;
+import freeskill.app.model.query.VolleyMultipartRequest;
 import freeskill.app.utils.Constants;
 
 import static android.text.InputType.TYPE_CLASS_TEXT;
@@ -251,5 +270,86 @@ public class ProfileScreen extends AppCompatActivity {
 
     public ImageView getButton_description() {
         return button_description;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+
+            //getting the image Uri
+            Uri imageUri = data.getData();
+            try {
+                //getting bitmap object from uri
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+                //displaying selected image to imageview
+                imageView.setImageBitmap(bitmap);
+
+                //calling the method uploadBitmap to upload image
+                uploadBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void imageBrowse(View view){
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // Start the Intent
+        startActivityForResult(galleryIntent, 100);
+    }
+
+    private void uploadBitmap(final Bitmap bitmap) {
+
+        //our custom volley request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,
+                Constants.API.SetImage.URI,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        Log.d("Response", String.valueOf(response));
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error", String.valueOf(error));
+                    }
+                }) {
+            /*
+            * Here we are passing image by renaming it with a unique name
+            * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                params.put("img", new DataPart("newImage.png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put(Constants.General.KEY_ACCESS_TOKEN, DataConnection.getInstance().getJWT());
+                    return headers;
+            }
+        };
+
+        //adding the request to volley
+        CurrentApp.getInstance(null).getQueue().add(volleyMultipartRequest);
+    }
+
+    /*
+    * The method is taking Bitmap as an argument
+    * then it will return the byte[] array for the given bitmap
+    * and we will send this array to the server
+    * here we are using PNG Compression with 80% quality
+    * you can give quality between 0 to 100
+    * 0 means worse quality
+    * 100 means best quality
+    * */
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }

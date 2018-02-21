@@ -33,7 +33,7 @@ public class SetMessageIsRead extends HttpsQuery {
     public void request(int idUser, int idMsg) {
         String requestURI = Constants.API.SetMessageIsRead.URI + Constants.API.SetMessageIsRead.interlocutor
                 + "=" + idUser + "&" + Constants.API.SetMessageIsRead.idmsg + "=" + idMsg;
-        JsonObjectRequest stringR = new CustomJsonObjectRequest(Constants.API.SetMessageIsRead.METHOD,
+        JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.POST,
                 requestURI,
                 null, this, this);
         queue.add(stringR);
