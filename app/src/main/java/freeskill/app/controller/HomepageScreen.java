@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import freeskill.app.FreeskillApplication;
 import freeskill.app.R;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.model.DataConnection;
@@ -30,11 +31,6 @@ import freeskill.app.utils.JWTUtils;
 import freeskill.app.utils.Tools;
 
 public class HomepageScreen extends AppCompatActivity {
-
-    public static final String EXTRA_EMAIL = "com.example.test.EMAIL";
-    public static final String EXTRA_PASSWORD = "com.example.test.PASSWORD";
-    public static final String EXTRA_TOKEN = "com.example.test.TOKEN";
-
     private Intent intentSwipeScreen;
 
     public Intent getIntentSwipeScreen() {
@@ -83,11 +79,15 @@ public class HomepageScreen extends AppCompatActivity {
         this.emailField = findViewById(R.id.email);
         this.passField = findViewById(R.id.password);
 
-        String email = sharedPreferences.getString("email", null);
-        String password = sharedPreferences.getString("password", null);
+        Bundle extras = getIntent().getExtras();
 
-        this.emailField.setText(email);
-        this.passField.setText(password);
+        this.email = sharedPreferences.getString("email", null);
+
+        if(getIntent().hasExtra("EMAIL")){
+            this.emailField.setText(extras.getString("EMAIL"));
+        }else{
+            this.emailField.setText(email);
+        }
 
         //Persistent connection
         //Test if the token is available
@@ -106,25 +106,18 @@ public class HomepageScreen extends AppCompatActivity {
                 Log.d("test Token", "no token");
             }
         }
-
-        /*CheckConnectionDialogFragment.newInstance().show(this.getSupportFragmentManager(),
-                "Absence de connexion internet");*/
     }
 
     public void connection(View view) {
         this.intentSwipeScreen = new Intent(this, SwipeScreen.class);
 
         this.email = emailField.getText().toString();
-        intentSwipeScreen.putExtra(EXTRA_EMAIL, email);
-
         this.password = passField.getText().toString();
-        intentSwipeScreen.putExtra(EXTRA_PASSWORD, password);
 
         final String loginTxt = emailField.getText().toString();
         final String pwdTxt = passField.getText().toString();
 
         editor.putString("email", this.email);
-        editor.putString("password", this.password);
         editor.apply();
 
 

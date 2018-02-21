@@ -1,5 +1,7 @@
 package freeskill.app.model.query;
 
+import android.view.View;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,9 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import freeskill.app.FreeskillApplication;
+import freeskill.app.R;
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Profile;
+import freeskill.app.utils.CheckConnectionDialogFragment;
 import freeskill.app.utils.Constants;
 
 /**
@@ -29,6 +33,7 @@ import freeskill.app.utils.Constants;
 public class CurrentProfileQuery extends HttpsQuery {
     private ProfileScreen profileScreen;
     private Profile profile;
+    private  RequestQueue queue;
 
     public CurrentProfileQuery(ProfileScreen profileScreen, Profile profile) {
         this.profileScreen = profileScreen;
@@ -36,6 +41,7 @@ public class CurrentProfileQuery extends HttpsQuery {
     }
 
     public void getCurrentProfile(RequestQueue queue) {
+        this.queue=queue;
         //ImageRequestQuery imageRequestQuery = new ImageRequestQuery(this.profileScreen);
         //imageRequestQuery.getImage(accessToken, queue);
         imageRequest();
@@ -99,6 +105,11 @@ public class CurrentProfileQuery extends HttpsQuery {
             }
             this.profileScreen.getTextview_tags_discover().setText(text_tags_discover);
             this.profileScreen.getTextview_description().setText(profile.getString("description"));
+
+            this.profileScreen.getProgressBar().setVisibility(View.INVISIBLE);
+            this.profileScreen.getButton_tags_share().setEnabled(true);
+            this.profileScreen.getButton_tags_discover().setEnabled(true);
+            this.profileScreen.getButton_description().setEnabled(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,7 +117,8 @@ public class CurrentProfileQuery extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        CheckConnectionDialogFragment.newInstance().show(this.profileScreen.getSupportFragmentManager(),
+                "Absence de connexion internet");
     }
 
     public void imageRequest() {

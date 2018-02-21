@@ -12,10 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 import freeskill.app.controller.fragments.ChatFragment;
 import freeskill.app.model.CurrentApp;
@@ -42,13 +39,19 @@ public class SendMessage extends HttpsQuery {
 
     public void sendMessage(ChatFragment chatFragment, int idUser, String message) {
         this.chatFragment = chatFragment;
-        Map<String, String> putParam = new HashMap<String, String>();
-        putParam.put(Constants.API.SendMessage.interlocutor, String.valueOf(idUser));
-        putParam.put(Constants.API.SendMessage.message, message);
-        Log.d("sendMessage", String.valueOf(idUser) + message);
+        String uriEncode;
+        String requestURI = Constants.API.SendMessage.URI + Constants.API.SendMessage.interlocutor
+                + "=" + idUser + "&" + Constants.API.SendMessage.message + "=";
+        //make uri with encode message if there is space
+        try {
+            uriEncode = requestURI + URLEncoder.encode(message, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return;
+        }
         JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.PUT,
-                Constants.API.SendMessage.URI,
-                new JSONObject(putParam), this, this);
+                uriEncode,
+                null, this, this);
         queue.add(stringR);
     }
 

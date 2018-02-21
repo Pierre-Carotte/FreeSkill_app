@@ -15,6 +15,7 @@ import java.util.Map;
 import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.DataConnection;
 import freeskill.app.model.Settings;
+import freeskill.app.utils.CheckConnectionDialogFragment;
 import freeskill.app.utils.Constants;
 
 /**
@@ -54,7 +55,8 @@ public class CurrentSettingsQuery extends HttpsQuery {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        CheckConnectionDialogFragment.newInstance().show(this.settingsScreen.getSupportFragmentManager(),
+                "Absence de connexion internet");
     }
 
     @Override

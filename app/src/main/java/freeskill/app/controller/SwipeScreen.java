@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -63,9 +64,6 @@ public class SwipeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.swipe);
         queue = Volley.newRequestQueue(this);
-        InputStream caInput = getResources().openRawResource(R.raw.letsencryptauthorityx3);
-        HttpsTrustManager https = new HttpsTrustManager(caInput);
-        https.allowMySSL();
         ButterKnife.bind(this);
 
         initLocation();
@@ -170,7 +168,7 @@ public class SwipeScreen extends AppCompatActivity {
 
     @OnClick(R.id.pass)
     public void left() {
-        if(!al.isEmpty()){
+        if(!al.isEmpty()) {
             flingContainer.getTopCardListener().selectLeft();
         }
     }

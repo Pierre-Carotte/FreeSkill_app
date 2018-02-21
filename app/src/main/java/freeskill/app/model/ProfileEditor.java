@@ -2,10 +2,13 @@ package freeskill.app.model;
 
 import com.android.volley.RequestQueue;
 
+import org.json.JSONArray;
+
 import freeskill.app.controller.ProfileScreen;
 import freeskill.app.controller.SettingsScreen;
 import freeskill.app.model.query.CurrentProfileQuery;
 import freeskill.app.model.query.CurrentSettingsQuery;
+import freeskill.app.model.query.PostCurrentProfile;
 import freeskill.app.model.query.PostCurrentSettings;
 
 /**
@@ -52,5 +55,15 @@ public class ProfileEditor {
     public void updateCurrentSettings(String field, String value) {
         PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
         postCurrentSettings.postCurrentSettings(this.queue, field, value);
+    }
+
+    public void updateCurrentProfile(String field, JSONArray putParam) {
+        PostCurrentSettings postCurrentSettings = new PostCurrentSettings();
+        postCurrentSettings.postCurrentProfileTags(this.queue, field, putParam);
+    }
+
+    public void updateCurrentProfilePicture(){
+        PostCurrentProfile postCurrentProfile = new PostCurrentProfile();
+        postCurrentProfile.postCurrentProfileImage(this.queue);
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -58,6 +59,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:scrollbarStyle="insideOverlay"
+        android:fadeScrollbars="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
@@ -74,29 +76,21 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
                 android:onClick="edit_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textview_description"
-                app:layout_constraintTop_toBottomOf="@+id/button_tags_discover"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/button_edit" />
 
             <TextView
                 android:id="@+id/label_tags_discover"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/label_tags_discover"
                 android:textColor="@color/color_freeskill"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_tags_share" />
 
@@ -105,11 +99,14 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:onClick="edit_tags_share"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textview_tags_share"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/button_edit" />
+
 
             <TextView
                 android:id="@+id/label_tags_share"
@@ -125,50 +122,111 @@
                 app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textview_tags_discover"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+
+                android:clickable="false"
+                android:ems="13"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/robotolight"
+                android:inputType="textMultiLine"
+                android:textSize="13sp"
+
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_tags_discover" />
 
             <TextView
+                android:id="@+id/label_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_description"
+                android:textColor="@color/color_freeskill"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_tags_discover" />
+
+
+            <EditText
                 android:id="@+id/textview_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="44dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+
+                android:clickable="false"
+                android:ems="13"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/robotolight"
+                android:inputType="textMultiLine"
                 android:scrollbars="vertical"
+
                 android:textAlignment="viewStart"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_tags_discover" />
+                app:layout_constraintTop_toBottomOf="@+id/label_description" />
 
             <ImageView
                 android:id="@+id/button_tags_discover"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:onClick="edit_tags_discover"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textview_tags_discover"
                 app:layout_constraintTop_toBottomOf="@+id/button_tags_share"
                 app:srcCompat="@drawable/button_edit" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textview_tags_share"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/robotolight"
+                android:inputType="textMultiLine"
+                android:ems="13"
+                android:textSize="13sp"
+
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_tags_share" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

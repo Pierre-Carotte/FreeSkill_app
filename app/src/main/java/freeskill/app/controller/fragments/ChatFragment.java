@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import freeskill.app.R;
-import freeskill.app.model.adapters.ChatAdpater;
+import freeskill.app.model.adapters.ChatAdapter;
 import freeskill.app.model.chat.Chat;
 import freeskill.app.model.chat.Message;
 import freeskill.app.model.query.SendMessage;
@@ -28,7 +27,7 @@ import freeskill.app.utils.Tools;
 public class ChatFragment extends Fragment implements View.OnClickListener {
     private static final String SerializableName = "chat";
     private Chat chat;
-    private ChatAdpater mMessageAdapter = null;
+    private ChatAdapter mMessageAdapter = null;
     private RecyclerView mRecyclerView;
     private EditText editText;
     private LinearLayoutManager linearLayout = null;
@@ -59,7 +58,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             return null;
         }
         //Make chatAdpater with chat
-        mMessageAdapter = new ChatAdpater(chat);
+        mMessageAdapter = new ChatAdapter(chat);
 
         //listener to quit edit text
         rootView.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +93,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public ChatAdpater getmMessageAdapter() {
+    public ChatAdapter getmMessageAdapter() {
         return mMessageAdapter;
     }
 
