@@ -44,7 +44,6 @@ public class GetMatches extends HttpsQuery {
 
     @Override
     public void onResponse(JSONObject response) {
-        Log.d("Matches", response.toString());
         try {
             JSONArray resJsonArray = response.getJSONArray("message");
             ChatList chatList = new ChatList();
