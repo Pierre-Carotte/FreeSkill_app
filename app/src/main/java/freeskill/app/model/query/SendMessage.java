@@ -11,15 +11,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import freeskill.app.controller.fragments.ChatFragment;
 import freeskill.app.model.CurrentApp;
 import freeskill.app.utils.Constants;
+import freeskill.app.utils.Tools;
 
 /**
  * Created by Sofiane-e on 15/02/2018.
@@ -43,24 +41,18 @@ public class SendMessage extends HttpsQuery {
     public void sendMessage(ChatFragment chatFragment, int idUser, String message) {
         this.chatFragment = chatFragment;
         Map<String, String> putParam = new HashMap<>();
-        putParam.put(Constants.API.SendMessage.message, message);
+        putParam.put(Constants.API.SendMessage.message, Tools.encodeString(message));
         putParam.put(Constants.API.SendMessage.interlocutor, String.valueOf(idUser));
 
-        /*try {
-            putParam.put(Constants.API.SendMessage.message, URLEncoder.encode("Frick&Frack", "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
-
         JSONObject jo = new JSONObject(putParam);
-        Log.d("sendMessage", String.valueOf(idUser) + message);
+
         JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.PUT,
                 Constants.API.SendMessage.URI,
                 jo, this, this);
-        System.out.print(message);
-        System.out.print(queue.add(stringR));
-        //queue.add(stringR);
+        this.queue.add(stringR);
     }
+
+
 
     @Override
     public void onErrorResponse(VolleyError error) {
@@ -69,7 +61,6 @@ public class SendMessage extends HttpsQuery {
 
     @Override
     public void onResponse(JSONObject response) {
-        Log.d("sendMessage", response.toString());
         try {
             Boolean success = response.getBoolean("success");
             if (!success) {
@@ -77,7 +68,7 @@ public class SendMessage extends HttpsQuery {
                  * TODO
                  * TOAST sendMessage success false
                  */
-                Log.e("sendmeassage", "success false");
+                Log.d("sendmeassage", "success false");
                 return;
             }
             JSONArray messageTab = response.getJSONArray("message");

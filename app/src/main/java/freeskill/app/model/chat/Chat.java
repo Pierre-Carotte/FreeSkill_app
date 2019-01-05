@@ -30,7 +30,6 @@ public class Chat implements Serializable {
         this.name = name;
         this.messages = messages;
         this.matchDate = matchDate;
-        //this.messages.addAll(messages);
     }
 
     public Chat(JSONObject res) {

@@ -12,6 +12,9 @@ import android.view.inputmethod.InputMethodManager;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -71,6 +74,25 @@ public class Tools {
         return Long.toString(TimeUnit.MILLISECONDS.toDays(diff)) + "  " + res.getString(R.string.days);
     }
 
+    public static String encodeString (String message) {
+        try {
+            return URLEncoder.encode(message,
+                    "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return message;
+        }
+    }
+
+
+    public static String decodeString (String message) {
+        String myString= null;
+        try {
+            return URLDecoder.decode(
+                    message, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return message;
+        }
+    }
     public static class CircleTransform extends BitmapTransformation {
         public CircleTransform(Context context) {
             super(context);

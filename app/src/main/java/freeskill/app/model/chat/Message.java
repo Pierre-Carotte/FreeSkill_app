@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import freeskill.app.model.DataConnection;
+import freeskill.app.utils.Tools;
 
 import static freeskill.app.utils.Tools.parseDate;
 
@@ -44,7 +45,7 @@ public class Message implements Serializable {
             this.idMessage = message.getInt("id");
             this.idUser1 = message.getInt("id_user1");
             this.idUser2 = message.getInt("id_user2");
-            this.message = message.getString("message");
+            this.message = Tools.decodeString(message.getString("message"));
             this.date = parseDate(message.getString("dath_message"));
             int isReadInt = message.getInt("is_read");
             this.isRead = false;
@@ -95,6 +96,5 @@ public class Message implements Serializable {
     public int getIdUser2() {
         return idUser2;
     }
-
 
 }
