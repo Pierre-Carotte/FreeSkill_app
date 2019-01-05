@@ -10,33 +10,32 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import freeskill.app.model.CurrentApp;
 import freeskill.app.utils.Constants;
 
-/**
- * Created by Sofiane-e on 15/02/2018.
- */
-
-public class SetMessageIsRead extends HttpsQuery {
-    private static final SetMessageIsRead ourInstance = new SetMessageIsRead();
+public class SetFCMID extends HttpsQuery {
+    private static final SetFCMID ourInstance = new SetFCMID();
     private final RequestQueue queue;
 
-    public static SetMessageIsRead getInstance() {
+    public static SetFCMID getInstance() {
         return ourInstance;
     }
 
-    private SetMessageIsRead() {
+    private SetFCMID() {
         CurrentApp currentApp = CurrentApp.getInstance(null);
         queue = currentApp.getQueue();
     }
 
-    public void request(int idUser, int idMsg) {
-
-        String requestURI = Constants.API.SetMessageIsRead.URI + Constants.API.SetMessageIsRead.interlocutor
-                + "=" + idUser + "&" + Constants.API.SetMessageIsRead.idmsg + "=" + idMsg;
-        JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.POST,
+    public void request(String idFCM) {
+        String requestURI = Constants.API.SetFCMID.URI + Constants.API.SetFCMID.fcm;
+        Map<String, String> putParam = new HashMap<>();
+        putParam.put("fcm", String.valueOf(idFCM));
+        JsonObjectRequest stringR = new CustomJsonObjectRequest(Constants.API.SetFCMID.METHOD,
                 requestURI,
-                null, this, this);
+                new JSONObject(putParam),this, this);
         queue.add(stringR);
     }
 
@@ -60,4 +59,5 @@ public class SetMessageIsRead extends HttpsQuery {
             e.printStackTrace();
         }
     }
+
 }

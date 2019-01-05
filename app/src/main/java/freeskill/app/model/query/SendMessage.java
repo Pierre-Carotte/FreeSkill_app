@@ -42,14 +42,24 @@ public class SendMessage extends HttpsQuery {
 
     public void sendMessage(ChatFragment chatFragment, int idUser, String message) {
         this.chatFragment = chatFragment;
-        Map<String, String> putParam = new HashMap<String, String>();
-        putParam.put(Constants.API.SendMessage.interlocutor, String.valueOf(idUser));
+        Map<String, String> putParam = new HashMap<>();
         putParam.put(Constants.API.SendMessage.message, message);
+        putParam.put(Constants.API.SendMessage.interlocutor, String.valueOf(idUser));
+
+        /*try {
+            putParam.put(Constants.API.SendMessage.message, URLEncoder.encode("Frick&Frack", "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }*/
+
+        JSONObject jo = new JSONObject(putParam);
         Log.d("sendMessage", String.valueOf(idUser) + message);
         JsonObjectRequest stringR = new CustomJsonObjectRequest(Request.Method.PUT,
                 Constants.API.SendMessage.URI,
-                new JSONObject(putParam), this, this);
-        queue.add(stringR);
+                jo, this, this);
+        System.out.print(message);
+        System.out.print(queue.add(stringR));
+        //queue.add(stringR);
     }
 
     @Override

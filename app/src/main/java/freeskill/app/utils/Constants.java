@@ -92,12 +92,18 @@ public class Constants {
             public static final String URI = "https://freeskill.ddns.net/user/GetMarks/";
         }
         public class DeleteMatch {
-            public static final String URI = "https://freeskill.ddns.net/user/DelMatch/";;
+            public static final String URI = "https://freeskill.ddns.net/user/DelMatch/";
             public static final int METHOD = Request.Method.DELETE;
         }
 
         public class ReportUser {
-            public static final String URI = "https://freeskill.ddns.net/user/setReport/";;
+            public static final String URI = "https://freeskill.ddns.net/user/setReport/";
+            public static final int METHOD = Request.Method.PUT;
+        }
+
+        public class SetFCMID {
+            public static final String URI = "https://freeskill.ddns.net/user/SetIDFCM?";
+            public static final String fcm = "fcm";
             public static final int METHOD = Request.Method.PUT;
         }
     }
